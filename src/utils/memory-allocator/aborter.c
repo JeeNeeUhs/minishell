@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:14 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/13 22:33:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/14 06:32:51 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	ft_abort()
 		free(mem_block);
 		mem_block = next_mem_block;
 	}
+	mem_blocks()->next = NULL;
 }
