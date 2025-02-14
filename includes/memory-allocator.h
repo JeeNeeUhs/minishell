@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:25:58 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/14 06:46:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/14 07:49:58 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ typedef struct s_memory_block
 	struct 			s_memory_block	*next;
 }									t_memory_block;
 
+t_memory_block						*get_memory_head();
+
 void								*ft_malloc(size_t size);
 void								ft_abort();
-t_memory_block						*get_memory_head();
+void								ft_abort_ptr(void *ptr);
 
 #endif
