@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory-allocator.h                                 :+:      :+:    :+:   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 14:25:58 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/17 14:31:22 by hsamir           ###   ########.fr       */
+/*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
+/*   Updated: 2025/02/17 14:28:08 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MEMORY_ALLOCATOR_H
-#define MEMORY_ALLOCATOR_H
+#include "memory-allocator.h"
+#include "minishell.h"
+#include "../libft/libft.h"
 
-#include <stddef.h>
+t_token	*create_token(void);
 
-typedef struct s_memory_block
+int	is_metacharacter(char c)
 {
-	void							*data;
-	struct 			s_memory_block	*next;
-}									t_memory_block;
+	return (c == WORLD || c == SINGLE_QUOTE || c == DOUBLE_QUOTE || c == COMMAND
+		|| c == OPERATOR);
+}
+t_token	*tokenizer(char *str)
+{
+	t_token	*tokens;
+	int		i;
+	int		quote_type;
 
-t_memory_block						*get_memory_head();
-
-void								*ft_malloc(size_t size);
-void								ft_free();
-void								ft_free_ptr(void *ptr);
-
-#endif
+	tokens = NULL;
+	i = 0;
+	while (str[i])
+	{
+		
+	}
+}

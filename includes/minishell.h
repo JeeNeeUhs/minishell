@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory-allocator.h                                 :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 14:25:58 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/17 14:31:22 by hsamir           ###   ########.fr       */
+/*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
+/*   Updated: 2025/02/17 08:30:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MEMORY_ALLOCATOR_H
-#define MEMORY_ALLOCATOR_H
+#ifndef MINISHELL_H
+#define MINISHELL_H
 
-#include <stddef.h>
-
-typedef struct s_memory_block
+typedef enum e_token_type
 {
-	void							*data;
-	struct 			s_memory_block	*next;
-}									t_memory_block;
+	WORLD,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE,
+	COMMAND,
+	OPERATOR //todo i have to seperate that
+}	t_token_type;
 
-t_memory_block						*get_memory_head();
-
-void								*ft_malloc(size_t size);
-void								ft_free();
-void								ft_free_ptr(void *ptr);
+typedef struct s_token
+{
+	t_token_type	type;
+	char			*content;
+	void			*next;
+}	t_token;
 
 #endif
