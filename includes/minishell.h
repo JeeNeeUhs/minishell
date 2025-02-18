@@ -13,6 +13,9 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
+#define SUCCESS 1
+#define FAILURE 0
+
 typedef enum e_token_type
 {
 	WORLD,
@@ -26,7 +29,13 @@ typedef struct s_token
 {
 	t_token_type	type;
 	char			*content;
-	void			*next;
+	struct	s_token	*next;
 }	t_token;
+
+typedef struct s_quote
+{
+	t_token_type	quote_type;
+	struct	s_quote	*next;
+}	t_quote;
 
 #endif

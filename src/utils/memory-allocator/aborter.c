@@ -51,3 +51,4 @@ void	ft_free_ptr(void *ptr)
 		mem_block = mem_block->next;
 	}
 }
+

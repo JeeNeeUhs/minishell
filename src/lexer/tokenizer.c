@@ -21,6 +21,7 @@ int	is_metacharacter(char c)
 	return (c == WORLD || c == SINGLE_QUOTE || c == DOUBLE_QUOTE || c == COMMAND
 		|| c == OPERATOR);
 }
+
 t_token	*tokenizer(char *str)
 {
 	t_token	*tokens;
@@ -31,6 +32,6 @@ t_token	*tokenizer(char *str)
 	i = 0;
 	while (str[i])
 	{
-		
+
 	}
 }
