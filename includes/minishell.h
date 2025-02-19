@@ -18,11 +18,15 @@
 
 typedef enum e_token_type
 {
-	WORLD,
+	UNQUOTED_WORLD
 	SINGLE_QUOTE,
 	DOUBLE_QUOTE,
-	COMMAND,
-	OPERATOR //todo i have to seperate that
+	PIPE,
+	REDIRECTION_IN,
+	REDIRECTION_OUT,
+	REDIRECTION_APPEND,
+	HEREDOC,
+	WHITESPACE
 }	t_token_type;
 
 typedef struct s_token

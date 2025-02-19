@@ -44,4 +44,3 @@ void pop_quote(t_quote** head_quote)
 	ft_free_ptr(*head_quote);
 	*head_quote = next_quote;
 }
-

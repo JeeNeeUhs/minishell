@@ -14,24 +14,26 @@
 #include "minishell.h"
 #include "../libft/libft.h"
 
-t_token	*create_token(void);
-
-int	is_metacharacter(char c)
+t_token	*create_token(void* data, t_token_type type)
 {
-	return (c == WORLD || c == SINGLE_QUOTE || c == DOUBLE_QUOTE || c == COMMAND
-		|| c == OPERATOR);
+	t_token	*token;
+
+	token = ft_malloc(sizeof(t_token));
+	if (!token)
+		return (NULL);
+	*token = (t_token){.data = data, .type = type, .next = NULL};
+	return (token);
 }
 
 t_token	*tokenizer(char *str)
 {
 	t_token	*tokens;
 	int		i;
-	int		quote_type;
 
 	tokens = NULL;
 	i = 0;
 	while (str[i])
 	{
-
 	}
+	return (tokens);
 }
