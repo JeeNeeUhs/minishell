@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/21 15:47:34 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/21 15:49:32 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	word_state (char* str, int* i, t_token **head_token)
 	if (!new_token)
 		//TODO i have to ensure to solve that if program gets some allocation problems.
 	append_token(head_token, new_token);
+	(*i) += len;
 }
 void	operator_state (char* str, int* i, t_token **head_token)
 {
