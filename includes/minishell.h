@@ -19,14 +19,14 @@
 typedef enum e_token_type
 {
 	UNQUOTED_WORLD
-	SINGLE_QUOTE,
-	DOUBLE_QUOTE,
-	PIPE,
-	REDIRECTION_IN,
-	REDIRECTION_OUT,
-	REDIRECTION_APPEND,
-	HEREDOC,
-	WHITESPACE
+	SINGLE_QUOTE, // '
+	DOUBLE_QUOTE, // "
+	PIPE, // |
+	REDIRECTION_IN, // <
+	REDIRECTION_OUT, // >
+	REDIRECTION_APPEND, // >>
+	HEREDOC, // <<
+	WHITESPACE // space, tab, newline
 }	t_token_type;
 
 typedef struct s_token
@@ -42,4 +42,10 @@ typedef struct s_quote
 	struct	s_quote	*next;
 }	t_quote;
 
+
+int skip_whitespace(char *str);
+int	is_quote(char c);
+int is_operator(char c);
+int	is_metacharacter(char c);
+int is_blank(char c);
 #endif
