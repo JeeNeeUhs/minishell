@@ -1,6 +1,6 @@
 NAME = libft.a
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 FILES = ft_isalpha.c \
 				ft_isdigit.c \

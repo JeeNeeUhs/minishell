@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_exit.c                                        :+:      :+:    :+:   */
+/*   validate_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 09:46:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 17:15:24 by hsamir           ###   ########.fr       */
+/*   Created: 2025/02/22 15:46:06 by hsamir            #+#    #+#             */
+/*   Updated: 2025/02/22 15:48:27 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "minishell.h"
+#include "token.h"
 
-int	safe_exit(int status, char *message)
-{
-	if (message)
-		ft_putstr_fd(message, 2);
-	exit(status);
-}
+// if operator token is first or last token, it will be syntax error
+// if operator token is followed by another operator token, it will be syntax error
+int check_tokens_syntax(t_token *token);
+
