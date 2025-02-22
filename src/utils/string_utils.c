@@ -6,13 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:19:57 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/20 14:19:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 12:03:41 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int skip_whitespace(char *str)
+int	skip_whitespace(char *str)
 {
 	int	i;
 

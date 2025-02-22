@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 11:54:47 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 12:04:07 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 void	delimineter_state (char* str, int* i, t_token **head_token)
 {
 	t_token	*last_token;
+	t_token *new_token;
 
 	while(is_blank(str[*i]))
 		(*i)++;
@@ -25,16 +26,18 @@ void	delimineter_state (char* str, int* i, t_token **head_token)
 	last_token = get_last_token(*head_token);
 	if (last_token->type == UNQUOTED_WORD || last_token->type == DOUBLE_QUOTED_WORD || last_token->type == SINGLE_QUOTED_WORD)
 	{
-		if (!create_token(head_token, NULL, DELIMINETER))
+		new_token = create_token(head_token, NULL, DELIMINETER);
+		if (!new_token)
 			safe_exit(1, "Allocation error");
 	}
 }
 
 void	word_state (char* str, int* i, t_token **head_token)
 {
-	t_token_type token_type;
-	char		*content;
-	int len;
+	t_token			*new_token;
+	char			*content;
+	t_token_type	token_type;
+	int 			len;
 
 	if (str[*i] == '\"')
 	{
@@ -54,7 +57,10 @@ void	word_state (char* str, int* i, t_token **head_token)
 			len++;
 	}
 	content = ft_substr(str, *i, len);
-	if (!content || !create_token(head_token, content, token_type))
+	if (!content)
+		safe_exit(1, "Allocation error");
+	new_token = create_token(head_token, content, token_type);
+	if (!new_token)
 		safe_exit(1, "Allocation error");
 	(*i) += len;
 }

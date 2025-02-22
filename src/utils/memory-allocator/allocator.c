@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:09 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/14 12:07:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 11:58:42 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,17 @@ void	*ft_malloc(size_t size)
 
 	alloc_mem = malloc(size);
 	if (!alloc_mem)
+	{
+		ft_free();
 		return (NULL);
+	}
 	mem_block = malloc(sizeof(t_memory_block));
 	if (!mem_block)
+	{
+		free(alloc_mem);
+		ft_free();
 		return (NULL);
+	}
 	*mem_block = (t_memory_block){.data = alloc_mem, .next = NULL};
 	get_last_memory_block()->next = mem_block;
 	return (alloc_mem);
