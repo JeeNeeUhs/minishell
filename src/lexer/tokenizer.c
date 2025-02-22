@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 10:38:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:38:30 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	operator_state (char* str, int* i, t_token **head_token)
 	new_token = create_token(head_token, NULL, token_type);
 	if (!new_token)
 		safe_exit(1, "Allocation error");
-	append_token(head_token, new_token);
 	(*i) += 1 + (token_type == REDIRECTION_APPEND || token_type == HEREDOC);
 }
 
