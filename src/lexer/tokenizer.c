@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 18:06:42 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 18:13:23 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	delimineter_state(char *str, int *i, t_token **head_token)
 		append_token(head_token, new_token);
 	}
 }
-#include <stdio.h>
 void	word_state(char *str, int *i, t_token **head_token)
 {
 	t_token			*new_token;
