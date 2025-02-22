@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 10:38:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:43:30 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "minishell.h"
 #include "../libft/libft.h"
 
-typedef 	void	(*t_state) (char* str, int* i, t_token **head_token);
 
 void	delimineter_state (char* str, int* i, t_token **head_token)
 {
@@ -26,7 +25,7 @@ void	delimineter_state (char* str, int* i, t_token **head_token)
 	if (!(*head_token))
 		return ;
 	last_token = get_last_token(*head_token);
-	if (last_token->type == UNQUOTED_WORLD || last_token->type == DOUBLE_QUOTED_WORD || last_token->type == SINGLE_QUOTED_WORD)
+	if (last_token->type == UNQUOTED_WORD || last_token->type == DOUBLE_QUOTED_WORD || last_token->type == SINGLE_QUOTED_WORD)
 	{
 		new_token = create_token(head_token, NULL, DELIMINETER);
 		if (!new_token)
@@ -37,7 +36,6 @@ int find_char_index(char str, int start_index, char c);
 
 void	word_state (char* str, int* i, t_token **head_token)
 {
-	t_token		*new_token;
 	t_token_type token_type;
 	char		*content;
 	int len;
@@ -54,25 +52,20 @@ void	word_state (char* str, int* i, t_token **head_token)
 	}
 	else
 	{
-		token_type = UNQUOTED_WORLD;
+		token_type = UNQUOTED_WORD;
 		len = 0;
 		while (!is_blank(str[*i + len]) || !is_metacharacter(str[*i + len]) || !is_quote(str[*i + len]))
 			len++;
 	}
 	content = ft_substr(str, *i, len);
-	if (!content)
-		safe_exit(1, "Allocation error");
-	new_token = create_token(head_token, content, token_type);
-	if (!new_token)
+	if (!content || !create_token(head_token, content, token_type))
 		safe_exit(1, "Allocation error");
 	(*i) += len;
 }
 
 void	operator_state (char* str, int* i, t_token **head_token)
 {
-	t_token		*new_token;
 	t_token_type token_type;
-
 
 	if (str[*i] == '>')
 	{
@@ -90,8 +83,7 @@ void	operator_state (char* str, int* i, t_token **head_token)
 	}
 	else
 		token_type = PIPE;
-	new_token = create_token(head_token, NULL, token_type);
-	if (!new_token)
+	if (!create_token(head_token, NULL, token_type))
 		safe_exit(1, "Allocation error");
 	(*i) += 1 + (token_type == REDIRECTION_APPEND || token_type == HEREDOC);
 }

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 10:37:15 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:43:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef enum e_token_type
 {
-	UNQUOTED_WORLD,
+	UNQUOTED_WORD,
 	SINGLE_QUOTED_WORD, // '
 	DOUBLE_QUOTED_WORD, // "
 	PIPE, // |
@@ -42,6 +42,7 @@ typedef struct s_quote
 	struct	s_quote	*next;
 }	t_quote;
 
+typedef 	void	(*t_state) (char* str, int* i, t_token **head_token);
 
 int skip_whitespace(char *str);
 int	is_quote(char c);
