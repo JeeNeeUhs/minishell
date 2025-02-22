@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 10:43:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 11:54:47 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 #include "minishell.h"
 #include "../libft/libft.h"
 
-
 void	delimineter_state (char* str, int* i, t_token **head_token)
 {
-	t_token	*new_token;
 	t_token	*last_token;
 
 	while(is_blank(str[*i]))
@@ -27,12 +25,10 @@ void	delimineter_state (char* str, int* i, t_token **head_token)
 	last_token = get_last_token(*head_token);
 	if (last_token->type == UNQUOTED_WORD || last_token->type == DOUBLE_QUOTED_WORD || last_token->type == SINGLE_QUOTED_WORD)
 	{
-		new_token = create_token(head_token, NULL, DELIMINETER);
-		if (!new_token)
+		if (!create_token(head_token, NULL, DELIMINETER))
 			safe_exit(1, "Allocation error");
 	}
 }
-int find_char_index(char str, int start_index, char c);
 
 void	word_state (char* str, int* i, t_token **head_token)
 {

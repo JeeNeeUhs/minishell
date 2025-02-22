@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 10:43:20 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:44:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ t_token	*create_token(t_token**	head_token, char* content, t_token_type type);
 
 int safe_exit(int status, char *message);
 
+int find_char_index(char str, int start_index, char c);
 #endif
