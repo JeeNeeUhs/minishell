@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/21 15:49:32 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:31:26 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	delimineter_state (char* str, int* i, t_token **head_token)
 	{
 		new_token = create_token(NULL, DELIMINETER);
 		if (!new_token)
-			//TODO i have to ensure to solve that if program gets some allocation problems.
+			safe_exit(1, "Allocation error");
 		append_token(head_token, new_token);
 	}
 }
@@ -62,10 +62,10 @@ void	word_state (char* str, int* i, t_token **head_token)
 	}
 	content = ft_substr(str, *i, len);
 	if (!content)
-		//TODO control that.
+		safe_exit(1, "Allocation error");
 	new_token = create_token(content, token_type);
 	if (!new_token)
-		//TODO i have to ensure to solve that if program gets some allocation problems.
+		safe_exit(1, "Allocation error");
 	append_token(head_token, new_token);
 	(*i) += len;
 }
@@ -93,7 +93,7 @@ void	operator_state (char* str, int* i, t_token **head_token)
 		token_type = PIPE;
 	new_token = create_token(NULL, token_type);
 	if (!new_token)
-		//TODO control that
+		safe_exit(1, "Allocation error");
 	append_token(head_token, new_token);
 	(*i) += 1 + (token_type == REDIRECTION_APPEND || token_type == HEREDOC);
 }
