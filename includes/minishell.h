@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 10:44:09 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 12:16:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,15 @@ typedef struct s_quote
 
 typedef 	void	(*t_state) (char* str, int* i, t_token **head_token);
 
+t_token	*get_last_token(t_token *head_token);
+t_token	*create_token(t_token**	head_token, char* content, t_token_type type);
+void	append_token(t_token **head_token, t_token *new_token);
+
 int skip_whitespace(char *str);
 int	is_quote(char c);
 int is_operator(char c);
 int	is_metacharacter(char c);
 int is_blank(char c);
-
-t_token	*get_last_token(t_token *head_token);
-t_token	*create_token(t_token**	head_token, char* content, t_token_type type);
 
 int safe_exit(int status, char *message);
 
