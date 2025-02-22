@@ -6,12 +6,12 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 12:00:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 13:14:54 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "memory-allocator.h"
+#include "token.h"
 
 t_token	*create_token(char* content, t_token_type type)
 {
@@ -36,13 +36,8 @@ t_token	*get_last_token(t_token *head_token)
 
 void	append_token(t_token **head_token, t_token *new_token)
 {
-	t_token	*last_token;
-
 	if (!*head_token)
-	{
 		*head_token = new_token;
-		return ;
-	}
-	last_token = get_last_token(*head_token);
-	last_token->next = new_token;
+	else
+		get_last_token(*head_token)->next = new_token;
 }

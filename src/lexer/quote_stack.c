@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   quote_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:11:54 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/18 12:11:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 13:16:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "memory-allocator.h"
+#include "token.h"
 
 t_quote* get_current_quote(t_quote* quote)
 {

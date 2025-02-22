@@ -6,12 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 12:46:43 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 13:20:26 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memory-allocator.h"
 #include "minishell.h"
+#include "token.h"
 #include "../libft/libft.h"
 
 void	delimineter_state(char *str, int *i, t_token **head_token)
@@ -34,26 +35,18 @@ void	delimineter_state(char *str, int *i, t_token **head_token)
 	}
 }
 
-void	word_state (char* str, int* i, t_token **head_token)
+void	word_state(char* str, int* i, t_token **head_token)
 {
 	t_token			*new_token;
 	char			*content;
 	t_token_type	token_type;
 	int 			len;
 
-	if (str[*i] == '\"')
-	{
-		token_type = DOUBLE_QUOTED_WORD;
-		len = find_char_index(str, *i + 1, '\"');
-	}
-	else if (str[*i] == '\'')
-	{
-		token_type = SINGLE_QUOTED_WORD;
-		len = find_char_index(str, *i + 1, '\'');
-	}
+	token_type = get_word_type(str[*i]);
+	if (token_type == DOUBLE_QUOTED_WORD || token_type == SINGLE_QUOTED_WORD)
+		len = find_char_index(str, *i + 1, str[*i]);
 	else
 	{
-		token_type = UNQUOTED_WORD;
 		len = 0;
 		while (!is_blank(str[*i + len]) || !is_metacharacter(str[*i + len]) || !is_quote(str[*i + len]))
 			len++;
@@ -67,27 +60,12 @@ void	word_state (char* str, int* i, t_token **head_token)
 	(*i) += len;
 }
 
-void	operator_state (char* str, int* i, t_token **head_token)
+void	operator_state(char* str, int* i, t_token **head_token)
 {
 	t_token			*new_token;
 	t_token_type	token_type;
 
-	if (str[*i] == '>')
-	{
-		if (str[*i + 1] == '>')
-			token_type = REDIRECTION_APPEND;
-		else
-			token_type = REDIRECTION_OUT;
-	}
-	else if (str[*i] == '<')
-	{
-		if (str[*i + 1] == '<')
-			token_type = HEREDOC;
-		else
-			token_type = REDIRECTION_IN;
-	}
-	else
-		token_type = PIPE;
+	token_type = get_operator_type(&str[*i]);
 	new_token = create_token(head_token, NULL, token_type);
 	if (!new_token)
 		safe_exit(1, "Allocation error");
