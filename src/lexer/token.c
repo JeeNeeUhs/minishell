@@ -6,14 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/20 14:08:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 10:35:54 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "memory-allocator.h"
 
-t_token	*create_token(char* content, t_token_type type)
+t_token	*create_token(t_token**	head_token, char* content, t_token_type type)
 {
 	t_token	*token;
 
@@ -21,6 +21,7 @@ t_token	*create_token(char* content, t_token_type type)
 	if (!token)
 		return (NULL);
 	*token = (t_token){.content = content, .type = type, .next = NULL};
+	append_token(head_token, token);
 	return (token);
 }
 
