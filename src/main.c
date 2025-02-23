@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 18:12:35 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/23 12:12:18 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,18 @@ int	main(int argc, char**argv)
 	char	*input;
 	t_token *tokens;
 
-	argv[0] = NULL;
-	if (argc != 1)
-	{
-		ft_putstr_fd("minishell: no arguments needed\n", 2);
-		return (1);
-	}
 	while (1)
 	{
 		input = readline("minishell$ ");
 		if (!input)
 			break ;
 		tokens = tokenizer(input);
+		if (input[0])
+			add_history(input);
 		while(tokens)
 		{
-			printf("type: %s, value: %s\n", get_token_from_type(tokens->type), tokens->content);
+			printf("type: %s, value: %s\n\n", get_token_from_type(tokens->type), tokens->content);
 			tokens = tokens->next;
 		}
-		//T
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 18:13:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/22 19:47:12 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	delimineter_state(char *str, int *i, t_token **head_token)
 	if (!(*head_token))
 		return ;
 	last_token = get_last_token(*head_token);
-	if (is_word_token(last_token->type))
+	if (is_word_token(last_token->type) && str[*i])
 	{
 		new_token = create_token(NULL, DELIMINETER);
 		if (!new_token)
@@ -32,6 +32,7 @@ void	delimineter_state(char *str, int *i, t_token **head_token)
 		append_token(head_token, new_token);
 	}
 }
+
 void	word_state(char *str, int *i, t_token **head_token)
 {
 	t_token			*new_token;
@@ -70,7 +71,7 @@ void	operator_state(char *str, int *i, t_token **head_token)
 	if (!new_token)
 		safe_exit(1, "Allocation error");
 	append_token(head_token, new_token);
-	(*i) += 1 + (token_type == REDIRECTION_APPEND || token_type == HEREDOC);
+	*i += 1 + (token_type == REDIRECTION_APPEND || token_type == HEREDOC);
 }
 
 t_state	get_tokenizer_state(char c)

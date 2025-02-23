@@ -1,15 +1,15 @@
 NAME = minishell
 SRC = src/main.c \
-src/lexer/token.c \
+src/lexer/token_list.c \
 src/lexer/tokenizer.c \
-src/lexer/token_utils.c \
+src/lexer/token_type.c \
 src/utils/memory-allocator/aborter.c \
 src/utils/memory-allocator/allocator.c \
 src/utils/safe_exit.c \
 src/utils/string_utils.c \
 
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror -I./includes -I./libft
+CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
 LIBFT = libft/libft.a
 OBJ = $(SRC:.c=.o)
 
