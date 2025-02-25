@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 16:14:09 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/25 17:17:37 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,24 @@ int	set_env_value(char *key, char *value)
 	}
 }
 
-void	init_env(char *envp[]);
+void	init_env(char *envp[])
+{
+	int	i;
+	char	*eql;
+	char	*key;
+	char	*value;
+
+	i = 0;
+	while (envp[i])
+	{
+		eql = ft_strchr(envp[i], '=');
+		if (eql)
+		{
+			key = ft_substr(envp[i], 0, eql - envp[i]); // hata kotnrolu nasil olcuak
+			value = ft_strdup(eql + 1);
+			create_env(key, value);
+		}
+		// else olmasi lazim mi?
+		i++;
+	}
+}
