@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_utils.c                                     :+:      :+:    :+:   */
+/*   str_classify.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 14:19:57 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 17:59:46 by hsamir           ###   ########.fr       */
+/*   Created: 2025/02/25 11:08:09 by hsamir            #+#    #+#             */
+/*   Updated: 2025/02/25 11:08:30 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-
 /*
 	A space or tab character.
 */
-int is_blank(char c)
+int	is_blank(char c)
 {
 	return (c == ' ' || c == '\t');
 }
@@ -37,21 +36,4 @@ int	is_quote(char c)
 int is_operator(char c)
 {
 	return (c == '|' || c == '<' || c == '>');
-}
-
-int	skip_whitespace(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && is_blank(str[i]))
-		i++;
-	return (i);
-}
-
-int find_char_index(char *str, int i, char c)
-{
-	while (str[i] && str[i] != c)
-		i++;
-	return (i);
 }

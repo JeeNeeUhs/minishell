@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/23 12:12:18 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/25 06:27:22 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ char *get_token_from_type(t_token_type type)
 /*
 	READ - EVAL - PRINT - LOOP
 */
-int	main(int argc, char**argv)
+int	main(int argc, char**argv, char *envp[])
 {
 	char	*input;
 	t_token *tokens;
 
+	//TODO: get env and store it in a static variable
 	while (1)
 	{
 		input = readline("minishell$ ");

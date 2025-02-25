@@ -6,7 +6,14 @@ src/lexer/token_type.c \
 src/utils/memory-allocator/aborter.c \
 src/utils/memory-allocator/allocator.c \
 src/utils/safe_exit.c \
-src/utils/string_utils.c \
+src/utils/string_utils/str_classify.c \
+src/utils/string_utils/str_operations.c \
+src/utils/string_utils/str_operations.c \
+src/env/aborter.c \
+src/env/allocator \
+src/env/operations.c
+
+
 
 CC = cc
 CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror

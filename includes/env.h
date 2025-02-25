@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_exit.c                                        :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 09:46:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 13:53:11 by hsamir           ###   ########.fr       */
+/*   Created: 2025/02/25 10:28:30 by hsamir            #+#    #+#             */
+/*   Updated: 2025/02/25 10:38:55 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
-
-int	safe_exit(int status, char *message)
+typedef	struct s_env
 {
-	if (message)
-		ft_putstr_fd(message, 2);
-	exit(status);
-}
- 
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
+t_env	*get_root_env(void);
+t_env	*create_env(char *key, char *value);
+
+void	remove_all_env();
+void	remove_env(char *key);
+
