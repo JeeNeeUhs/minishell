@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:14 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/26 22:16:32 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/26 22:59:06 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	safe_free(t_mem_type mem_type)
 	get_memory_head(mem_type)->next = NULL;
 }
 
-void	safe_free_ptr(void *ptr, int mem_block_type)
+void	safe_free_ptr(void *ptr, t_mem_type mem_type)
 {
 	t_memory_block	*mem_block;
 	t_memory_block	*prev_mem_block;
 
 	if (!ptr)
 		return ;
-	prev_mem_block = get_memory_head(mem_block_type);
+	prev_mem_block = get_memory_head(mem_type);
 	mem_block = prev_mem_block->next;
 	while (mem_block)
 	{
