@@ -10,9 +10,9 @@ SRC		= src/main.c \
 		src/utils/safe_exit.c \
 		src/utils/string_utils/str_classify.c \
 		src/utils/string_utils/str_operations.c \
-		src/utils/string_utils/unsafe_str_operations.c \
+		src/utils/string_utils/persistent_str_operations.c \
 		src/env/aborter.c \
-		src/env/allocator \
+		src/env/allocator.c \
 		src/env/operations.c \
 		src/signal/signal.c
 

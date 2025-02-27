@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 03:30:51 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 14:37:45 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		find_char_index(char *str, int start_index, char c);
 int		skip_whitespace(char *str);
 int		str_equal(char *s1, char *s2);
 
-char	*ft_unsafe_strdup(const char *s);
-char	*ft_unsafe_substr(char const *s, unsigned int start, size_t len);
+char	*ft_pstrdup(const char *s);
+char	*ft_psubstr(char const *s, unsigned int start, size_t len);
 
 int		safe_exit(int status, char *message);
 

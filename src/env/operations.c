@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/26 11:48:38 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 15:23:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_env	*get_env(char *key)
 {
 	t_env	*env;
 
-	env = get_root_env();
+	env = get_root_env()->next;
 	while (env)
 	{
 		if (str_equal(env->key, key))
@@ -33,49 +33,30 @@ char	*get_env_value(char *key)
 	return (get_env(key)->value);
 }
 
-/*
-	Give unsafe_allocation parameter into this func
-	Cuz if we cleanup the  memory allocated by memory-allacator
-	we will lose env key-value pairs.
-*/
 void	set_env_value(char *key, char *value)
 {
 	t_env	*env;
 
 	env = get_env(key);
 	if (env == NULL)
-	{
-		env = create_env(key, value);
-		if (!env)
-			remove_all_env();
-		return ;
-	}
-	free(env->value);
-	env->value = value;
+		create_env(key, value);
+	else
+		env->value = ft_pstrdup(value);
 }
 
 void	init_env(char *envp[])
 {
-	char	*key;
-	char	*value;
+	int		equal_index;
 	int		i;
-	int		s_index;
 
 	i = 0;
 	while (envp[i])
 	{
-		s_index = find_char_index(envp[i], 0, '=');
-		key = ft_unsafe_substr(envp[i], 0, s_index);
-		value = ft_unsafe_substr(envp[i], s_index + 1, ft_strlen(envp[i]) - s_index - 1);
-		if (!value || !key)
-		{	
-			free(value);
-			free(key);
-			remove_all_env();
-			safe_exit(1, "Allocation Error");
-		}
-		if (!create_env(key, value))
-			safe_exit(1, "Allocation Error");
+		equal_index = find_char_index(envp[i], 0, '=');
+		create_env(
+			ft_psubstr(envp[i], 0, equal_index),
+			ft_pstrdup(&envp[i][equal_index + 1])
+			);
 		i++;
 	}
 }
