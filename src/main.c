@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 06:27:22 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 12:11:48 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <readline/history.h>
 #include "token.h"
 #include <stdio.h>
+#include <signal.h>
 
 char *get_token_from_type(t_token_type type)
 {
@@ -46,8 +47,12 @@ int	main(int argc, char**argv, char *envp[])
 {
 	char	*input;
 	t_token *tokens;
+	struct sigaction sa;
 
 	//TODO: get env and store it in a static variable
+	setup_signal(&sa);
+	
+
 	while (1)
 	{
 		input = readline("minishell$ ");
