@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 03:36:50 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 04:11:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ t_token_type	get_operator_token_type(char *str);
 int				is_word_token_type(t_token_type type);
 int				is_quoted_word_token_type(t_token_type type);
 
+int				is_valid_quote(char *str);
+
+
 t_token			*tokenizer(char *str);
+t_token			*lexer(char *input);
 
 
 #endif

@@ -3,20 +3,20 @@ SRC		= src/main.c \
 		src/lexer/token_list.c \
 		src/lexer/tokenizer.c \
 		src/lexer/token_type.c \
+		src/lexer/lexer.c \
+		src/lexer/validator.c \
 		src/utils/memory-allocator/aborter.c \
 		src/utils/memory-allocator/allocator.c \
 		src/utils/safe_exit.c \
 		src/utils/string_utils/str_classify.c \
 		src/utils/string_utils/str_operations.c \
-		src/utils/string_utils/str_operations.c \
+		src/utils/string_utils/unsafe_str_operations.c \
 		src/env/aborter.c \
 		src/env/allocator \
 		src/env/operations.c \
 		src/signal/signal.c
 
-
-
-CC = cc
+CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
 LIBFT = libft/libft.a
 OBJ = $(SRC:.c=.o)

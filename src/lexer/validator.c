@@ -3,41 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:46:06 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 16:03:07 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/02/27 04:16:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "token.h"
 
-int check_input_syntax(char* input);
-
-// if operator token is first or last token, it will be syntax error
-// if operator token is followed by another operator token, it will be syntax error
-int check_tokens_syntax(t_token *token);
-
-
-int	quote_check(char *str)
+int	is_valid_quote(char *str)
 {
-	char	quote;
-	int	i;
+	char	last_quote;
+	int		i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '\"')
+		if (is_quote(str[i]))
 		{
-			quote = str[i];
-			i++;
-			while (str[i] && str[i] != quote)
-				i++;
+			i = find_char_index(str, i, str[i]);
 			if (!str[i])
 				return (1);
 		}
-		i++;
+		else
+			i++;
 	}
 	return (0);
 }

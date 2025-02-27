@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_aborter.c                                      :+:      :+:    :+:   */
+/*   aborter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:34:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 11:18:58 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:41:45 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "minishell.h"
+#include <stdlib.h>
 
 void	remove_env(char *key)
 {
@@ -51,4 +52,5 @@ void	remove_all_env(void)
 		free(cur_env);
 		cur_env = next_env;
 	}
+	get_root_env()->next = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 17:17:37 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:48:38 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,43 +33,49 @@ char	*get_env_value(char *key)
 	return (get_env(key)->value);
 }
 
-int	set_env_value(char *key, char *value)
+/*
+	Give unsafe_allocation parameter into this func
+	Cuz if we cleanup the  memory allocated by memory-allacator
+	we will lose env key-value pairs.
+*/
+void	set_env_value(char *key, char *value)
 {
 	t_env	*env;
-	char	*new_val;
 
-	new_val = malloc (size)
 	env = get_env(key);
 	if (env == NULL)
 	{
-		env = create_env(key, ft_strdup(value));
-		if (env)
+		env = create_env(key, value);
+		if (!env)
+			remove_all_env();
+		return ;
 	}
-	else
-	{
-		free(env->value);
-		env->value = ft_strdup(value);
-	}
+	free(env->value);
+	env->value = value;
 }
 
 void	init_env(char *envp[])
 {
-	int	i;
-	char	*eql;
 	char	*key;
 	char	*value;
+	int		i;
+	int		s_index;
 
 	i = 0;
 	while (envp[i])
 	{
-		eql = ft_strchr(envp[i], '=');
-		if (eql)
-		{
-			key = ft_substr(envp[i], 0, eql - envp[i]); // hata kotnrolu nasil olcuak
-			value = ft_strdup(eql + 1);
-			create_env(key, value);
+		s_index = find_char_index(envp[i], 0, '=');
+		key = ft_unsafe_substr(envp[i], 0, s_index);
+		value = ft_unsafe_substr(envp[i], s_index + 1, ft_strlen(envp[i]) - s_index - 1);
+		if (!value || !key)
+		{	
+			free(value);
+			free(key);
+			remove_all_env();
+			safe_exit(1, "Allocation Error");
 		}
-		// else olmasi lazim mi?
+		if (!create_env(key, value))
+			safe_exit(1, "Allocation Error");
 		i++;
 	}
 }
