@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:09 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/26 22:19:17 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 02:40:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	*safe_malloc(size_t size, t_mem_type mem_type)
 	{
 		free(alloc_mem);
 		safe_abort(STD_EXIT);
-		return (NULL);
 	}
 	*mem_block = (t_memory_block){.data = alloc_mem, .next = NULL};
 	get_last_memory_block(mem_type)->next = mem_block;

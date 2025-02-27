@@ -6,72 +6,55 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/24 23:17:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 03:37:36 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory-allocator.h"
+#include "../libft/libft.h"
 #include "minishell.h"
 #include "token.h"
-#include "../libft/libft.h"
 
 void	delimineter_state(char *str, int *i, t_token **head_token)
 {
 	t_token	*last_token;
-	t_token	*new_token;
 
 	*i += skip_whitespace(&str[*i]);
-	if (!(*head_token))
+	if (!(*head_token) && !str[*i])
 		return ;
 	last_token = get_last_token(*head_token);
-	if (is_word_token(last_token->type) && str[*i])
-	{
-		new_token = create_token(NULL, DELIMINETER);
-		if (!new_token)
-			safe_exit(1, "Allocation error");
-		append_token(head_token, new_token);
-	}
+	if (is_word_token_type(last_token->type))
+		append_token(head_token, create_token(NULL, DELIMINETER));
 }
 
 void	word_state(char *str, int *i, t_token **head_token)
 {
-	t_token			*new_token;
 	char			*content;
 	t_token_type	token_type;
 	int				s_index;
 
 	s_index = *i;
-	token_type = get_word_type(str[*i]);
-	if (token_type == DOUBLE_QUOTED_WORD || token_type == SINGLE_QUOTED_WORD)
+	token_type = get_word_token_type(str[*i]);
+	if (is_quoted_word_token_type(token_type))
 	{
 		*i = find_char_index(str, *i + 1, str[*i]);
-		content = ft_substr(str, s_index + 1,  (*i)++ - s_index - 1);
+		content = ft_substr(str, s_index + 1, (*i)++ - s_index - 1);
 	}
 	else
 	{
-		while (str[*i] && !is_metacharacter(str[*i]) && !is_quote(str[*i]))
+		while (is_word_char(str[*i]))
 			(*i)++;
 		content = ft_substr(str, s_index, *i - s_index);
 	}
-	if (!content)
-		safe_exit(1, "Allocation error");
-	new_token = create_token(content, token_type);
-	if (!new_token)
-		safe_exit(1, "Allocation error");
-	append_token(head_token, new_token);
+	append_token(head_token, create_token(content, token_type));
 }
 
 void	operator_state(char *str, int *i, t_token **head_token)
 {
-	t_token			*new_token;
 	t_token_type	token_type;
 
-	token_type = get_operator_type(&str[*i]);
-	new_token = create_token(NULL, token_type);
-	if (!new_token)
-		safe_exit(1, "Allocation error");
-	append_token(head_token, new_token);
-	*i += 1 + (token_type == REDIRECTION_APPEND || token_type == HEREDOC);
+	token_type = get_operator_token_type(&str[*i]);
+	*i += (token_type == REDIRECTION_APPEND || token_type == HEREDOC) + 1;
+	append_token(head_token, create_token(NULL, token_type));
 }
 
 t_state	get_tokenizer_state(char c)

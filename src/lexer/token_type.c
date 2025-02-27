@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   token_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:00:16 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/23 12:34:36 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 03:35:04 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 
-t_token_type	get_operator_type(char *str)
+t_token_type	get_operator_token_type(char *str)
 {
 	if (str[0] == '>')
 	{
@@ -32,7 +32,7 @@ t_token_type	get_operator_type(char *str)
 		return (PIPE);
 }
 
-t_token_type	get_word_type(char c)
+t_token_type	get_word_token_type(char c)
 {
 	if (c == '\"')
 		return (DOUBLE_QUOTED_WORD);
@@ -42,8 +42,13 @@ t_token_type	get_word_type(char c)
 		return (UNQUOTED_WORD);
 }
 
-int	is_word_token(t_token_type type)
+int	is_word_token_type(t_token_type type)
 {
 	return (type == UNQUOTED_WORD || type == DOUBLE_QUOTED_WORD
 		|| type == SINGLE_QUOTED_WORD);
+}
+
+int	is_quoted_word_token_type(t_token_type type)
+{
+	return (type == SINGLE_QUOTED_WORD || type == DOUBLE_QUOTED_WORD);
 }

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:08:09 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 11:08:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 03:31:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ int	is_quote(char c)
 int is_operator(char c)
 {
 	return (c == '|' || c == '<' || c == '>');
+}
+
+int	is_word_char(char c)
+{
+	return (c && !is_metacharacter(c) && !is_quote(c));
 }

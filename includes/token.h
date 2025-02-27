@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/22 17:14:06 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 03:36:50 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ t_token			*get_last_token(t_token *head_token);
 t_token			*create_token(char* content, t_token_type type);
 void			append_token(t_token **head_token, t_token *new_token);
 
-t_token_type	get_word_type(char c);
-t_token_type	get_operator_type(char *str);
-int				is_word_token(t_token_type type);
+t_token_type	get_word_token_type(char c);
+t_token_type	get_operator_token_type(char *str);
+int				is_word_token_type(t_token_type type);
+int				is_quoted_word_token_type(t_token_type type);
 
 t_token			*tokenizer(char *str);
 
