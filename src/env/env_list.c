@@ -6,15 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:00 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 16:06:04 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:22:24 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "libft.h"
 #include "memory-allocator.h"
-#include "minishell.h"
-#include <stdlib.h>
 
 t_env	*get_root_env(void)
 {
