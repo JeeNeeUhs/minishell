@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 12:32:18 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 15:51:08 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "token.h"
 #include <stdio.h>
 #include <signal.h>
+#include "env.h"
+#include <stdio.h>
 
 char *get_token_from_type(t_token_type type)
 {
@@ -51,14 +53,13 @@ int	main(int argc, char**argv, char *envp[])
 
 	//TODO: get env and store it in a static variable
 	setup_signal(&sa);
-	
-
+	init_env(envp);
 	while (1)
 	{
 		input = readline("minishell$ ");
 		if (!input)
 			break ;
-		tokens = tokenizer(input);
+		tokens = lexer(input);
 		if (input[0])
 			add_history(input);
 		while(tokens)
