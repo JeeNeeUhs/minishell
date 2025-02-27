@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 14:37:45 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 16:23:31 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define SUCCESS 1
 # define FAILURE 0
 
-#include <stddef.h>
+# include <stddef.h>
 
 int		is_quote(char c);
 int		is_operator(char c);
