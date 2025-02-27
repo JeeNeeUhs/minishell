@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 16:23:31 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 22:02:07 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	*ft_pstrdup(const char *s);
 char	*ft_psubstr(char const *s, unsigned int start, size_t len);
 
 int		safe_exit(int status, char *message);
+void	print_err(char* message, int exit_status);
 
 #endif

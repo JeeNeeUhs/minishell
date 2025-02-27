@@ -6,12 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 16:23:37 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/02/27 22:07:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
+
+#define QUOTE_ERR "Syntax Error: Unclosed quote detected\n"
 
 typedef enum e_token_type
 {

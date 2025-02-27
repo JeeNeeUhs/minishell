@@ -7,7 +7,8 @@ SRC		= src/main.c \
 		src/lexer/validator.c \
 		src/utils/memory-allocator/aborter.c \
 		src/utils/memory-allocator/allocator.c \
-		src/utils/safe_exit.c \
+		src/utils/error_handler/safe_exit.c \
+		src/utils/error_handler/syntax_error.c \
 		src/utils/string_utils/str_classify.c \
 		src/utils/string_utils/str_operations.c \
 		src/utils/string_utils/persistent_str_operations.c \
