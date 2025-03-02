@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:29:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 21:52:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/02 11:31:56 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	*get_exit_status(void)
 {
