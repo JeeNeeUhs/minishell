@@ -6,19 +6,33 @@
 /*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:06:12 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/02/27 12:18:30 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/03/02 16:23:24 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <unistd.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-void	handle_signal(int sig, siginfo_t *info, void *context)
+void	handle_signal(int sig, siginfo_t *info, void *context) // check
 {
 	if (sig == SIGINT)
-	{
+	{ // crtl + c 
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
+	else if (sig == SIGQUIT)
+	{ // crtl + slash
+		rl_on_new_line();
+		rl_redisplay();
+	}	
+
 }
 
 void	setup_signal(struct sigaction *sa)
