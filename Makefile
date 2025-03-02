@@ -1,6 +1,10 @@
 NAME	= minishell
-SRC		= src/main.c \
-		src/lexer/token_list.c \
+
+MAIN	= src/main.c
+
+TEST	= src/test.c
+
+SRC		= src/lexer/token_list.c \
 		src/lexer/tokenizer.c \
 		src/lexer/token_type.c \
 		src/lexer/lexer.c \
@@ -14,7 +18,8 @@ SRC		= src/main.c \
 		src/utils/string_utils/persistent_str_operations.c \
 		src/env/env_list.c \
 		src/env/operations.c \
-		src/signal/signal.c
+		src/signal/signal.c \
+		src/inbuild/echo.c 
 
 CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
@@ -24,10 +29,14 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT) -lreadline
+	$(CC) $(CFLAGS) $(MAIN) $(OBJ) -o $(NAME) $(LIBFT) -lreadline
 
 $(LIBFT):
 	make -C libft
+
+test: fclean $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(TEST) $(OBJ) -o $(NAME) $(LIBFT) -lreadline
+	make clean
 
 clean:
 	rm -f $(OBJ)
