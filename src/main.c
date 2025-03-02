@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/02 11:33:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/02 14:26:26 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,18 @@ char *get_token_from_type(t_token_type type)
 /*
 	READ - EVAL - PRINT - LOOP
 */
-int	main(int argc, char**argv, char *envp[])
+int	main(int argc, char**argv, char *envp[]) // check 
 {
 	char	*input;
 	t_token *tokens;
 	struct sigaction sa;
 
 	//TODO: get env and store it in a static variable
+	if (argc != 1)
+	{
+		ft_putstr_fd("minishell: no arguments are allowed\n", 2);
+		return (1);
+	}
 	setup_signal(&sa);
 	init_env(envp);
 	while (1)
