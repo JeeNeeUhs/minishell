@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 23:56:45 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/01 00:02:41 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/02 14:02:53 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 			<space>,
 			<tab>,
 			<newline>
-		}
+		},
 	},
 	2.6.7 Quote Removal {
 		=> The quote characters ( <backslash>, single-quote, and double-quote) that were present in the original word shall be removed unless they have themselves been quoted.
 	}
+	Trace expanding in Bash {
+		=> trace -e execve <your-input>
+	}
 */
-
