@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/03 18:53:47 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/03 21:08:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char *get_token_from_type(t_token_type type)
 /*
 	READ - EVAL - PRINT - LOOP
 */
-#if (DEBUG == 0)
 int	main(int argc, char**argv, char *envp[]) // check
 {
 	char	*input;
@@ -75,11 +74,3 @@ int	main(int argc, char**argv, char *envp[]) // check
 		}
 	}
 }
-
-#else
-int main() // DEBUG MAIN
-{
-	printf("%s\n", str_arr_join((char *[]){NULL, "world", ""}, 3));
-	return (0);
-}
-#endif

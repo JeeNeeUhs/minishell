@@ -19,7 +19,7 @@ SRC		= src/lexer/token_list.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
-		src/inbuild/echo.c 
+		src/inbuild/echo.c
 
 CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
@@ -35,7 +35,7 @@ $(LIBFT):
 	make -C libft
 
 test: fclean $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(TEST) $(OBJ) -o $(NAME) $(LIBFT) -lreadline
+	$(CC) $(CFLAGS) $(TEST) $(OBJ) -o $(NAME) $(LIBFT) -lreadline -D DEBUG=1
 	make clean
 
 clean:

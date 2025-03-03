@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:28 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/03 18:44:07 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/03 21:46:22 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,21 @@ char	*str_arr_join(char	**strings, int count)
 	i = 0;
 	len = 0;
 	while (i < count)
-		len += ft_strlen(strings[i++]);
+	{
+		if (strings[i])
+			len += ft_strlen(strings[i]);
+		i++;
+	}
+	if (len == 0)
+		return (ft_strdup(""));
 	new_str = (char *)safe_talloc(len + 1);
 	i = 0;
 	offset = 0;
 	while (i < count)
-		offset += ft_strlcpy(new_str + offset, strings[i++], UINT_MAX);
+	{
+		if (strings[i])
+			offset += ft_strlcpy(new_str + offset, strings[i], UINT_MAX);
+		i++;
+	}
 	return (new_str);
 }
