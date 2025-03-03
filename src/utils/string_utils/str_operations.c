@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   str_operations.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:28 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/25 11:22:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/03 18:44:07 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "memory-allocator.h"
 #include "minishell.h"
+#include  <limits.h>
 
 int	str_equal(char *s1, char *s2)
 {
@@ -40,4 +42,23 @@ int	skip_whitespace(char *str)
 	while (str[i] && is_blank(str[i]))
 		i++;
 	return (i);
+}
+
+char	*str_arr_join(char	**strings, int count)
+{
+	char	*new_str;
+	int		i;
+	int		len;
+	int		offset;
+
+	i = 0;
+	len = 0;
+	while (i < count)
+		len += ft_strlen(strings[i++]);
+	new_str = (char *)safe_talloc(len + 1);
+	i = 0;
+	offset = 0;
+	while (i < count)
+		offset += ft_strlcpy(new_str + offset, strings[i++], UINT_MAX);
+	return (new_str);
 }
