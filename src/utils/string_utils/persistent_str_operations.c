@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   persistent_str_operations.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:33:30 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 14:37:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:55 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "memory-allocator.h"
+#include "memory_allocator.h"
 #include <stdlib.h>
 
 char	*ft_pstrdup(const char *s)

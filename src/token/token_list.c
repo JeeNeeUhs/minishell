@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 16:14:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:19 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory-allocator.h"
+#include "memory_allocator.h"
 #include "token.h"
 
 t_token	*create_token(char* content, t_token_type type)

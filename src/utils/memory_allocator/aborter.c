@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   aborter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:14 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/26 22:59:06 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:27 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory-allocator.h"
+#include "memory_allocator.h"
 #include <stdlib.h>
 
 void	safe_free(t_mem_type mem_type)
@@ -53,9 +53,8 @@ void	safe_free_ptr(void *ptr, t_mem_type mem_type)
 }
 
 void	safe_abort(int exit_code)
-{	
+{
 	safe_free(PERSISTENT);
 	safe_free(TEMPORARY);
 	exit(exit_code);
 }
- 

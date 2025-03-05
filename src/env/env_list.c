@@ -6,13 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:00 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/02 11:32:46 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:19:06 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "minishell.h"
-#include "memory-allocator.h"
+#include "memory_allocator.h"
 
 t_env	*get_root_env(void)
 {

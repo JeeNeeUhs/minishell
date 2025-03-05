@@ -6,11 +6,11 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/03 21:08:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:19:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory-allocator.h"
+#include "memory_allocator.h"
 #include "minishell.h"
 #include "../libft/libft.h"
 #include <readline/readline.h>

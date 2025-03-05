@@ -2,7 +2,7 @@
 #include "inbuild.h"
 #include "minishell.h"
 #include "libft.h"
-#include "memory-allocator.h"
+#include "memory_allocator.h"
 
 void	test_str_arr_join();
 

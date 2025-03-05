@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   allocator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:09 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 14:46:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:38 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory-allocator.h"
+#include "memory_allocator.h"
 #include <stdlib.h>
 
 t_memory_block	*get_memory_head(t_mem_type mem_type)
 {
 	static t_memory_block	temp_mem_blocks = {0};
 	static t_memory_block	pers_mem_blocks = {0};
-	
+
 	if (mem_type == PERSISTENT)
 		return (&pers_mem_blocks);
 	return (&temp_mem_blocks);
