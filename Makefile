@@ -4,13 +4,13 @@ MAIN	= src/main.c
 
 TEST	= src/test.c
 
-SRC		= src/lexer/token_list.c \
+SRC		= src/token/token_list.c \
+		src/token/token_type.c \
 		src/lexer/tokenizer.c \
-		src/lexer/token_type.c \
 		src/lexer/lexer.c \
 		src/lexer/validator.c \
-		src/utils/memory-allocator/aborter.c \
-		src/utils/memory-allocator/allocator.c \
+		src/utils/memory_allocator/aborter.c \
+		src/utils/memory_allocator/allocator.c \
 		src/utils/error_handler/safe_exit.c \
 		src/utils/error_handler/syntax_error.c \
 		src/utils/string_utils/str_classify.c \
