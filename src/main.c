@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/05 19:19:33 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/07 17:21:50 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char *get_token_from_type(t_token_type type)
 		return ("REDIRECTION_APPEND");
 	if (type == HEREDOC)
 		return ("HEREDOC");
-	return ("DELIMINETER");
+	return ("DELIMITER");
 }
 
 /*
