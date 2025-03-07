@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/02 11:07:15 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/07 22:03:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ t_env	*get_env(char *key)
 
 char	*get_env_value(char *key)
 {
-	return (get_env(key)->value);
+	t_env	*env;
+
+	env = get_env(key);
+	if (env == NULL)
+		return (NULL);
+	return (env->value);
 }
 
 void	set_env_value(char *key, char *value)
