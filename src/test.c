@@ -73,8 +73,8 @@ void	test_str_arr_join()
 		if (ft_strncmp(test_cases[i], expected_results[i], ft_strlen(expected_results[i])) != 0 )
 		{
 			printf("❌ Test %d failed!\n", i + 1);
-			printf("   Expected: \"%s\"\n", expected_results[i]);
-			printf("   Got     : \"%s\"\n", test_cases[i]);
+			printf("	Expected: \"%s\"\n", expected_results[i]);
+			printf("	Got     : \"%s\"\n", test_cases[i]);
 			return ;
 		}
 		else

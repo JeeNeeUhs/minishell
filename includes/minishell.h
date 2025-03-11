@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/03 18:57:08 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/07 22:22:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define SUCCESS 1
 # define FAILURE 0
+
+# define DEFAULT_IFS " \t\n"
 
 # include <stddef.h>
 

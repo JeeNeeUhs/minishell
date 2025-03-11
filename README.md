@@ -17,7 +17,7 @@
 - `wait3`
 - `wait4`
 
-### File Descriptors 
+### File Descriptors
 - `write`
 - `access`
 - `open`
@@ -75,3 +75,5 @@
 - `execve`
 - `printf`
 
+### Test-Case
+- `echo a “” “” “” “” b`

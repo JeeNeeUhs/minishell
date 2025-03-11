@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 23:56:45 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/07 22:13:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/08 12:47:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	*get_internal_field_separator(void)
 
 	ifs = get_env("IFS");
 	if (!ifs)
-		ifs = ft_strdup(" \t\n"); // default IFS value
+		ifs = ft_strdup(DEFAULT_IFS);
 	return (ifs);
 }
 
-void internal_field_split_state(t_token **token);
+void internal_field_split(t_token **token);
 
 
 void	expander(t_token **tokens)
@@ -52,5 +52,8 @@ void	expander(t_token **tokens)
 	},
 	Trace expanding in Bash {
 		=> trace -e execve <your-input>
+	},
+	{
+		Unquoted implicit null arguments, resulting from the expansion of parameters that have no values, are removed.
 	}
 */
