@@ -61,7 +61,7 @@
 - `perror`
 - `strerror`
 
-### Termcap /
+### Termcap
 - `tgetent`
 - `tgetflag`
 - `tgetnum`
@@ -69,7 +69,7 @@
 - `tgoto`
 - `tputs`
 
-### Other /
+### Other
 - `getenv`
 - `exit`
 - `execve`
