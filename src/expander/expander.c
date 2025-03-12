@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 23:56:45 by hsamir            #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2025/03/08 12:47:25 by hsamir           ###   ########.fr       */
-=======
-/*   Updated: 2025/03/11 12:29:17 by ahekinci         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Created: 2025/03/12 13:15:52 by hsamir            #+#    #+#             */
+/*   Updated: 2025/03/12 13:15:56 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +24,8 @@ char	*get_internal_field_separator(void)
 	return (ifs);
 }
 
-<<<<<<< Updated upstream
 void internal_field_split(t_token **token);
-=======
 
-
-void internal_field_split_state(t_token **token);
->>>>>>> Stashed changes
 
 
 void	expander(t_token **tokens)

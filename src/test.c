@@ -2,9 +2,10 @@
 #include "inbuild.h"
 #include "minishell.h"
 #include "libft.h"
+#include "env.h"
 #include "memory_allocator.h"
-
 void	test_str_arr_join();
+void	test_str_sep();
 
 int main(int argc, char **argv, char **envp)
 {
@@ -12,6 +13,7 @@ int main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 	// echo(NULL, argv);
+
 	return (0);
 }
 
@@ -21,6 +23,7 @@ __attribute__((constructor))
 void	run_tests()
 {
 	test_str_arr_join();
+	test_str_sep();
 }
 
 
@@ -32,6 +35,7 @@ void	end_tests()
 
 
 #pragma region  str_arr_join
+
 void	test_str_arr_join()
 {
 	char	*test_cases[] = {
@@ -83,6 +87,58 @@ void	test_str_arr_join()
 	printf("✅ All tests completed.\n\n");
 }
 #pragma endregion
+
+#include "string.h"
+void	test_str_sep()
+{
+	char	**test_cases[] = {
+		str_sep("hello world", "hello world"),
+		str_sep("hello world", " "),
+		str_sep("hello world", "hello"),
+		str_sep("hello world", "xyz"),
+		str_sep("hello world", "h"),
+		str_sep("hello world", "d"),
+		str_sep("hello world", "o"),
+		str_sep("hello world", ""),
+		str_sep("apple;orange,banana|grape", ",;|")
+	};
+
+	char	**expected_result[] = {
+		(char *[]) {NULL},
+		(char *[]) {"hello", "world", NULL},
+		(char *[]) {" w", "r", "d", NULL},
+		(char *[]) {"hello world", NULL},
+		(char *[]) {"ello world", NULL},
+		(char *[]) {"hello worl", NULL},
+		(char *[]) {"hell", " w", "rld", NULL},
+		(char *[]) {"hello world", NULL},
+		(char *[]) {"apple", "orange", "banana", "grape", NULL}
+	};
+
+	for (int i = 0; i < sizeof(test_cases) / sizeof(char **); i++)
+	{
+		char** result = test_cases[i];
+		char** expected = expected_result[i];
+		while (*result || *expected)
+		{
+			if ((*result != NULL) ^ (*expected != NULL) || ft_strncmp(*result, *expected, ft_strlen(*expected)) != 0)
+			{
+				printf("❌ Test %d failed!\n", i + 1);
+				printf("	Expected: \"%s\"\n", *expected);
+				printf("	Got     : \"%s\"\n", *result);
+				return ;
+			}
+
+			result++;
+			expected++;
+		}
+
+		printf("✅ Test %d passed\n", i + 1);
+	}
+	printf("✅ All tests completed.\n\n");
+}
+
+
 
 #endif
 

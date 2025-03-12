@@ -16,6 +16,7 @@ SRC		= src/token/token_list.c \
 		src/utils/string_utils/str_classify.c \
 		src/utils/string_utils/str_operations.c \
 		src/utils/string_utils/persistent_str_operations.c \
+		src/utils/string_utils/str_token.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
