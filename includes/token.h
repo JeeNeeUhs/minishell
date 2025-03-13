@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 22:07:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:20:41 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef enum e_token_type
 	REDIRECTION_OUT,    // >
 	REDIRECTION_APPEND, // >>
 	HEREDOC,            // <<
-	DELIMINETER         // space, tab, newline
+	DELIMITER         // space, tab, newline
 }					t_token_type;
 
 typedef struct s_token
@@ -40,6 +40,8 @@ typedef void		(*t_state)(char *str, int *i, t_token **head_token);
 t_token				*get_last_token(t_token *head_token);
 t_token				*create_token(char *content, t_token_type type);
 void				append_token(t_token **head_token, t_token *new_token);
+void				remove_token(t_token *prev_token, t_token **token);
+void				insert_tokens(t_token *prev_token, t_token **tokens);
 
 t_token_type		get_word_token_type(char c);
 t_token_type		get_operator_token_type(char *str);

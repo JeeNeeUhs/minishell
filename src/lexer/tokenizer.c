@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 16:17:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/12 16:20:54 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "token.h"
 
-void	delimineter_state(char *str, int *i, t_token **head_token)
+void	delimiter_state(char *str, int *i, t_token **head_token)
 {
 	t_token	*last_token;
 
@@ -23,7 +23,7 @@ void	delimineter_state(char *str, int *i, t_token **head_token)
 		return ;
 	last_token = get_last_token(*head_token);
 	if (is_word_token_type(last_token->type))
-		append_token(head_token, create_token(NULL, DELIMINETER));
+		append_token(head_token, create_token(NULL, DELIMITER));
 }
 
 void	word_state(char *str, int *i, t_token **head_token)
@@ -60,7 +60,7 @@ void	operator_state(char *str, int *i, t_token **head_token)
 t_state	get_tokenizer_state(char c)
 {
 	if (is_blank(c))
-		return (delimineter_state);
+		return (delimiter_state);
 	if (is_operator(c))
 		return (operator_state);
 	return (word_state);
