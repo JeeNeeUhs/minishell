@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/12 16:20:41 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/14 17:16:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,6 @@ int					is_valid_quote(char *str);
 t_token				*tokenizer(char *str);
 t_token				*lexer(char *input);
 
+typedef void		(*t_ifs_state)(char *str, int *i, char *delims, t_token **head_token);
+t_token				*field_split(char *str, char *delims);
 #endif

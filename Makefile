@@ -9,6 +9,8 @@ SRC		= src/token/token_list.c \
 		src/lexer/tokenizer.c \
 		src/lexer/lexer.c \
 		src/lexer/validator.c \
+		src/expander/expander.c \
+		src/expander/word_splitting.c \
 		src/utils/memory_allocator/aborter.c \
 		src/utils/memory_allocator/allocator.c \
 		src/utils/error_handler/safe_exit.c \
@@ -22,7 +24,7 @@ SRC		= src/token/token_list.c \
 		src/signal/signal.c \
 		src/inbuild/echo.c
 
-CC = clang
+CC = cc
 CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
 LIBFT = libft/libft.a
 OBJ = $(SRC:.c=.o)

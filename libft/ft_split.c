@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include "libft.h"
+#include "../includes/memory_allocator.h"
 
 static int	letter_count(const char *s, char c)
 {
@@ -61,7 +62,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (0);
-	arr = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1));
+	arr = (char **)safe_talloc(sizeof(char *) * (word_count(s, c) + 1));
 	if (!arr)
 		return (0);
 	i = 0;

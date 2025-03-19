@@ -6,14 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:05:34 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/12 12:12:17 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/14 17:51:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memory_allocator.h"
 #include "libft.h"
 
-int	letter_count(char *s, char *delim)
+static int	letter_count(char *s, char *delim)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int	word_count(const char *s, char* delim)
 	return (count);
 }
 
-char	*str_sep(char *str, char *delim)
+char	**split_by_delims(char *str, char *delim)
 {
 	char	**arr;
 	int		i;

@@ -6,55 +6,42 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:15:52 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/12 13:15:56 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/19 10:04:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "libft.h"
 #include "minishell.h"
+#include "memory_allocator.h"
+#include "env.h"
 
-char	*get_internal_field_separator(void)
-{
-	char	*ifs;
+char	*expand_string(char* str, int is_unquoted);
 
-	ifs = get_env("IFS");
-	if (!ifs)
-		ifs = ft_strdup(DEFAULT_IFS);
-	return (ifs);
-}
+// void	word_split(t_token* prev_token, t_token **cur_token)
+// {
+// 	char		*expand_str;
 
-void internal_field_split(t_token **token);
-
-
+// 	expand_str = expand_string((*cur_token)->content, 1);
+// 	if (!is_null_or_empty(expand_str))
+// 		insert_tokens(cur_token, field_split(expand_str));
+// 	safe_free_ptr(expand_str, TEMPORARY);
+// 	remove_token(prev_token, cur_token);
+// }
 
 void	expander(t_token **tokens)
 {
 	t_state	state;
 	t_token	*cur_token;
 
-	cur_token = *tokens;
 	while(cur_token)
 	{
+
 	}
 }
 
 /*
-	2.6.5 Field Splitting {
-		=> https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/utilities/V3_chap02.html#tag_18_06_05
-		=> default IFS value: {
-			<space>,
-			<tab>,
-			<newline>
-		},
-	},
-	2.6.7 Quote Removal {
-		=> The quote characters ( <backslash>, single-quote, and double-quote) that were present in the original word shall be removed unless they have themselves been quoted.
-	},
 	Trace expanding in Bash {
 		=> trace -e execve <your-input>
 	},
-	{
-		Unquoted implicit null arguments, resulting from the expansion of parameters that have no values, are removed.
-	}
 */

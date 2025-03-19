@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/05 19:18:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/03/12 14:41:46 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,16 @@ void	append_token(t_token **head_token, t_token *new_token)
 		*head_token = new_token;
 	else
 		get_last_token(*head_token)->next = new_token;
+}
+
+void	remove_token(t_token *prev_token, t_token **token)
+{
+	t_token	*next_token;
+
+	next_token = (*token)->next;
+	if (prev_token)
+		prev_token->next = next_token;
+	safe_free_ptr((*token)->content, TEMPORARY);
+	safe_free_ptr(*token, TEMPORARY);
+	*token = next_token;
 }

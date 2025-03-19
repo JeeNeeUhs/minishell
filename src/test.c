@@ -3,6 +3,7 @@
 #include "minishell.h"
 #include "libft.h"
 #include "env.h"
+#include "token.h"
 #include "memory_allocator.h"
 void	test_str_arr_join();
 void	test_str_sep();
@@ -12,7 +13,15 @@ int main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	(void)envp;
-	// echo(NULL, argv);
+
+	create_env("IFS", "");
+	t_token *tokens	= field_split("hsamir onun adı ", " ");
+	while(tokens)
+	{
+		printf("content:%s;token_type:%d\n", tokens->content, tokens->type);
+		tokens = tokens->next;
+	}
+
 
 	return (0);
 }
@@ -92,15 +101,15 @@ void	test_str_arr_join()
 void	test_str_sep()
 {
 	char	**test_cases[] = {
-		str_sep("hello world", "hello world"),
-		str_sep("hello world", " "),
-		str_sep("hello world", "hello"),
-		str_sep("hello world", "xyz"),
-		str_sep("hello world", "h"),
-		str_sep("hello world", "d"),
-		str_sep("hello world", "o"),
-		str_sep("hello world", ""),
-		str_sep("apple;orange,banana|grape", ",;|")
+		split_by_delims("hello world", "hello world"),
+		split_by_delims("hello world", " "),
+		split_by_delims("hello world", "hello"),
+		split_by_delims("hello world", "xyz"),
+		split_by_delims("hello world", "h"),
+		split_by_delims("hello world", "d"),
+		split_by_delims("hello world", "o"),
+		split_by_delims("hello world", ""),
+		split_by_delims("apple;orange,banana|grape", ",;|")
 	};
 
 	char	**expected_result[] = {
