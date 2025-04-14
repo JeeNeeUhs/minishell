@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/14 09:32:34 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/14 16:14:59 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		is_operator(char c);
 int		is_metacharacter(char c);
 int		is_blank(char c);
 int		is_word_char(char c);
+int		is_var_char(char c);
 
 int		find_char_index(char *str, int start_index, char c);
 int		skip_whitespace(char *str);

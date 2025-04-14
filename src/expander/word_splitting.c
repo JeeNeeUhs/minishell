@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/14 18:05:42 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/14 18:08:59 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	word_state(char *str, int *i, char *delims, t_token **head_token)
 	int		slen;
 
 	slen = letter_count(str + *i, delims);
-	token = create_token(ft_substr(str + *i, 0, slen), SINGLE_QUOTED_WORD);
+	token = create_token((t_token){.content = ft_substr(str + *i, 0, slen), .type = W_SINGLE_Q});
 	append_token(head_token, token);
 	*i += slen;
 }
@@ -60,7 +60,7 @@ static void	delimiter_state(char *str, int *i, char *delims, t_token **head_toke
 {
 	while (includes(delims, str[*i]))
 		(*i)++;
-	append_token(head_token, create_token(NULL, DELIMITER));
+	append_token(head_token, create_token((t_token){.type = DELIM}));
 }
 
 static t_ifs_state	get_ifs_state(char c, char *delims)

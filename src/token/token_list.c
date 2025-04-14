@@ -6,21 +6,22 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/12 14:41:46 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/14 18:21:31 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memory_allocator.h"
 #include "token.h"
 
-t_token	*create_token(char* content, t_token_type type)
+t_token	*create_token(t_token new_token)
 {
 	t_token	*token;
 
 	token = safe_talloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	*token = (t_token){.content = content, .type = type, .next = NULL};
+	*token = new_token;
+	token->next = NULL;
 	return (token);
 }
 
