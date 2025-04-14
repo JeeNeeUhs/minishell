@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/14 17:59:12 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/14 18:51:26 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #define QUOTE_ERR "Syntax Error: Unclosed quote detected\n"
 
 #define WORD_MASK (W_UNQUOTED | W_SINGLE_Q | W_DOUBLE_Q)
+#define W_QUOTE_MASK (W_SINGLE_Q | W_DOUBLE_Q)
 #define REDIR_MASK  (R_IN | R_OUT | R_APPEND | R_HERE)
-
 typedef enum e_token_type
 {
 	W_UNQUOTED = 1 << 0,

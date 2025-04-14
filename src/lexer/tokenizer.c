@@ -6,11 +6,12 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/14 18:33:44 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/14 18:52:19 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include <stdbool.h>
 #include "minishell.h"
 #include "token.h"
 
@@ -23,15 +24,14 @@ void	delimiter_state(char *input, int *i, t_token **head_token)
 	if (input[*i] && (last->type & WORD_MASK))
 		append_token(head_token, create_token((t_token){.type = DELIM}));
 }
-
 void	word_state(char *input, int *i, t_token **head_token)
 {
 	t_token			token;
 	int				s_index;
 
 	token.type = get_word_type(input[*i]);
-	s_index = *i + (token.type == W_DOUBLE_Q || token.type == W_SINGLE_Q);
-	if (token.type & (W_DOUBLE_Q | W_SINGLE_Q))
+	s_index = *i + (bool)(token.type & W_QUOTE_MASK);
+	if (token.type & W_QUOTE_MASK)
 		*i = find_char_index(input, *i + 1, input[*i]);
 	else
 	{
@@ -49,7 +49,7 @@ void	word_state(char *input, int *i, t_token **head_token)
 				(*i)++;
 	}
 	token.content = ft_substr(input, s_index, *i - s_index);
-	*i += (token.type == W_DOUBLE_Q || token.type == W_SINGLE_Q);
+	*i += (bool)(token.type & W_QUOTE_MASK);
 	append_token(head_token, create_token(token));
 }
 
@@ -61,7 +61,7 @@ void	operator_state(char *input, int *i, t_token **head_token)
 		.content = NULL,
 		.type = get_operator_type(&input[*i])
 	};
-	*i += (token.type == R_APPEND || token.type == R_HERE) + 1;
+	*i += (bool)(token.type & (R_HERE | R_APPEND)) + 1;
 	append_token(head_token, create_token(token));
 }
 
