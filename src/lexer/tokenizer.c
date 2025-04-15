@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/14 18:52:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/15 20:28:56 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	word_state(char *input, int *i, t_token **head_token)
 		*i = find_char_index(input, *i + 1, input[*i]);
 	else
 	{
-		if (input[*i] == '$')
+		if (is_var_start(&input[*i]))
 		{
 			(*i)++;
 			if (input[*i] == '?')
@@ -45,7 +45,7 @@ void	word_state(char *input, int *i, t_token **head_token)
 					(*i)++;
 		}
 		else
-			while (is_word_char(input[*i]) && input[*i] != '$')
+			while (is_word_char(input[*i]) && !is_var_start(&input[*i]))
 				(*i)++;
 	}
 	token.content = ft_substr(input, s_index, *i - s_index);

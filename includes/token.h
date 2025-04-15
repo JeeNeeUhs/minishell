@@ -6,18 +6,22 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/14 18:51:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/15 06:22:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
-#define QUOTE_ERR "Syntax Error: Unclosed quote detected\n"
+#define SYNTAX_ERR "syntax error near unexpected token '%s'\n"
 
 #define WORD_MASK (W_UNQUOTED | W_SINGLE_Q | W_DOUBLE_Q)
 #define W_QUOTE_MASK (W_SINGLE_Q | W_DOUBLE_Q)
 #define REDIR_MASK  (R_IN | R_OUT | R_APPEND | R_HERE)
+#define OPERATOR_MASK (PIPE | REDIR_MASK)
+#define META_MASK (OPERATOR_MASK | DELIM)
+
+
 typedef enum e_token_type
 {
 	W_UNQUOTED = 1 << 0,
@@ -28,7 +32,8 @@ typedef enum e_token_type
 	R_OUT = 1 << 5,			//	>
 	R_APPEND = 1 << 6,		//	>>
 	R_HERE = 1 << 7,		//	<<
-	DELIM = 1 << 8			//	space, tab, newline
+	DELIM = 1 << 8,		//	space, tab, newline
+	W_INVALID = 1 << 9
 }					t_token_type;
 
 typedef struct s_token

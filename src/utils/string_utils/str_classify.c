@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:08:09 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/14 16:11:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/15 20:26:58 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,9 @@ int	is_word_char(char c)
 int is_var_char(char c)
 {
 	return (ft_isalnum(c) || c == '_');
+}
+
+int	is_var_start(char *input)
+{
+	return (input[0] == '$' && (is_var_char(input[1]) || input[1] == '?'));
 }

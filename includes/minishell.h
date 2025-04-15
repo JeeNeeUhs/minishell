@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/14 16:14:59 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/15 20:28:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		is_metacharacter(char c);
 int		is_blank(char c);
 int		is_word_char(char c);
 int		is_var_char(char c);
+int		is_var_start(char *input);
 
 int		find_char_index(char *str, int start_index, char c);
 int		skip_whitespace(char *str);
@@ -44,6 +45,7 @@ char	*ft_psubstr(char const *s, unsigned int start, size_t len);
 
 int		safe_exit(int status, char *message);
 void	print_err(char* message, int exit_status);
+int		*get_exit_status(void);
 
 
 #endif
