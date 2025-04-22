@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/22 20:36:12 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 21:47:45 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	main(int argc, char**argv, char *envp[]) // check
 	//setup_signal(&sa);
 	init_env(envp);
 
-	set_env_value("test", "o\n\nexpander test\n\n");
+	// set_env_value("test", "o\n\nexpander test\n\n");
+	// set_env_value("t", "");
 	while (1)
 	{
 		input = readline("minishell$ ");
