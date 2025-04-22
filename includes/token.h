@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/22 16:21:02 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 17:26:55 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_token				*get_last_token(t_token *head_token);
 t_token				*create_token(t_token new_token);
 void				append_token(t_token **head_token, t_token *new_token);
 void				remove_token(t_token *prev_token, t_token **token);
-void				insert_tokens(t_token *prev_token, t_token **tokens);
+void				insert_tokens(t_token **prev_token, t_token *tokens);
 
 t_token_type		get_word_type(char c);
 t_token_type		get_operator_type(char *str);
@@ -58,13 +58,13 @@ int					is_quoted_word_token_type(t_token_type type);
 
 int					is_valid_quote(char *str);
 
+//lexer
 t_token				*tokenizer(char *str);
 t_token				*lexer(char *input);
 
-typedef void		(*t_ifs_state)(char *str, int *i, char *delims, t_token **head_token);
-t_token				*field_split(char *str, char *delims);
-
-
+//expander
 void				expander(t_token *token);
 void				expand_string(char **input);
+void				word_split(t_token *token);
+
 #endif

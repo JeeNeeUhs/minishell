@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/13 21:24:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 20:36:12 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,21 @@ int	main(int argc, char**argv, char *envp[]) // check
 	}
 	//setup_signal(&sa);
 	init_env(envp);
+
+	set_env_value("test", "o\n\nexpander test\n\n");
 	while (1)
 	{
 		input = readline("minishell$ ");
 		if (!input)
 			break ;
 		tokens = lexer(input);
+		expander(tokens);
 		if (input[0])
 			add_history(input);
 		while(tokens)
 		{
-			printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
+			if (!(tokens->type & W_INVALID))
+				printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
 			tokens = tokens->next;
 		}
 	}

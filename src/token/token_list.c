@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/14 18:21:31 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 17:25:27 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,20 @@ void	remove_token(t_token *prev_token, t_token **token)
 	safe_free_ptr((*token)->content, TEMPORARY);
 	safe_free_ptr(*token, TEMPORARY);
 	*token = next_token;
+}
+
+void	insert_tokens(t_token **prev_token, t_token *tokens)
+{
+	t_token *last_token;
+
+	if (tokens == NULL)
+		return ;
+	last_token = get_last_token(tokens);
+	if (*prev_token == NULL)
+		*prev_token = tokens;
+	else
+	{
+		last_token->next = (*prev_token)->next;
+		(*prev_token)->next = tokens;
+	}
 }

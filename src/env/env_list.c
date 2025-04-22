@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:00 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/05 19:19:06 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 20:35:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_env	*create_env(char *key, char *value)
 
 	new_env = safe_palloc(sizeof(t_env));
 	*new_env = (t_env){
-		.key = ft_pstrdup(key),
-		.value = ft_pstrdup(value),
+		.key = key,
+		.value = value,
 		.next = NULL
 	};
 	get_last_env()->next = new_env;

@@ -6,13 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/07 22:03:09 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 20:25:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include "libft.h"
 #include "minishell.h"
+#include "memory_allocator.h"
 
 t_env	*get_env(char *key)
 {
@@ -46,7 +47,10 @@ void	set_env_value(char *key, char *value)
 	if (env == NULL)
 		create_env(key, value);
 	else
+	{
+		safe_free_ptr(env->value, PERSISTENT);
 		env->value = ft_pstrdup(value);
+	}
 }
 
 void	init_env(char *envp[])
