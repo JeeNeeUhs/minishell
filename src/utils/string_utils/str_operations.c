@@ -6,14 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:28 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/14 17:41:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/20 21:00:10 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "memory_allocator.h"
 #include "minishell.h"
-#include  <limits.h>
 
 int	str_equal(char *s1, char *s2)
 {
@@ -42,35 +41,6 @@ int	skip_whitespace(char *str)
 	while (str[i] && is_blank(str[i]))
 		i++;
 	return (i);
-}
-
-char	*str_arr_join(char	**strings, int count)
-{
-	char	*new_str;
-	int		i;
-	int		len;
-	int		offset;
-
-	i = 0;
-	len = 0;
-	while (i < count)
-	{
-		if (strings[i])
-			len += ft_strlen(strings[i]);
-		i++;
-	}
-	if (len == 0)
-		return (ft_strdup(""));
-	new_str = (char *)safe_talloc(len + 1);
-	i = 0;
-	offset = 0;
-	while (i < count)
-	{
-		if (strings[i])
-			offset += ft_strlcpy(new_str + offset, strings[i], UINT_MAX);
-		i++;
-	}
-	return (new_str);
 }
 
 int	includes(char* str, char c)

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/15 20:28:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/20 21:01:48 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		skip_whitespace(char *str);
 int		str_equal(char *s1, char *s2);
 int		includes(char* str, char c);
 char	*str_arr_join(char	**strings, int count);
+void	str_arr_free(char **strings, int count);
 char	**split_by_delims(char *str, char *delim);
 
 

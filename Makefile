@@ -11,12 +11,14 @@ SRC		= src/token/token_list.c \
 		src/lexer/validator.c \
 		src/expander/expander.c \
 		src/expander/word_splitting.c \
+		src/expander/string_expansion.c \
 		src/utils/memory_allocator/aborter.c \
 		src/utils/memory_allocator/allocator.c \
 		src/utils/error_handler/safe_exit.c \
 		src/utils/error_handler/syntax_error.c \
 		src/utils/string_utils/str_classify.c \
 		src/utils/string_utils/str_operations.c \
+		src/utils/string_utils/str_arr_operations.c \
 		src/utils/string_utils/persistent_str_operations.c \
 		src/utils/string_utils/str_token.c \
 		src/env/env_list.c \

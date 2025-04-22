@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/15 06:22:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 16:21:02 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,8 @@ t_token				*lexer(char *input);
 
 typedef void		(*t_ifs_state)(char *str, int *i, char *delims, t_token **head_token);
 t_token				*field_split(char *str, char *delims);
+
+
+void				expander(t_token *token);
+void				expand_string(char **input);
 #endif

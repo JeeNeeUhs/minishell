@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:15:52 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/13 21:14:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:45:02 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,24 @@
 #include "minishell.h"
 #include "memory_allocator.h"
 #include "env.h"
+#include <stdlib.h>
 
-char	*expand_string(char* str, int is_unquoted);
-
-// void	word_split(t_token* prev_token, t_token **cur_token)
-// {
-// 	char		*expand_str;
-
-// 	expand_str = expand_string((*cur_token)->content, 1);
-// 	if (!is_null_or_empty(expand_str))
-// 		insert_tokens(cur_token, field_split(expand_str));
-// 	safe_free_ptr(expand_str, TEMPORARY);
-// 	remove_token(prev_token, cur_token);
-// }
-
-void	expander(t_token **tokens)
+void	expander(t_token *token)
 {
-	t_state	state;
-	t_token	*cur_token;
+	int	heredoc_flag;
 
-	while(cur_token)
+	heredoc_flag = 0;
+	while(token)
 	{
-
+		if (token->type & R_HERE)
+			heredoc_flag = 1;
+		else if (heredoc_flag && token->type & META_MASK)
+			heredoc_flag = 0;
+		else if (!heredoc_flag && token->type & W_DOUBLE_Q)
+			expand_string(&token->content);
+		// else if (!heredoc_flag && token->type & W_DOUBLE_Q)
+		// 	field_split(token->content, token->type);
+		token = token->next;
 	}
 }
 
