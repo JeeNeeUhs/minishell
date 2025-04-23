@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 21:07:40 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/23 08:54:33 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/23 10:45:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 typedef struct s_redirection
 {
-
 	char *file;
 	int flags;
 	t_instruction instruction;

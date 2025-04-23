@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/22 20:43:32 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/23 09:21:16 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	word_split(t_token *token)
 {
 	char	*ifs;
 	char	*env_val;
-	t_token	*head_token;
 
 	if (!is_var_start(token->content))
 		return ;
@@ -92,10 +91,7 @@ void	word_split(t_token *token)
 	else
 		env_val = get_env_value(token->content + 1);
 	if (env_val)
-	{
-		head_token = field_split(env_val, ifs);
-		insert_tokens(&token, head_token);
-	}
+		insert_tokens(&token, field_split(env_val, ifs));
 	str_arr_free((char *[]){ifs, env_val}, 2);
 }
 
