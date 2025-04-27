@@ -12,6 +12,7 @@ SRC		= src/token/token_list.c \
 		src/expander/expander.c \
 		src/expander/word_splitting.c \
 		src/expander/string_expansion.c \
+		src/parser/merge.c \
 		src/utils/memory_allocator/aborter.c \
 		src/utils/memory_allocator/allocator.c \
 		src/utils/error_handler/safe_exit.c \
@@ -24,7 +25,7 @@ SRC		= src/token/token_list.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
-		src/inbuild/echo.c
+		src/inbuilts/echo.c
 
 CC = cc
 CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
