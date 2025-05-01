@@ -22,7 +22,6 @@ int main(int argc, char **argv, char **envp)
 		tokens = tokens->next;
 	}
 
-
 	return (0);
 }
 

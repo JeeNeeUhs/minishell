@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/27 14:17:14 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/04/27 19:28:12 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	join_word_parts(t_token *tokens)
 		else if (tokens->type & WORD_MASK && join_flag)
 		{
 			str_append(&word->content, tokens->content);
+			word->type |= tokens->type;
 			tokens->type |= W_INVALID;
 		}
 		else if (tokens->type & WORD_MASK && !join_flag)
