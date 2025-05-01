@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/22 17:25:27 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/01 09:15:48 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,31 @@ void	insert_tokens(t_token **prev_token, t_token *tokens)
 		last_token->next = (*prev_token)->next;
 		(*prev_token)->next = tokens;
 	}
+}
+
+void	prepend_token(t_token **head_token, t_token *new_token)
+{
+	if (*head_token == NULL)
+		*head_token = new_token;
+	else
+	{
+		new_token->next = *head_token;
+		*head_token = new_token;
+	}
+}
+
+t_token	*reverse_token_list(t_token *token)
+{
+	t_token	*prev_token;
+	t_token	*next_token;
+
+	prev_token = NULL;
+	while (token != NULL)
+	{
+		next_token = token->next;
+		token->next = prev_token;
+		prev_token = token;
+		token = next_token;
+	}
+	return (prev_token);
 }

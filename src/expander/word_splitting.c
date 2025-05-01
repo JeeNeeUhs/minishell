@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/23 09:21:16 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/01 09:26:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int create_delim_token(t_token **head_token, char *input, int index, char *delim
 		.type = DELIM,
 		.next = NULL
 	};
-	append_token(head_token, create_token(token));
+	prepend_token(head_token, create_token(token));
 	return (len);
 }
 
@@ -56,7 +56,7 @@ int	create_field_token(t_token **head_token, char *input, int index, char *delim
 		.type = W_SINGLE_Q,
 		.next = NULL
 	};
-	append_token(head_token, create_token(token));
+	prepend_token(head_token, create_token(token));
 	return (len);
 }
 
@@ -74,7 +74,7 @@ t_token	*field_split(char *input, char *delims)
 		else
 			index += create_field_token(&tokens, input, index, delims);
 	}
-	return (tokens);
+	return (reverse_token_list(tokens));
 }
 
 void	word_split(t_token *token)
