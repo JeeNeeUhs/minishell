@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/01 09:28:38 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/01 19:38:08 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	word_state(char *input, int *i, t_token **head_token)
 
 void	operator_state(char *input, int *i, t_token **head_token)
 {
-	t_token token;
+	t_token	token;
 
 	token = (t_token){
 		.content = NULL,
