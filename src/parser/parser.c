@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/01 17:40:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/02 13:48:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "stddef.h"
 
 void	argument_state(t_token *token, t_command *command)
-{	command->args[command->arg_count++] = ft_strdup(token->content);
+{	
+	command->args[command->arg_count++] = ft_strdup(token->content);
 }
 
 void	redirection_state(t_token *token, t_command *command)

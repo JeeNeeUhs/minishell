@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   word_splitting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/01 09:26:21 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/02 16:56:27 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	word_split(t_token *token)
 	if (!is_var_start(token->content))
 		return ;
 	ifs = get_ifs();
-	token->type |= W_INVALID;
+	token->type = W_INVALID;
 	if (token->content[1] == '?')
 		env_val = ft_itoa(*get_exit_status());
 	else
