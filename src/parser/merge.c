@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/02 16:56:45 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 13:11:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,31 @@ void	str_append(char **input, char *tail)
 }
 
 
-void	join_word_parts(t_token *tokens)
+void	join_word_parts(t_token **head_token)
 {
 	t_token	*word;
+	t_token	*token;
 	int		join_flag;
 
 	join_flag = 0;
-	while(tokens != NULL)
+	token = *head_token;
+	while(token != NULL)
 	{
-		if (tokens->type & W_INVALID)
+		if (token->type & WORD_MASK && join_flag)
 		{
-			tokens = tokens->next;
-			continue;
+			str_append(&word->content, token->content);
+			word->type |= token->type;
+			token->type = W_INVALID;
 		}
-		else if (tokens->type & WORD_MASK && join_flag)
+		else if (token->type & WORD_MASK && !join_flag)
 		{
-			str_append(&word->content, tokens->content);
-			word->type |= tokens->type;
-			tokens->type = W_INVALID;
-		}
-		else if (tokens->type & WORD_MASK && !join_flag)
-		{
-			word = tokens;
+			word = token;
 			join_flag = 1;
 		}
 		else
 			join_flag = 0;
-		tokens = tokens->next;
+		token = token->next;
 	}
+	remove_token_by_flags(head_token, W_INVALID);
 }
 

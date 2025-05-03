@@ -6,12 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 12:46:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 13:13:44 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memory_allocator.h"
 #include "minishell.h"
+#include "command.h"
 #include "../libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -51,7 +52,7 @@ int	main(int argc, char**argv, char *envp[]) // check
 		expander(&tokens);
 		if (input[0])
 			add_history(input);
-		// join_word_parts(tokens);
+		join_word_parts(&tokens);
 		while(tokens)
 		{
 			printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
