@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 12:57:07 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 21:47:43 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "libft/libft.h"
 #include "stddef.h"
 
-void	argument_state(t_token *token, t_command *command)
+void	argument_state(t_token *token, t_command *command, size_t *index)
 {	
-	command->args[command->arg_count++] = ft_strdup(token->content);
+	command->args[(*index)++] = ft_strdup(token->content);
 }
 
-void	redirection_state(t_token *token, t_command *command)
+void	redirection_state(t_token *token, t_command *command, size_t index)
 {
 
 }
