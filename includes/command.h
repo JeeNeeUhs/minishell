@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/02 16:54:36 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 13:14:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 typedef enum e_instruction
 {
-	R_IN = 1 << 4,			//	<
-	R_OUT = 1 << 5,			//	>
-	R_APPEND = 1 << 6,		//	>>
-	R_HERE = 1 << 7,		//	<<
+	I_IN = 1 << 4,			//	<
+	I_OUT = 1 << 5,			//	>
+	I_APPEND = 1 << 6,		//	>>
+	I_HERE = 1 << 7,		//	<<
 }					t_instruction;
 
 /* Instructions describing what kind of thing to do for a redirection. */
@@ -49,7 +49,7 @@ t_command				*reverse_command_list(t_command *command);
 void					prepend_command(t_command **head_command, t_token *new_command);
 typedef void			(*t_command_state)(t_token *token, t_command *command);
 
-void				join_word_parts(t_token *tokens);
+void					join_word_parts(t_token **head_token);
 
 #endif
 
