@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 12:52:33 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 14:21:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,19 @@ void	remove_token(t_token **head, t_token *prev, t_token *token)
 void	remove_token_by_flags(t_token **head_token, int flags)
 {
 	t_token	*prev_token;
+	t_token	*next_token;
 	t_token	*token;
 
 	prev_token = NULL;
 	token = *head_token;
 	while (token != NULL)
 	{
+		next_token = token->next;
 		if (token->type & flags)
 			remove_token(head_token, prev_token, token);
-		prev_token = token;
-		token = token->next;
+		else
+			prev_token = token;
+		token = next_token;
 	}
 }
 

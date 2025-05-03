@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 13:11:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 14:17:48 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	join_word_parts(t_token **head_token)
 			join_flag = 0;
 		token = token->next;
 	}
-	remove_token_by_flags(head_token, W_INVALID);
+	remove_token_by_flags(head_token, (W_INVALID | DELIM));
 }
 

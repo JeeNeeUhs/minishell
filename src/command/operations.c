@@ -6,40 +6,26 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:29:11 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 13:59:01 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 14:43:16 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "memory_allocator.h"
 
-void	skip_delims(t_token **token)
-{
-	t_token	*temp;
-	
-	temp = *token;
-	while (temp != NULL && temp->type & DELIM)
-		temp = temp->content;
-	*token = temp;
-}
-
 int	arg_count(t_token *token)
 {
-	int	count;
-	int	redirect_flag;
+	t_token_type	prev_type;
+	int				count;
 
-	redirect_flag = 0;
+	prev_type = 0;
 	count = 0;
 	while (token != NULL && token->type != PIPE)
 	{
-		if ((token->type & WORD_MASK) && !redirect_flag)
+		if (token->type & WORD_MASK && prev_type & ~REDIR_MASK)
 			count++;
-		else if (token->type & REDIR_MASK)
-			redirect_flag = 1;
-		else
-			redirect_flag = 0;
+		prev_type = token->type;
 		token = token->next;
-		skip_delims(&token);
 	}
 	return (count);
 }
