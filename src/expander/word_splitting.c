@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/02 16:56:27 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 12:42:19 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,15 @@ t_token	*field_split(char *input, char *delims)
 void	word_split(t_token *token)
 {
 	char	*ifs;
-	char	*env_val;
 
 	if (!is_var_start(token->content))
 		return ;
 	ifs = get_ifs();
-	token->type = W_INVALID;
-	if (token->content[1] == '?')
-		env_val = ft_itoa(*get_exit_status());
-	else
-		env_val = get_env_value(token->content + 1);
-	if (env_val)
-		insert_tokens(&token, field_split(env_val, ifs));
-	str_arr_free((char *[]){ifs, env_val}, 2);
+	expand_string(&token->content);
+	if (ft_strlen(token->content) != 0)
+		insert_tokens(&token, field_split(token->content, ifs));
+	token->type |= W_INVALID;
+	str_arr_free((char *[]){ifs}, 1);
 }
 
 /*

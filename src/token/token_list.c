@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/01 09:15:48 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 12:52:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,30 @@ t_token	*get_last_token(t_token *head_token)
 	return (last_token);
 }
 
-void	append_token(t_token **head_token, t_token *new_token)
+void	remove_token(t_token **head, t_token *prev, t_token *token)
 {
-	if (*head_token == NULL)
-		*head_token = new_token;
+	if (prev == NULL)
+		*head = token->next;
 	else
-		get_last_token(*head_token)->next = new_token;
+		prev->next = token->next;
+	safe_free_ptr(token->content, TEMPORARY);
+	safe_free_ptr(token, TEMPORARY);
 }
 
-void	remove_token(t_token *prev_token, t_token **token)
+void	remove_token_by_flags(t_token **head_token, int flags)
 {
-	t_token	*next_token;
+	t_token	*prev_token;
+	t_token	*token;
 
-	next_token = (*token)->next;
-	if (prev_token)
-		prev_token->next = next_token;
-	safe_free_ptr((*token)->content, TEMPORARY);
-	safe_free_ptr(*token, TEMPORARY);
-	*token = next_token;
+	prev_token = NULL;
+	token = *head_token;
+	while (token != NULL)
+	{
+		if (token->type & flags)
+			remove_token(head_token, prev_token, token);
+		prev_token = token;
+		token = token->next;
+	}
 }
 
 void	insert_tokens(t_token **prev_token, t_token *tokens)

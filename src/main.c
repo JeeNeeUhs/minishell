@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/02 14:16:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 12:46:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "../libft/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "parser.h"
 #include "token.h"
 #include <stdio.h>
 #include <signal.h>
@@ -49,14 +48,13 @@ int	main(int argc, char**argv, char *envp[]) // check
 		if (!input)
 			break ;
 		tokens = lexer(input);
-		expander(tokens);
+		expander(&tokens);
 		if (input[0])
 			add_history(input);
-		join_word_parts(tokens);
+		// join_word_parts(tokens);
 		while(tokens)
 		{
-			if (!(tokens->type & W_INVALID))
-				printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
+			printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
 			tokens = tokens->next;
 		}
 	}

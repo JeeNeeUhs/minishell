@@ -27,7 +27,7 @@ SRC		= src/token/token_list.c \
 		src/signal/signal.c \
 		src/inbuilts/echo.c
 
-CC = cc
+CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
 LIBFT = libft/libft.a
 OBJ = $(SRC:.c=.o)

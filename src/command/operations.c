@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:29:11 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/02 17:13:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/02 19:57:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,6 @@ int	redirect_count(t_token *token)
 	}
 	return (count);
 }
-#if DEBUG
-	#include <stdio.h>
-	
-	void	debug_command()
-	{
-		printf("%d", )
-	}
-#endif
-
 
 t_command	*init_command(t_command **head_command, t_token *token)
 {
@@ -74,7 +65,6 @@ t_command	*init_command(t_command **head_command, t_token *token)
 			sizeof(t_redirect) * (redirect_count(token) + 1)),
 		.prev = *head_command,
 	};
-
 	new_command = create_command(command);
 	prepend_command(head_command, new_command);
 	return (new_command);
