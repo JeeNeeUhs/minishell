@@ -12,7 +12,7 @@ SRC		= src/token/token_list.c \
 		src/expander/expander.c \
 		src/expander/word_splitting.c \
 		src/expander/string_expansion.c \
-		src/parser/merge.c \
+		src/merger/join_tokens.c \
 		src/utils/memory_allocator/aborter.c \
 		src/utils/memory_allocator/allocator.c \
 		src/utils/error_handler/safe_exit.c \
@@ -28,7 +28,7 @@ SRC		= src/token/token_list.c \
 		src/inbuilts/echo.c
 
 CC = clang
-CFLAGS = -g -Wall -Wextra -I./includes -I./libft   #-Werror
+CFLAGS = -g -Wall -Wextra -I./includes -I./libft #-Werror
 LIBFT = libft/libft.a
 OBJ = $(SRC:.c=.o)
 

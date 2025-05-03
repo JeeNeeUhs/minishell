@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 13:13:44 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 20:23:34 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 #include "env.h"
 #include <stdio.h>
 
-
+#include <unistd.h>
+#include <stdlib.h>
 /*
 	READ - EVAL - PRINT - LOOP
 */
@@ -48,11 +49,11 @@ int	main(int argc, char**argv, char *envp[]) // check
 		input = readline("minishell$ ");
 		if (!input)
 			break ;
-		tokens = lexer(input);
-		expander(&tokens);
 		if (input[0])
 			add_history(input);
-		join_word_parts(&tokens);
+		tokens = lexer(input);
+		expander(&tokens);
+		join_word_tokens(&tokens);
 		while(tokens)
 		{
 			printf("type: %d, value: %s\n\n", tokens->type, tokens->content);

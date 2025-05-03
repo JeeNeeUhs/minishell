@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 12:45:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/03 17:59:57 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ t_token				*lexer(char *input);
 void				expander(t_token **head_token);
 void				expand_string(char **input);
 void				word_split(t_token *token);
+
+//token merging
+void				join_word_tokens(t_token **head_token);
 
 #endif
