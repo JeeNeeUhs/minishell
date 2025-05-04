@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/04 07:11:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 13:39:13 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef enum e_instruction
 /* Instructions describing what kind of thing to do for a redirection. */
 typedef struct s_redirect
 {
-	char					*file_name;		/* Descriptor or varname to be redirected. */
+	char					*file_name;		/* EOF or varname to be redirected. */
 	int 					flags;			/*Flag value for `open'. */
 	t_instruction			instruction;
 }							t_redirect;
@@ -44,10 +44,13 @@ typedef struct s_command
 	struct					s_command *next;
 }							t_command;
 
+
+typedef void			(*t_command_state)(t_token **token, t_command *command, size_t *index);
+
 t_command				*create_command(t_command new_command);
+t_command				*init_command(t_command *prev_command, t_token *token);
 t_command				*reverse_command_list(t_command *command);
 void					prepend_command(t_command **head_command, t_token *new_command);
-typedef void			(*t_command_state)(t_token *token, t_command *command, size_t *index);
 
 void					join_word_parts(t_token **head_token);
 

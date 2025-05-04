@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:29:11 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 14:43:16 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 11:55:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ int	redirect_count(t_token *token)
 	return (count);
 }
 
-t_command	*init_command(t_command **head_command, t_token *token)
+t_command	*init_command(t_command *prev_command, t_token *token)
 {
-	t_command	*new_command;
 	t_command	command;
+	int			redir_len;
+	int			arg_len;
 
+	redir_len = redirect_count(token);
+	arg_len = arg_count(token);
 	command = (t_command){
-		.args = safe_talloc(
-			sizeof(char*) * (arg_count(token) + 1)),
-		.redirecs = safe_talloc(
-			sizeof(t_redirect) * (redirect_count(token) + 1)),
-		.prev = *head_command,
+		.args = safe_talloc(sizeof(char*) * (redir_len + 1)),
+		.redirecs = safe_talloc(sizeof(t_redirect) * (arg_len + 1)),
+		.prev = prev_command,
+		.next = NULL
 	};
-	new_command = create_command(command);
-	prepend_command(head_command, new_command);
-	return (new_command);
+	return (create_command(command));
 }

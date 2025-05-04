@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 07:38:46 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 13:43:02 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,30 @@
 #include "libft/libft.h"
 #include "stddef.h"
 
-void	argument_state(t_token *token, t_command *command, int *index)
+void	make_command(t_token **root_token, t_command *command)
 {
-	command->args[(*index)++] = ft_strdup(token->content);
-}
-
-void	redirection_state(t_token *token, t_command *command, int *index)
-{
-
-}
-
-t_command_state get_command_state(t_token_type token_type) //cat <<eof sa <<test << 1 2 3 >1 >2 t a b c
-{
-	if (token_type & WORD_MASK)
-		return (argument_state);
-	else if (token_type & REDIR_MASK)
-		return (redirection_state);
-	return (NULL);
-}
-
-t_command	*make_command(t_token *token)
-{
-	t_command	*command;
+	t_token		*token;
 	int			index[2];
 
 	ft_memset(index, 0, sizeof(index));
-	command = init_command();
+	token = *root_token; 
 	while (token != NULL && token->type != PIPE)
 	{
-		get_command_state(token->type)(token, command, index[(bool)(token->type & REDIR_MASK)]);
+		if (token->type & WORD_MASK)
+			command->args[index[0]++] = ft_strdup(token->content);
+		else
+		{
+			command->redirecs[index[1]++] = (t_redirect){
+				.instruction = token->type,
+				.file_name = ft_strdup(token->next->content),
+			};
+			token = token->next;
+		}
 		token = token->next;
 	}
+	*root_token = token;
 	return (command);
 }
-
 
 t_command	*parse(t_token *token)
 {
@@ -60,9 +50,9 @@ t_command	*parse(t_token *token)
 	head_command = NULL;
 	while (token != NULL)
 	{
-		command = make_command(token);
+		command = init_command(head_command, token);
+		make_command(&token, command);
 		prepend_command(&head_command, command);
-		skip_pipe(token);
 	}
 	return (reverse_command_list(head_command));
 }
