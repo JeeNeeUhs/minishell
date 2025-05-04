@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 07:34:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 07:38:46 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,20 @@ t_command	*make_command(t_token *token)
 		token = token->next;
 	}
 	return (command);
+}
+
+
+t_command	*parse(t_token *token)
+{
+	t_command	*head_command;
+	t_command	*command;
+
+	head_command = NULL;
+	while (token != NULL)
+	{
+		command = make_command(token);
+		prepend_command(&head_command, command);
+		skip_pipe(token);
+	}
+	return (reverse_command_list(head_command));
 }
