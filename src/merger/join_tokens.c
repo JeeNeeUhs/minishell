@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 20:36:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 14:04:06 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	sequential_tokens_len(t_token *token, int flags)
 t_token	*join_sequential_tokens(t_token *base_token, int flags)
 {
 	char	*new_str;
-	int		len;
+	size_t	len;
 	int		offset;
 	int		merged_flag;
 	t_token	*token;

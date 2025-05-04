@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/04 13:39:13 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 14:06:16 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@ typedef struct s_command
 }							t_command;
 
 
-typedef void			(*t_command_state)(t_token **token, t_command *command, size_t *index);
-
 t_command				*create_command(t_command new_command);
 t_command				*init_command(t_command *prev_command, t_token *token);
 t_command				*reverse_command_list(t_command *command);
-void					prepend_command(t_command **head_command, t_token *new_command);
 
+t_command				*parse(t_token *token);
+
+void					prepend_command(t_command **head_command, t_token *new_command);
 void					join_word_parts(t_token **head_token);
+
+
 
 #endif
 

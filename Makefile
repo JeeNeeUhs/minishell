@@ -13,6 +13,9 @@ SRC		= src/token/token_list.c \
 		src/expander/word_splitting.c \
 		src/expander/string_expansion.c \
 		src/merger/join_tokens.c \
+		src/parser/parser.c \
+		src/command/command_list.c \
+		src/command/operations.c \
 		src/utils/memory_allocator/aborter.c \
 		src/utils/memory_allocator/allocator.c \
 		src/utils/error_handler/safe_exit.c \

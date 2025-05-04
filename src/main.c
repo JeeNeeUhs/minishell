@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 13:36:46 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 14:39:48 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,24 @@ int	main(int argc, char**argv, char *envp[]) // check
 		tokens = lexer(input);
 		expander(&tokens);
 		join_word_tokens(&tokens);
+		t_command* commands = parse(tokens);
 		while(tokens)
 		{
 			printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
 			tokens = tokens->next;
 		}
+		// while (commands)
+		// {
+			
+		// 	while(*commands->args != NULL)
+		// 		printf("arg: %s\n", *commands->args++);
+		// 	printf ("--------------\n");
+		// 	// while(commands->redirecs)
+		// 	// {
+		// 	// 	printf("redir name:%s , :%d\n", commands->redirecs->file_name, commands->redirecs->instruction);
+		// 	// 	commands->redirecs++;
+		// 	// }
+		// 	commands = commands->next;
+		// }
 	}
 }
