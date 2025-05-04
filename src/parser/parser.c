@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 07:27:17 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/04 07:32:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_command	*make_command(t_token *token)
 	t_command	*command;
 	int			index[2];
 
-	mem_copy(index, sizeof(index));
+	ft_memset(index, 0, sizeof(index));
 	command = init_command();
 	while (token != NULL && token->type != PIPE)
 	{
