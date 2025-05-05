@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 14:04:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/05 19:55:22 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 #include <stdbool.h>
 #include "minishell.h"
 #include "token.h"

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 14:39:48 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/05 19:59:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "memory_allocator.h"
 #include "minishell.h"
 #include "command.h"
-#include "../libft/libft.h"
+#include "libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "token.h"
@@ -62,7 +62,7 @@ int	main(int argc, char**argv, char *envp[]) // check
 		}
 		// while (commands)
 		// {
-			
+
 		// 	while(*commands->args != NULL)
 		// 		printf("arg: %s\n", *commands->args++);
 		// 	printf ("--------------\n");
