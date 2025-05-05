@@ -11,3 +11,8 @@
 - [ ] exit with no options
 ###
 ### add handle if exist <newline> character in input
+- [ ] fix ifs implemantation
+- [ ] add redirection modules
+- [ ] change memory allacator functions behaviour
+- [ ] optimize command type and parser
+
