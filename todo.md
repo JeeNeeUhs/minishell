@@ -15,4 +15,5 @@
 - [ ] add redirection modules
 - [ ] change memory allacator functions behaviour
 - [ ] optimize command type and parser
+- [ ] add syntax analyzser
 
