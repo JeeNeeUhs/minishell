@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 14:21:46 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/05 20:01:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "token.h"
 #include "libft.h"
 #include <stdbool.h>
-#include "libft.h"
 #include "stddef.h"
 
 void	make_command(t_token **root_token, t_command *command)
