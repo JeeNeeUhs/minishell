@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/04 14:06:16 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:01:18 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_command				*reverse_command_list(t_command *command);
 
 t_command				*parse(t_token *token);
 
-void					prepend_command(t_command **head_command, t_token *new_command);
+void					prepend_command(t_command **head_command, t_command *new_command);
 void					join_word_parts(t_token **head_token);
 
 

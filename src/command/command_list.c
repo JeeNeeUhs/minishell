@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:53:38 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/02 15:00:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:00:47 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_command	*create_command(t_command new_command)
 	return (command);
 }
 
-void	prepend_command(t_command **head_command, t_token *new_command)
+void	prepend_command(t_command **head_command, t_command *new_command)
 {
 	if (*head_command == NULL)
 		*head_command = new_command;

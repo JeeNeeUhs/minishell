@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/05 19:59:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/06 20:02:54 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,18 @@ int	main(int argc, char**argv, char *envp[]) // check
 			printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
 			tokens = tokens->next;
 		}
-		// while (commands)
-		// {
+		while (commands)
+		{
 
-		// 	while(*commands->args != NULL)
-		// 		printf("arg: %s\n", *commands->args++);
-		// 	printf ("--------------\n");
-		// 	// while(commands->redirecs)
-		// 	// {
-		// 	// 	printf("redir name:%s , :%d\n", commands->redirecs->file_name, commands->redirecs->instruction);
-		// 	// 	commands->redirecs++;
-		// 	// }
-		// 	commands = commands->next;
-		// }
+			while(*commands->args != NULL)
+				printf("arg: %s\n", *commands->args++);
+			printf ("--------------\n");
+			// while(commands->redirecs)
+			// {
+			// 	printf("redir name:%s , :%d\n", commands->redirecs->file_name, commands->redirecs->instruction);
+			// 	commands->redirecs++;
+			// }
+			commands = commands->next;
+		}
 	}
 }
