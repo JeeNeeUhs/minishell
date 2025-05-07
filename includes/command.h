@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/06 20:01:18 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/07 09:55:51 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 
 #define HEREDOC_MAX 16
+#define STD_IN 0
+#define STD_OUT 1
 
 #include <token.h>
 #include <sys/types.h>
@@ -40,6 +42,8 @@ typedef struct s_command
 	pid_t 					pid;
 	char					**args;			/* The program name, the arguments, 'variable assignments'etc. */
 	t_redirect				*redirecs;		/* Redirections to perform. */
+	int						fd_in;			/* File descriptor for input. */
+	int						fd_out;			/* File descriptor for output. */
 	struct					s_command *prev;
 	struct					s_command *next;
 }							t_command;

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:29:11 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/06 20:44:58 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/07 09:56:05 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_command	*init_command(t_command *prev_command, t_token *token)
 	command = (t_command){
 		.args = safe_talloc(sizeof(char*) * (arg_len + 1)),
 		.redirecs = safe_talloc(sizeof(t_redirect) * (redir_len)),
+		.fd_in = STD_IN,
+		.fd_out = STD_OUT,
 		.prev = prev_command,
 		.next = NULL
 	};
