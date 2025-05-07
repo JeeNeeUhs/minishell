@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/06 20:27:46 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/07 07:51:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@
 
 t_token	*make_command(t_token *token, t_command *command)
 {
-	int	arg_index;
-	int	redir_index;
+	char		**args;
+	t_redirect	*redir;
 
-	arg_index = 0;
-	redir_index = 0;
+	redir = command->redirecs;
+	args = command->args;
 	while (token != NULL && token->type != PIPE)
 	{
 		if (token->type & WORD_MASK)
-			command->args[arg_index++] = ft_strdup(token->content);
+			*args++ = ft_strdup(token->content);
 		else
 		{
-			command->redirecs[redir_index++] = (t_redirect){
-				.instruction = (t_instruction)token->type,
-				.file_name = ft_strdup(token->next->content),
+			*redir++ = (t_redirect){
+				.instruction = token->type & REDIR_MASK,
+				.file_name = ft_strdup(token->next->content)
 			};
 			token = token->next;
 		}
