@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:00 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/22 20:35:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/08 08:26:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,7 @@ void	remove_all_env(void)
 	safe_free(PERSISTENT);
 	get_root_env()->next = NULL;
 }
+
+/*
+	https://www.gnu.org/software/autoconf/manual/autoconf-2.61/html_node/Special-Shell-Variables.html
+*/
