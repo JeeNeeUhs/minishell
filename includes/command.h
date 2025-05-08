@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/07 09:55:51 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/08 19:11:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,37 @@ void					join_word_parts(t_token **head_token);
 ** fd_in = 1
 ** fd_out = 1
 ** next = NULL
+
+*/
+
+
+/*
+** example command: ls -l | grep "foo"
+
+** cmd = "ls"
+** args = ["ls", "-l"]
+** fd_in = 0
+** fd_out = 1
+** next = pointer to the next command
+
+** cmd = "grep"
+** args = ["grep", "foo"]
+** fd_in = 1
+** fd_out = 1
+** next = NULL
+*/
+
+
+/*
+** example command: cat <<EOF | cat <<EOF"
+
+** args = ["cat"]
+** fd_in = 5
+** fd_out = 1
+** next = pointer to the next command
+
+** args = ["cat"]
+** fd_in = 7
+** fd_out = 1
+** next = pointer to the next command
 */
