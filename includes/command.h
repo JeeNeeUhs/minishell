@@ -59,6 +59,9 @@ void					prepend_command(t_command **head_command, t_command *new_command);
 void					join_word_parts(t_token **head_token);
 
 
+void					executor(t_command *command);
+
+
 
 #endif
 
