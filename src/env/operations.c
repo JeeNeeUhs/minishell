@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/22 20:25:20 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 17:31:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_env	*get_env(char *key)
 {
 	t_env	*env;
 
-	env = get_root_env()->next;
+	env = *get_head_env();
 	while (env)
 	{
 		if (str_equal(env->key, key))

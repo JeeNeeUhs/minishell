@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:30 by hsamir            #+#    #+#             */
-/*   Updated: 2025/02/27 16:23:20 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 17:30:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef struct s_env
 	struct s_env	*next;
 }					t_env;
 
-t_env				*get_root_env(void);
+t_env				**get_head_env(void);
 t_env				*get_env(char *key);
 char				*get_env_value(char *key);
 void				set_env_value(char *key, char *value);
