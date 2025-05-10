@@ -6,46 +6,79 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 14:15:14 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 17:13:27 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "config.h"
+#include "libft.h"
 #include "env.h"
+#include "memory_allocator.h"
+#include <unistd.h>
+#include "stdio.h"
 
 int	is_special_char(char c)
 {
-	return (c == 's' || c == 'h'  || c == 'u' || c == 'w' || c == 'W');
+	return (c == 's' || c == 'h'  || c == 'u' || c == 'w');
 }
-char	*get_prompt_var(char c)
+
+/* As an extension to the POSIX.1-2001 standard, glibc's getcwd()
+	allocates the buffer dynamically using malloc(3) if buf is NULL.
+*/
+char	*get_current_dir(void)
 {
-	if(c == 's')
-		return (SHELL_NAME);
-	else if (c == 'h')
-		return (get_env_value("HOSTNAME"));
-	else if (c == 'u')
-		return (get_env_value("USER"));
-	else if (c == 'w')
-		return (get_env_value("PWD"));
-	else if (c == 'W')
-		return (strchr(get_env_value("PWD"), '/') + 1);
-	else
+	char	*current_dir;
+	char	*cwd;
+
+	cwd = getcwd(NULL, 0);
+	if (cwd == NULL)
 		return (NULL);
+	current_dir = ft_strdup(ft_strrchr(cwd, '/'));
+	safe_free_ptr(cwd, TEMPORARY);
+	return (current_dir);
 }
 
-
-int	expand_special_charachter(char **input, int index)
+char	*get_prompt_var(char c)
 {
 	char	*prompt_var;
 
-	prompt_var = get_prompt_var(input[index + 1]);
+	if(c == 's')
+		prompt_var = get_env_value("SHELL_NAME");
+	else if (c == 'h')
+		prompt_var = get_env_value("HOSTNAME");
+	else if (c == 'u')
+		prompt_var = get_env_value("USER");
+	else if (c == 'w')
+		prompt_var = get_current_dir();
+	else
+		prompt_var = NULL;
+	return (prompt_var);
+}
+
+int	expand_prompt_var(char **input, int index)
+{
 	return (replace_with_expansion(
 		input,
 		index,
-		prompt_var,
+		get_prompt_var((*input)[index + 1]),
 		2
 	));
+}
+
+int	expand_path(char **input, int index)
+{
+	char	*current_dir;
+	int		result;
+
+	current_dir = get_current_dir();
+	result = replace_with_expansion(
+		input,
+		index,
+		current_dir,
+		2
+	);
+	safe_free_ptr(current_dir, TEMPORARY);
+	return (result);
 }
 
 /* Return a string which will be printed as a prompt.  The string
@@ -55,22 +88,27 @@ int	expand_special_charachter(char **input, int index)
 	\h	the host name
 	\u  the user name
 	\w	the current working directory
-	\W	the last element of $PWD
 */
-char	*decode_prompt_string(char *string)
+char	*decode_prompt_string(char *input)
 {
-	char	*decoded_string;
+	char	*string;
 	int		index;
 
-	if (string == NULL)
+	if (input == NULL)
 		return (NULL);
-	index = 0;
+		index = 0;
+	string = ft_strdup(input);
 	while (string[index])
 	{
 		if (string[index] == '\\' && is_special_char(string[index + 1]))
-			index += expand_special_charachter(&string, index);
+		{
+			if (string[index + 1] == 'w')
+				index = expand_path(&string, index);
+			else
+				index = expand_prompt_var(&string, index);
+		}
 		else
-			index += 1;
+			index ++;
 	}
 	return (string);
 }

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 11:45:48 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 17:15:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@
 # define SUCCESS 1
 # define FAILURE 0
 
+# define SHELL_NAME "hash"
+
 # define DEFAULT_IFS " \t\n"
-# define PPROMPT '${USER}@${HOSTNAME}: ${PWD}\007"
+
+# define PPROMPT "\033[31m\\u@\033[0m\033[34m~\\w:\\s\033[0m$ "
 # define SPROMPT "> "
 
 # include <stddef.h>
@@ -50,6 +53,9 @@ char	*ft_psubstr(char const *s, unsigned int start, size_t len);
 int		safe_exit(int status, char *message);
 void	print_err(char* message, int exit_status);
 int		*get_exit_status(void);
+
+//Prompt
+char	*decode_prompt_string(char *string);
 
 
 #endif
