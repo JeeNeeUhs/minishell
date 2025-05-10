@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/04 14:04:06 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/09 18:52:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ t_token	*join_sequential_tokens(t_token *base_token, int flags)
 	return (token);
 }
 
-void join_word_tokens(t_token **head_token)
+void	join_word_tokens(t_token **head_token)
 {
 	t_token	*token;
-	
+
 	token = *head_token;
 	while (token != NULL)
 	{
