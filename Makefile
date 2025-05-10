@@ -29,7 +29,7 @@ SRC		= src/token/token_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
 		src/inbuilts/echo.c \
-		src/prompt/prompt_string.c
+		src/prompt/prompt_string.c \
 		src/executor/execute.c
 
 CC = clang
