@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/06 20:02:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 12:33:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char**argv, char *envp[]) // check
 	// set_env_value("t", "");
 	while (1)
 	{
-		input = readline("minishell$ ");
+		input = readline("\x1b[31mBu bir kırmızı prompt:\x1b[0m ");
 		if (!input)
 			break ;
 		if (input[0])
@@ -74,4 +74,5 @@ int	main(int argc, char**argv, char *envp[]) // check
 			commands = commands->next;
 		}
 	}
+	safe_abort(0);
 }

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/20 21:01:48 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 11:45:48 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define FAILURE 0
 
 # define DEFAULT_IFS " \t\n"
+# define PPROMPT '${USER}@${HOSTNAME}: ${PWD}\007"
+# define SPROMPT "> "
 
 # include <stddef.h>
 
@@ -39,6 +41,7 @@ int		includes(char* str, char c);
 char	*str_arr_join(char	**strings, int count);
 void	str_arr_free(char **strings, int count);
 char	**split_by_delims(char *str, char *delim);
+int		replace_with_expansion(char **input, int index, char *rep, int offset);
 
 
 char	*ft_pstrdup(const char *s);
