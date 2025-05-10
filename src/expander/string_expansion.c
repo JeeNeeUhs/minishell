@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_expansion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:24:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 11:45:08 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 14:11:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	replace_with_expansion(char **input, int index, char *rep, int offset)
 	char	*prefix;
 	char	*suffix;
 
-	if (rep == NULL)
-		rep = ft_strdup("");
 	prefix = *input;
 	prefix[index] = '\0';
 	suffix = prefix + index + offset; //echo "lazy_loading$test%lazy_loading%"
@@ -43,15 +41,16 @@ int	replace_with_expansion(char **input, int index, char *rep, int offset)
 		prefix,
 		rep,
 		suffix}, 3);
-	index += ft_strlen(rep);
-	str_arr_free((char *[]){rep, prefix}, 2);
+	if (rep != NULL)
+		index += ft_strlen(rep);
+	str_arr_free((char *[]){prefix}, 1);
 	return (index);
 }
 
 int	expand_variable(char **input, int index) //test$test
 {
 	char	*env_name;
-	char	result;
+	int		result;
 
 	env_name = extract_env_var(*input, index);
 	result = replace_with_expansion(
@@ -66,19 +65,24 @@ int	expand_variable(char **input, int index) //test$test
 
 int	expand_exit_status(char **input, int index) //test$?test
 {
-	return (replace_with_expansion(
+	int		result;
+	char*	exit_status;
+
+	exit_status = ft_itoa(*get_exit_status());
+	result = replace_with_expansion(
 		input,
 		index,
-		ft_itoa(*get_exit_status()),
+		exit_status,
 		2
-	));
+	);
+	safe_free_ptr(exit_status, TEMPORARY);
+	return (result);
 }
 
 void	expand_string(char **input)
 {
 	char	*str;
 	int		index;
-
 
 	str = *input;
 	index = 0;

@@ -31,7 +31,7 @@ SRC		= src/token/token_list.c \
 		src/inbuilts/echo.c
 
 CC = clang
-CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft #-Werror
+CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft -fsanitize=address  -fno-omit-frame-pointer  #-Werror
 LIBFT = libs/libft/libft.a
 OBJ = $(SRC:.c=.o)
 
