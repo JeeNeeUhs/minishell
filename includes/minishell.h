@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 17:15:20 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 20:44:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define PPROMPT "\033[31m\\u@\033[0m\033[34m~\\w:\\s\033[0m$ "
 # define SPROMPT "> "
+# define ESC_CHR "shawu"
 
 # include <stddef.h>
 
@@ -55,7 +56,6 @@ void	print_err(char* message, int exit_status);
 int		*get_exit_status(void);
 
 //Prompt
-char	*decode_prompt_string(char *string);
-
+char	*expand_prompt_string(char *input);
 
 #endif

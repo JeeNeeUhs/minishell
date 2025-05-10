@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 16:56:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 20:30:41 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	main(int argc, char**argv, char *envp[]) // check
 	create_env("SHELL_NAME", ft_pstrdup(SHELL_NAME));
 	while (1)
 	{
-		printf("SHELL_NAME: %s\n", get_env_value("SHELL_NAME"));
-		prompt_string = decode_prompt_string(get_env_value("PS1"));
+		prompt_string = expand_prompt_string(get_env_value("PS1"));
 		input = readline(prompt_string);
 		if (!input)
 			break ;

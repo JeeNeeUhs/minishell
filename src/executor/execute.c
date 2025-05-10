@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:41:39 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/10 04:00:48 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/05/10 20:33:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/wait.h>
 
 /*
 notes
@@ -43,7 +44,7 @@ void executor(t_command *command)
 				dup2(command->fd_in, STD_IN);
 			if (command->fd_out != STD_OUT)
 				dup2(command->fd_out, STD_OUT);
-			execve(command->args[0], command->args, NULL); 
+			execve(command->args[0], command->args, NULL);
 		}
 		else
 		{
@@ -51,7 +52,7 @@ void executor(t_command *command)
 			return;
 		}
 	}
-	
+
 	while (command)
 	{
 		if (prev[0] != -1)
@@ -68,7 +69,7 @@ void executor(t_command *command)
 				// handle error
 				exit(EXIT_FAILURE);
 			}
-			
+
 		}
 		else
 		{
