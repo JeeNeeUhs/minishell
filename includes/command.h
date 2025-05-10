@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/08 19:11:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/08 20:26:12 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,10 @@ void					join_word_parts(t_token **head_token);
 ** fd_in = 7
 ** fd_out = 1
 ** next = pointer to the next command
+*/
+
+
+/*
+** if fd_in is equal to 0 it means that the command is reading from the standard input
+** if fd_out is equal to 1 it means that the command is writing to the standard output
 */
