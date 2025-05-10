@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 20:30:41 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 20:57:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	main(int argc, char**argv, char *envp[]) // check
 	init_env(envp);
 	create_env("PS1", ft_pstrdup(PPROMPT));
 	create_env("PS2", ft_pstrdup(SPROMPT));
-	create_env("SHELL_NAME", ft_pstrdup(SHELL_NAME));
 	while (1)
 	{
 		prompt_string = expand_prompt_string(get_env_value("PS1"));

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 20:46:43 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 20:56:36 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_current_directory(void)
 char	*get_prompt_var(char c)
 {
 	if(c == 's')
-		return (get_env_value("SHELL_NAME"));
+		return (SHELL_NAME);
 	else if (c == 'h')
 		return (get_env_value("HOSTNAME"));
 	else if (c == 'u')
