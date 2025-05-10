@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 17:31:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/10 17:42:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	set_env_value(char *key, char *value)
 	else
 	{
 		safe_free_ptr(env->value, PERSISTENT);
-		env->value = ft_pstrdup(value);
+		env->value = value;
 	}
 }
 
