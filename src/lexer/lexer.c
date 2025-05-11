@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 13:02:24 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 15:59:22 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:09:34 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,7 @@
 
 t_token	*lexer(char *input)
 {
-	t_token	*tokens;
-
 	if (!validate_quote(input))
 		return (report_syntax_error(SYNTAX_ERR));
-	tokens = tokenizer(input);
-	if (tokens == NULL)
-		return (NULL);
-	if (is_max_heredoc_exceeded(tokens))
-	{
-		report_syntax_error(HERE_ERR);
-		remove_token_by_flags(&tokens, FLAG_ALL);
-	}
-	return (tokens);
+	return (tokenizer(input));
 }
