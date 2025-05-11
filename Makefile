@@ -29,6 +29,7 @@ SRC		= src/token/token_list.c \
 		src/inbuilts/echo.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
+		src/redirection/heredoc.c
 
 CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft -fsanitize=address  -fno-omit-frame-pointer  #-Werror
