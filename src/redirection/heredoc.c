@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:52:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 22:37:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 23:55:30 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	here_document_to_fd(t_redirect *redir)
 		close(here_pipe[0]);
 		return (-1);
 	}
-	return (here_pipe[1]);
+	return (here_pipe[0]);
 }
 
 int	make_here_document(t_redirect *redir)
