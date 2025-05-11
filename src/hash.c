@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 17:33:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 23:09:02 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-
 
 const char *token_type_str(t_token_type t)
 {
@@ -96,6 +95,8 @@ int	handle_input(char* input)
 		return (abort_with_error(tokens, HERE_ERR));
 	debug_tokens(tokens);
 	commands = parse(tokens);
+	do_redirections(commands);
+	executor(commands);
 	debug_commands(commands);
 	//	executer
 	return (SUCCESS);

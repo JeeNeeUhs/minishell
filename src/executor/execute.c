@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:41:39 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/11 16:20:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 18:53:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ if the t_command struct have a next pointer, it means i should create a pipe
 the t_command struct for now first arg is command path
 */
 
-void executor(t_command *command)
+void	executor(t_command *command)
 {
 	int 	pid;
 	int		prev[2];
@@ -91,5 +91,4 @@ void executor(t_command *command)
 		}
 	}
 }
-
 

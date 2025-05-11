@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:24:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 14:11:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 23:06:51 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int	expand_variable(char **input, int index) //test$test
 int	expand_exit_status(char **input, int index) //test$?test
 {
 	int		result;
-	char*	exit_status;
+	char*	exit;
 
-	exit_status = ft_itoa(*get_exit_status());
+	exit = ft_itoa(*exit_status());
 	result = replace_with_expansion(
 		input,
 		index,
-		exit_status,
+		exit,
 		2
 	);
 	safe_free_ptr(exit_status, TEMPORARY);

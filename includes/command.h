@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/11 15:44:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 22:53:05 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #define STD_IN 0
 #define STD_OUT 1
+#define FD_IN  (I_IN | I_HERE)
+#define FD_OUT (I_APPEND | I_OUT)
 
 #include <token.h>
 #include <sys/types.h>
@@ -32,7 +34,8 @@ typedef enum e_instruction
 typedef struct s_redirect
 {
 	char					*file_name;		/* EOF or varname to be redirected. */
-	int 					flags;			/*Flag value for `open'. */
+	int 					flags;			/* Flag value for `open'. */
+	char					*document;		/* Save heredoc lines*/
 	t_instruction			instruction;
 }							t_redirect;
 
@@ -58,10 +61,10 @@ t_command				*parse(t_token *token);
 void					prepend_command(t_command **head_command, t_command *new_command);
 void					join_word_parts(t_token **head_token);
 
+int						make_here_document(t_redirect *redir);
+void					do_redirections(t_command *commands);
 
 void					executor(t_command *command);
-
-
 
 #endif
 

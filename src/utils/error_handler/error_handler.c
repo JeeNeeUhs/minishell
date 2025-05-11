@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:47:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 16:40:44 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 23:02:36 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include "minishell.h"
 
-int	*get_exit_status(void)
+int	*exit_status(void)
 {
 	static int	exit_status = 0;
 
@@ -26,7 +26,7 @@ int	report_syntax_error(char* message)
 {
 	if (message != NULL)
 		ft_putstr_fd(message, 2);
-	*get_exit_status() = 2;
+	*exit_status() = 2;
 	return (FAILURE);
 }
 
