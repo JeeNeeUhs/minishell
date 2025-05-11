@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 13:02:24 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/01 09:28:32 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 13:01:57 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_token	*lexer(char *input)
 {
 	t_token	*tokens;
 
-	if (is_valid_quote(input))
+	if (!is_valid_quote(input))
 	{
 		print_err("newline", 2);
 		return (NULL);

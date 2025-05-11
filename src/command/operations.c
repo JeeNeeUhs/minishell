@@ -6,13 +6,12 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 14:29:11 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/07 09:56:05 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 13:28:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "memory_allocator.h"
-#include "stdio.h"
 
 int	arg_count(t_token *token)
 {
@@ -28,7 +27,6 @@ int	arg_count(t_token *token)
 		prev_type = token->type;
 		token = token->next;
 	}
-	printf("count: %d\n", count);
 	return (count);
 }
 
@@ -57,6 +55,7 @@ t_command	*init_command(t_command *prev_command, t_token *token)
 	command = (t_command){
 		.args = safe_talloc(sizeof(char*) * (arg_len + 1)),
 		.redirecs = safe_talloc(sizeof(t_redirect) * (redir_len)),
+		.redir_count = redir_len,
 		.fd_in = STD_IN,
 		.fd_out = STD_OUT,
 		.prev = prev_command,

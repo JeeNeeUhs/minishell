@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/08 20:26:12 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/05/11 13:27:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_command
 	pid_t 					pid;
 	char					**args;			/* The program name, the arguments, 'variable assignments'etc. */
 	t_redirect				*redirecs;		/* Redirections to perform. */
+	size_t					redir_count;
 	int						fd_in;			/* File descriptor for input. */
 	int						fd_out;			/* File descriptor for output. */
 	struct					s_command *prev;

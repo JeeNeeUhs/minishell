@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 20:57:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 13:38:23 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,60 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+
+
+const char *token_type_str(t_token_type t)
+{
+    switch (t) {
+    case W_UNQUOTED:  return "W_UNQUOTED";
+    case W_SINGLE_Q:  return "W_SINGLE_Q";
+    case W_DOUBLE_Q:  return "W_DOUBLE_Q";
+    case PIPE:        return "PIPE";
+    case R_IN:        return "R_IN";
+    case R_OUT:       return "R_OUT";
+    case R_APPEND:    return "R_APPEND";
+    case R_HERE:      return "R_HERE";
+    case DELIM:       return "DELIM";
+    case W_INVALID:   return "W_INVALID";
+    default:          return "UNKNOWN";
+    }
+}
+
+void	debug_tokens(t_token *tokens)
+{
+	printf("\x1b[34m┌──────────────────────────────────────────────────── DEBUG TOKENS ─────────────────────────────────────────────────────┐\x1b[0m\n");
+	while(tokens)
+	{
+        printf("│ \x1b[33m[%11s]\x1b[0m \x1b[32m\"%s\"\x1b[0m\n",
+			token_type_str(tokens->type),
+			tokens->content ? tokens->content : "(null)");
+		tokens = tokens->next;
+	}
+	printf("\x1b[34m└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\x1b[0m\n");
+}
+
+void	debug_commands(t_command *cmds)
+{
+
+	printf("\x1b[34m┌──────────────────────────────────────────────────── DEBUG COMMANDS ────────────────────────────────────────────────────┐\x1b[0m\n");
+    for (int i = 0; cmds; cmds = cmds->next, ++i) {
+        printf("│ \x1b[33m[%d]\x1b[0m ", i);
+        for (char **a = cmds->args; a && *a; ++a)
+            printf("- \x1b[32m%s\x1b[0m ", *a);
+		for (size_t j = 0; j < cmds->redir_count; j++) {
+			t_redirect* r = &cmds->redirecs[j];
+			const char *op = r->instruction == I_IN     ? "<"  :
+								r->instruction == I_OUT    ? ">"  :
+								r->instruction == I_APPEND ? ">>" :
+								r->instruction == I_HERE ? "<<" : "?";
+			printf("\x1b[31m%s %s \x1b[0m", op, r->file_name);
+		}
+        putchar('\n');
+    }
+	printf("\x1b[34m└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\x1b[0m\n");
+
+}
+
 /*
 	READ - EVAL - PRINT - LOOP
 */
@@ -53,27 +107,13 @@ int	main(int argc, char**argv, char *envp[]) // check
 		if (input[0])
 			add_history(input);
 		tokens = lexer(input);
+		if (tokens == NULL)
+			continue;
 		expander(&tokens);
 		join_word_tokens(&tokens);
+		debug_tokens(tokens);
 		t_command* commands = parse(tokens);
-		while(tokens)
-		{
-			printf("type: %d, value: %s\n\n", tokens->type, tokens->content);
-			tokens = tokens->next;
-		}
-		while (commands)
-		{
-
-			while(*commands->args != NULL)
-				printf("arg: %s\n", *commands->args++);
-			printf ("--------------\n");
-			// while(commands->redirecs)
-			// {
-			// 	printf("redir name:%s , :%d\n", commands->redirecs->file_name, commands->redirecs->instruction);
-			// 	commands->redirecs++;
-			// }
-			commands = commands->next;
-		}
+		debug_commands(commands);
 	}
 	safe_abort(0);
 }

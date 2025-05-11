@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:46:06 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/02 15:03:51 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 12:56:05 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "token.h"
 
-int	is_valid_quote(char *str)
+int	is_valid_quote(char *string)
 {
-	int		i;
+	int		index;
 
-	i = 0;
-	while (str[i])
+	index = 0;
+	while (string[index])
 	{
-		if (is_quote(str[i]))
+		if (is_quote(string[index]))
 		{
-			i = find_char_index(str, i + 1, str[i]);
-			if (!str[i])
-				return (1);
+			index = find_char_index(string, index + 1, string[index]);
+			if (string[index] == '\0')
+				return (FAILURE);
 		}
-		i++;
+		index++;
 	}
-	return (0);
+	return (SUCCESS);
 }
