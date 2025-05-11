@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:43:44 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 15:56:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:04:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	validate_redirections(t_token *token)
 		prev_type = token->type;
 		token = token->next;
 	}
+	if (prev_type & REDIR_MASK)
+		return (FAILURE);
 	return (SUCCESS);
 }
 
