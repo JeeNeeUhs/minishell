@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 17:59:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 14:16:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
+#define MAX_HEREDOC 16
+
 #define SYNTAX_ERR "syntax error near unexpected token '%s'\n"
+#define HERE_ERR "bash: maximum here-document count exceeded\n"
 
 #define WORD_MASK (W_UNQUOTED | W_SINGLE_Q | W_DOUBLE_Q)
 #define W_QUOTE_MASK (W_SINGLE_Q | W_DOUBLE_Q)
 #define REDIR_MASK  (R_IN | R_OUT | R_APPEND | R_HERE)
 #define OPERATOR_MASK (PIPE | REDIR_MASK)
 #define META_MASK (OPERATOR_MASK | DELIM)
-
+#define FLAG_ALL -1
 
 typedef enum e_token_type
 {
@@ -58,6 +61,7 @@ int					is_word_token_type(t_token_type type);
 int					is_quoted_word_token_type(t_token_type type);
 
 int					is_valid_quote(char *str);
+int					is_max_heredoc_exceeded(t_token *token);
 
 //lexer
 t_token				*tokenizer(char *str);

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:29:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 12:36:53 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 14:17:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int	*get_exit_status(void)
 	return (&exit_status);
 }
 
-void	print_err(char* message, int exit_status)
+void	*print_syntax_error(char* message)
 {
-	if (message)
-		printf(SYNTAX_ERR, message);
+	if (message != NULL)
+		ft_putstr_fd(message, 2);
 	*get_exit_status() = 2;
+	return (NULL);
 }
 
 /*
@@ -39,28 +40,14 @@ void	print_err(char* message, int exit_status)
 
 */
 
-int	is_max_heredoc_exceeded(t_token *token)
-{
-	int	here_count;
 
-	here_count = 0;
-	while (token)
-	{
-		if (token->type & R_HERE)
-			here_count++;
-		if (here_count > HEREDOC_MAX)
-			return (1);
-		token = token->next;
-	}
-	return (0);
-}
 
-int	validate_pipes(t_token *token)
-{
+// int	validate_pipes(t_token *token)
+// {
 
-}
+// }
 
-int validate_redir(t_token *token)
-{
+// int validate_redir(t_token *token)
+// {
 
-}
+// }
