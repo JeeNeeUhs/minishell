@@ -8,7 +8,6 @@ SRC		= src/token/token_list.c \
 		src/token/token_type.c \
 		src/lexer/tokenizer.c \
 		src/lexer/lexer.c \
-		src/lexer/validator.c \
 		src/expander/expander.c \
 		src/expander/word_splitting.c \
 		src/expander/string_expansion.c \
@@ -18,8 +17,8 @@ SRC		= src/token/token_list.c \
 		src/command/operations.c \
 		libs/memory_allocator/aborter.c \
 		libs/memory_allocator/allocator.c \
-		src/utils/error_handler/safe_exit.c \
-		src/utils/error_handler/syntax_error.c \
+		src/utils/error_handler/error_handler.c \
+		src/utils/error_handler/syntax_validate.c \
 		src/utils/string_utils/str_classify.c \
 		src/utils/string_utils/str_operations.c \
 		src/utils/string_utils/str_arr_operations.c \
@@ -30,7 +29,7 @@ SRC		= src/token/token_list.c \
 		src/signal/signal.c \
 		src/inbuilts/echo.c \
 		src/prompt/prompt_string.c \
-		src/executor/execute.c
+		src/executor/execute.c \
 
 CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft -fsanitize=address  -fno-omit-frame-pointer  #-Werror

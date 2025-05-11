@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/05 19:55:22 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 15:07:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	delimiter_state(char *input, int *i, t_token **head_token)
 	if (input[*i] && (last->type & WORD_MASK))
 		prepend_token(head_token, create_token((t_token){.type = DELIM}));
 }
+
 void	word_state(char *input, int *i, t_token **head_token)
 {
 	t_token			token;

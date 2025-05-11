@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_error.c                                     :+:      :+:    :+:   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 16:29:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 14:17:03 by hsamir           ###   ########.fr       */
+/*   Created: 2025/05/11 15:47:33 by hsamir            #+#    #+#             */
+/*   Updated: 2025/05/11 16:01:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 #include "token.h"
-#include "minishell.h"
-#include "command.h"
+#include <stdlib.h>
 
 int	*get_exit_status(void)
 {
@@ -23,7 +21,7 @@ int	*get_exit_status(void)
 	return (&exit_status);
 }
 
-void	*print_syntax_error(char* message)
+void	*report_syntax_error(char* message)
 {
 	if (message != NULL)
 		ft_putstr_fd(message, 2);
@@ -31,6 +29,12 @@ void	*print_syntax_error(char* message)
 	return (NULL);
 }
 
+int	safe_exit(int status, char *message)
+{
+	if (message)
+		ft_putstr_fd(message, 2);
+	exit(status);
+}
 /*
 	cat > $files -> bash: $files: ambiguous redirect
 	not_exist_command -> not_exist_command: command not found
@@ -39,15 +43,3 @@ void	*print_syntax_error(char* message)
 	 cat > syntax error near unexpected token 'newline'
 
 */
-
-
-
-// int	validate_pipes(t_token *token)
-// {
-
-// }
-
-// int validate_redir(t_token *token)
-// {
-
-// }

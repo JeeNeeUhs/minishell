@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/11 13:27:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 15:44:26 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define COMMAND_H
 
 
-#define HEREDOC_MAX 16
 #define STD_IN 0
 #define STD_OUT 1
 

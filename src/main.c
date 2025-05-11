@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 13:38:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 15:58:47 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,12 @@ int	main(int argc, char**argv, char *envp[]) // check
 			continue;
 		expander(&tokens);
 		join_word_tokens(&tokens);
+		if (!validate_tokens(tokens))
+		{
+			report_syntax_error(SYNTAX_ERR);
+			remove_token_by_flags(&tokens, FLAG_ALL);
+			continue ;
+		}
 		debug_tokens(tokens);
 		t_command* commands = parse(tokens);
 		debug_commands(commands);

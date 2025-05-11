@@ -6,17 +6,17 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 14:16:01 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 15:59:42 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
-#define MAX_HEREDOC 16
+#define HEREDOC_MAX 16
 
-#define SYNTAX_ERR "syntax error near unexpected token '%s'\n"
-#define HERE_ERR "bash: maximum here-document count exceeded\n"
+#define SYNTAX_ERR "hash: syntax error near unexpected token\n"
+#define HERE_ERR "hash: maximum here-document count exceeded\n"
 
 #define WORD_MASK (W_UNQUOTED | W_SINGLE_Q | W_DOUBLE_Q)
 #define W_QUOTE_MASK (W_SINGLE_Q | W_DOUBLE_Q)
@@ -60,8 +60,9 @@ t_token_type		get_operator_type(char *str);
 int					is_word_token_type(t_token_type type);
 int					is_quoted_word_token_type(t_token_type type);
 
-int					is_valid_quote(char *str);
+int					validate_quote(char *str);
 int					is_max_heredoc_exceeded(t_token *token);
+int					validate_tokens(t_token *tokens);
 
 //lexer
 t_token				*tokenizer(char *str);

@@ -8,19 +8,15 @@
 void	test_str_arr_join();
 void	test_str_sep();
 
+#include <unistd.h>
+
 int main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
 	(void)envp;
 
-	create_env("IFS", "");
-	t_token *tokens	= field_split("hsamir onun adı ", " ");
-	while(tokens)
-	{
-		printf("content:%s;token_type:%d\n", tokens->content, tokens->type);
-		tokens = tokens->next;
-	}
+	execve(NULL, NULL, NULL);
 
 	return (0);
 }
