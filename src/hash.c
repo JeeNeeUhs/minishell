@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 16:50:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 17:33:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	handle_input(char* input)
 	if (!validate_quote(input))
 		return (report_syntax_error(SYNTAX_ERR));
 	tokens = tokenizer(input);
+	if (tokens == NULL)
+		return (SUCCESS);
 	expander(&tokens);
 	join_word_tokens(&tokens);
 	if (!validate_tokens(tokens))
@@ -96,7 +98,6 @@ int	handle_input(char* input)
 	commands = parse(tokens);
 	debug_commands(commands);
 	//	executer
-	safe_free(TEMPORARY);
 	return (SUCCESS);
 }
 
@@ -129,8 +130,6 @@ int	main(int argc, char**argv, char *envp[]) // check
 			add_history(input);
 		handle_input(input);
 		free(input);
-		safe_free_ptr(prompt_string, TEMPORARY);
+		safe_free(TEMPORARY);
 	}
 }
-
-
