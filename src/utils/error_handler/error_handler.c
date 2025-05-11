@@ -6,13 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:47:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 16:01:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:40:44 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "token.h"
 #include <stdlib.h>
+#include "minishell.h"
 
 int	*get_exit_status(void)
 {
@@ -21,12 +22,12 @@ int	*get_exit_status(void)
 	return (&exit_status);
 }
 
-void	*report_syntax_error(char* message)
+int	report_syntax_error(char* message)
 {
 	if (message != NULL)
 		ft_putstr_fd(message, 2);
 	*get_exit_status() = 2;
-	return (NULL);
+	return (FAILURE);
 }
 
 int	safe_exit(int status, char *message)
@@ -34,6 +35,14 @@ int	safe_exit(int status, char *message)
 	if (message)
 		ft_putstr_fd(message, 2);
 	exit(status);
+}
+
+
+int	abort_with_error(t_token* tokens, char* message)
+{
+	report_syntax_error(message);
+	remove_token_by_flags(&tokens, FLAG_ALL);
+	return (FAILURE);
 }
 /*
 	cat > $files -> bash: $files: ambiguous redirect

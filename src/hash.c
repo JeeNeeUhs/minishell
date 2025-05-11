@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 16:08:37 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:42:57 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,29 @@ void	debug_commands(t_command *cmds)
 
 }
 
+int	handle_input(char* input)
+{
+	t_token		*tokens;
+	t_command	*commands;
+
+	if (!validate_quote(input))
+		return (report_syntax_error(SYNTAX_ERR));
+	tokens = tokenizer(input);
+	expander(&tokens);
+	join_word_tokens(&tokens);
+	if (!validate_tokens(tokens))
+		return (abort_with_error(tokens, SYNTAX_ERR));
+	if (is_max_heredoc_exceeded(tokens))
+		return (abort_with_error(tokens, HERE_ERR));
+	debug_tokens(tokens);
+	commands = parse(tokens);
+	debug_commands(commands);
+	//	executer
+	remove_token_by_flags(&tokens, FLAG_ALL);
+	//	remove commands;
+	return (SUCCESS);
+}
+
 /*
 	READ - EVAL - PRINT - LOOP
 */
@@ -85,8 +108,7 @@ int	main(int argc, char**argv, char *envp[]) // check
 {
 	char	*input;
 	char	*prompt_string;
-	t_token *tokens;
-	struct sigaction sa;
+	struct	sigaction sa;
 
 	//TODO: get env and store it in a static variable
 	if (argc != 1)
@@ -102,32 +124,14 @@ int	main(int argc, char**argv, char *envp[]) // check
 	{
 		prompt_string = expand_prompt_string(get_env_value("PS1"));
 		input = readline(prompt_string);
-		if (!input)
+		if (input == NULL)
 			break ;
 		if (input[0])
 			add_history(input);
-		tokens = lexer(input);
-		if (tokens == NULL)
-			continue;
-		expander(&tokens);
-		join_word_tokens(&tokens);
-		if (!validate_tokens(tokens))
-		{
-			report_syntax_error(SYNTAX_ERR);
-			remove_token_by_flags(&tokens, FLAG_ALL);
-			continue ;
-		}
-		if (is_max_heredoc_exceeded(tokens))
-		{
-			report_syntax_error(HERE_ERR);
-			remove_token_by_flags(&tokens, FLAG_ALL);
-			continue;
-		}
-		debug_tokens(tokens);
-		t_command* commands = parse(tokens);
-		debug_commands(commands);
+		handle_input(input);
+		free(input);
+		safe_free_ptr(prompt_string, TEMPORARY);
 	}
-	safe_abort(0);
 }
 
 

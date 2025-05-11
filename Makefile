@@ -1,13 +1,12 @@
 NAME	= minishell
 
-MAIN	= src/main.c
+MAIN	= src/hash.c
 
-TEST	= src/test.c
+TEST	= src/tests/test.c
 
 SRC		= src/token/token_list.c \
 		src/token/token_type.c \
 		src/lexer/tokenizer.c \
-		src/lexer/lexer.c \
 		src/expander/expander.c \
 		src/expander/word_splitting.c \
 		src/expander/string_expansion.c \

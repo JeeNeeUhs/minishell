@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:07:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 15:59:42 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:39:46 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int					is_quoted_word_token_type(t_token_type type);
 int					validate_quote(char *str);
 int					is_max_heredoc_exceeded(t_token *token);
 int					validate_tokens(t_token *tokens);
-
+int					abort_with_error(t_token* token, char* message);
 //lexer
 t_token				*tokenizer(char *str);
 t_token				*lexer(char *input);

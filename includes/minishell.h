@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 15:57:53 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:42:22 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_pstrdup(const char *s);
 char	*ft_psubstr(char const *s, unsigned int start, size_t len);
 
 int		safe_exit(int status, char *message);
-void	*report_syntax_error(char* message);
+int		report_syntax_error(char* message);
 int		*get_exit_status(void);
 
 //Prompt
