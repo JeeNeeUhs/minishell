@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:09:02 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 23:25:54 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ int	handle_input(char* input)
 	debug_tokens(tokens);
 	commands = parse(tokens);
 	do_redirections(commands);
-	executor(commands);
+	if (commands != NULL)
+		executor(commands);
 	debug_commands(commands);
 	//	executer
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:04:12 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 23:50:36 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,15 @@ int	open_redir_file(t_redirect *redirecs)
 	return (fd);
 }
 
-void	close_old_fd(t_command *command, t_instruction instruction)
+void	set_new_fd(t_command *command, t_instruction instruction, int fd)
 {
 	if(instruction & FD_IN && command->fd_in != STD_IN)
 		close(command->fd_in);
+	if (instruction & FD_IN)
+		command->fd_in = fd;
 	if(instruction & FD_OUT && command->fd_out != STD_OUT)
 		close(command->fd_out);
-}
-
-void	set_new_fd(t_command *command, t_instruction instruction, int fd)
-{
-	if(instruction & FD_IN)
-		command->fd_in = fd;
-	if(instruction & FD_OUT)
+	if(command->fd_out = fd)
 		command->fd_out = fd;
 }
 void	make_redirection(t_command *command)
@@ -72,7 +68,6 @@ void	make_redirection(t_command *command)
 	while (index < redir_count)
 	{
 		redirect = &command->redirecs[index];
-		close_old_fd(command, redirect->instruction);
 		if (redirect->instruction & I_HERE)
 			fd = make_here_document(redirect);
 		else
