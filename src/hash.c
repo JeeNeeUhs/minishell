@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 16:42:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/11 16:50:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ int	handle_input(char* input)
 	commands = parse(tokens);
 	debug_commands(commands);
 	//	executer
-	remove_token_by_flags(&tokens, FLAG_ALL);
-	//	remove commands;
+	safe_free(TEMPORARY);
 	return (SUCCESS);
 }
 
