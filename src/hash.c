@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:25:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 08:37:10 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	debug_commands(t_command *cmds)
 								r->instruction == I_HERE ? "<<" : "?";
 			printf("\x1b[31m%s %s \x1b[0m", op, r->file_name);
 		}
+		printf("\x1b[35min->[%d] out->[%d] \x1b[0m", cmds->fd_in, cmds->fd_out);
         putchar('\n');
     }
 	printf("\x1b[34m└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\x1b[0m\n");
@@ -95,11 +96,11 @@ int	handle_input(char* input)
 		return (abort_with_error(tokens, HERE_ERR));
 	debug_tokens(tokens);
 	commands = parse(tokens);
-	do_redirections(commands);
-	if (commands != NULL)
-		executor(commands);
+	do_redirection_all(commands);
 	debug_commands(commands);
-	//	executer
+	// //	executer
+	// if (commands != NULL)
+	// 	executor(commands);
 	return (SUCCESS);
 }
 

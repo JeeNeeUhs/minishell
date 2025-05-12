@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:02:45 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 08:38:31 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define DEFAULT_IFS " \t\n"
 
 # define PPROMPT "\033[31m\\u@\033[0m\033[34m~\\w:\\s\033[0m$ "
-# define SPROMPT "> "
+# define SPROMPT "\033[31m>\033[0m "
 # define ESC_CHR "shawu"
 
 # include <stddef.h>

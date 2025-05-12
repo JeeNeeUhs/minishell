@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:52:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:55:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 08:34:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	here_document_to_fd(t_redirect *redir)
 	return (here_pipe[0]);
 }
 
-int	make_here_document(t_redirect *redir)
+void	make_here_document(t_redirect *redir)
 {
 	char*	prompt_string;
 	char*	temp;
@@ -58,7 +58,10 @@ int	make_here_document(t_redirect *redir)
 	{
 		input = readline(prompt_string);
 		if (input == NULL || str_equal(input, redir->file_name))
+		{
+			free(input);
 			break;
+		}
 		temp = document;
 		document = str_arr_join((char*[]){document, "\n", input}, 3);
 		safe_free_ptr(temp, TEMPORARY);
@@ -66,5 +69,25 @@ int	make_here_document(t_redirect *redir)
 	}
 	redir->document = document;
 	safe_free_ptr(prompt_string, TEMPORARY);
-	return (here_document_to_fd(redir));
+}
+
+void	do_heredoc(t_command *command)
+{
+	size_t	redir_count;
+	size_t	index;
+	t_redirect	*redir;
+
+	while (command != NULL)
+	{
+		index = 0;
+		redir_count = command->redir_count;
+		while (index < redir_count)
+		{
+			redir = &command->redirecs[index];
+			if (redir->instruction & I_HERE)
+				make_here_document(redir);
+			index += 1;
+		}
+		command = command->next;
+	}
 }

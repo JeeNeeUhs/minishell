@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:50:36 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 08:30:35 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	get_flags(t_instruction instruction)
 		flags = O_TRUNC | O_CREAT | O_WRONLY;
 	else if (instruction & I_IN)
 		flags = O_RDONLY;
-	else if (instruction & I_HERE)
-		flags = O_CREAT | O_TRUNC | O_RDWR;
 	return (flags);
 }
 
@@ -52,10 +50,10 @@ void	set_new_fd(t_command *command, t_instruction instruction, int fd)
 		command->fd_in = fd;
 	if(instruction & FD_OUT && command->fd_out != STD_OUT)
 		close(command->fd_out);
-	if(command->fd_out = fd)
+	if(instruction & FD_OUT)
 		command->fd_out = fd;
 }
-void	make_redirection(t_command *command)
+void	do_redirection(t_command *command)
 {
 	t_redirect	*redirect;
 	size_t		redir_count;
@@ -69,7 +67,7 @@ void	make_redirection(t_command *command)
 	{
 		redirect = &command->redirecs[index];
 		if (redirect->instruction & I_HERE)
-			fd = make_here_document(redirect);
+			fd = here_document_to_fd(redirect);
 		else
 			fd = open_redir_file(redirect);
 		set_new_fd(command, redirect->instruction, fd);
@@ -81,11 +79,17 @@ void	make_redirection(t_command *command)
 		index += 1;
 	}
 }
-void	do_redirections(t_command *commands)
+void	do_redirection_all(t_command *head_command)
 {
-	while (commands)
+	t_command	*command;
+
+	if (head_command == NULL)
+		return;
+	command = head_command;
+	do_heredoc(command);
+	while(command != NULL)
 	{
-		make_redirection(commands);
-		commands = commands->next;
+		do_redirection(command);
+		command = command->next;
 	}
 }
