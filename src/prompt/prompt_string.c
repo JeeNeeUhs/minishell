@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 20:56:36 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 10:08:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*get_prompt_var(char c)
 		return (get_env_value("USER"));
 	else if (c == 'a')
 		return ("\007");
+	else if (c == 'e')
+		return ("\033");
 	return (NULL);
 }
 
@@ -80,6 +82,7 @@ int	expand_current_dir(char **input, int index)
 	\u  the user name
 	\w	the current working directory
 	\a	bell (ascii 07)
+	\e
 */
 char	*expand_prompt_string(char *input)
 {
