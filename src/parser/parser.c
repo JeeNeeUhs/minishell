@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/07 07:51:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 09:06:17 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_token	*make_command(t_token *token, t_command *command)
 		{
 			*redir++ = (t_redirect){
 				.instruction = token->type & REDIR_MASK,
+				.flags = token->next->type & WORD_MASK,
 				.file_name = ft_strdup(token->next->content)
 			};
 			token = token->next;

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:52:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 08:34:20 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 09:18:43 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	here_document_to_fd(t_redirect *redir)
 		perror("pipe");
 		return (-1);
 	}
-	if (redir->flags & W_DOUBLE_Q)
+	if ((redir->flags & W_SINGLE_Q) == 0)
 		expand_string(&redir->document);
 	document_len = strlen(redir->document);
 	written = write(here_pipe[1], redir->document, document_len);
@@ -63,7 +63,7 @@ void	make_here_document(t_redirect *redir)
 			break;
 		}
 		temp = document;
-		document = str_arr_join((char*[]){document, "\n", input}, 3);
+		document = str_arr_join((char*[]){document, input, "\n"}, 3);
 		safe_free_ptr(temp, TEMPORARY);
 		free(input);
 	}
