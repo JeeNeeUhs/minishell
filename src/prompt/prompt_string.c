@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 10:08:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 11:04:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	expand_current_dir(char **input, int index)
 
 /* Return a string which will be printed as a prompt.  The string
 	may contain special characters which are decoded as follows:
+	https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
 
 	\s	the name of the shell
 	\h	the host name
