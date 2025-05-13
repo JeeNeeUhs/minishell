@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 11:04:09 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 14:23:11 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "memory_allocator.h"
 #include <unistd.h>
 #include "stdio.h"
+#include <stdlib.h>
 
 /* As an extension to the POSIX.1-2001 standard, glibc's getcwd()
 	allocates the buffer dynamically using malloc(3) if buf is NULL.
@@ -29,7 +30,7 @@ char	*get_current_directory(void)
 	if (cwd == NULL)
 		return (NULL);
 	current_dir = ft_strdup(ft_strrchr(cwd, '/'));
-	safe_free_ptr(cwd, TEMPORARY);
+	free(cwd);
 	return (current_dir);
 }
 
