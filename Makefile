@@ -30,10 +30,10 @@ SRC		= src/token/token_list.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
 		src/redirection/heredoc.c \
-		src/redirection/redir.c 
+		src/redirection/redir.c
 
 CC = clang
-CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -fsanitize=address  -fno-omit-frame-pointer  #-Werror
+CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address  -fno-omit-frame-pointer  #-Werror
 LIBFT = libs/libft/libft.a
 OBJ = $(SRC:.c=.o)
 
