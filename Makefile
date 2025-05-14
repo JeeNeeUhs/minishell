@@ -6,6 +6,7 @@ TEST	= src/tests/test.c
 
 SRC		= src/token/token_list.c \
 		src/token/token_type.c \
+		src/token/operations.c \
 		src/lexer/tokenizer.c \
 		src/expander/expander.c \
 		src/expander/word_splitting.c \

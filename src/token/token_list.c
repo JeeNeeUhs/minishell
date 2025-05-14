@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:08:10 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 10:29:24 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 10:54:13 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_token	*create_token(t_token new_token)
 	if (!token)
 		return (NULL);
 	*token = new_token;
+	token->next = NULL;
 	return (token);
 }
 
