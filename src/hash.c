@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:03:05 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:45:55 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ int	main(int argc, char**argv, char *envp[]) // check
 	while (1)
 	{
 		prompt_string = expand_prompt_string(get_env_value("PS1"));
-		// input = readline(prompt_string);
-		input = get_next_line(STD_IN);
+		input = readline(prompt_string);
+		// input = get_next_line(STD_IN);
 		if (input == NULL)
 			break ;
 		if (input[0])
