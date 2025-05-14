@@ -6,12 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 14:36:53 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 14:44:12 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:07:02 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRING_UTILS_H
 # define STRING_UTILS_H
+
+# include <stddef.h>
 
 int		find_char_index(char *str, int start_index, char c);
 int		skip_whitespace(char *str);

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:01:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:28:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_current_directory(void)
 
 char	*get_prompt_var(char c)
 {
-	if(c == 's')
+	if (c == 's')
 		return (SHELL_NAME);
 	else if (c == 'h')
 		return (get_env_value("HOSTNAME"));
@@ -53,11 +53,10 @@ char	*get_prompt_var(char c)
 int	expand_prompt_var(char **input, int index)
 {
 	return (replace_with_expansion(
-		input,
-		index,
-		get_prompt_var((*input)[index + 1]),
-		2
-	));
+			input,
+			index,
+			get_prompt_var((*input)[index + 1]),
+		2));
 }
 
 int	expand_current_dir(char **input, int index)
@@ -67,11 +66,10 @@ int	expand_current_dir(char **input, int index)
 
 	current_dir = get_current_directory();
 	result = replace_with_expansion(
-		input,
-		index,
-		current_dir,
-		2
-	);
+			input,
+			index,
+			current_dir,
+			2);
 	safe_free_ptr(current_dir, TEMPORARY);
 	return (result);
 }

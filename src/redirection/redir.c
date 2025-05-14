@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 08:30:35 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:32:45 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ int	open_redir_file(t_redirect *redirecs)
 
 void	set_new_fd(t_command *command, t_instruction instruction, int fd)
 {
-	if(instruction & FD_IN && command->fd_in != STD_IN)
+	if (instruction & FD_IN && command->fd_in != STD_IN)
 		close(command->fd_in);
 	if (instruction & FD_IN)
 		command->fd_in = fd;
-	if(instruction & FD_OUT && command->fd_out != STD_OUT)
+	if (instruction & FD_OUT && command->fd_out != STD_OUT)
 		close(command->fd_out);
-	if(instruction & FD_OUT)
+	if (instruction & FD_OUT)
 		command->fd_out = fd;
 }
+
 void	do_redirection(t_command *command)
 {
 	t_redirect	*redirect;
@@ -79,15 +80,16 @@ void	do_redirection(t_command *command)
 		index += 1;
 	}
 }
+
 void	do_redirection_all(t_command *head_command)
 {
 	t_command	*command;
 
 	if (head_command == NULL)
-		return;
+		return ;
 	command = head_command;
 	do_heredoc(command);
-	while(command != NULL)
+	while (command != NULL)
 	{
 		do_redirection(command);
 		command = command->next;

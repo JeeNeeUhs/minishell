@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:47:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:02:36 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:36:11 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	*exit_status(void)
 	return (&exit_status);
 }
 
-int	report_syntax_error(char* message)
+int	report_syntax_error(char *message)
 {
 	if (message != NULL)
 		ft_putstr_fd(message, 2);
@@ -32,13 +32,13 @@ int	report_syntax_error(char* message)
 
 int	safe_exit(int status, char *message)
 {
-	if (message)
+	if (message != NULL)
 		ft_putstr_fd(message, 2);
 	exit(status);
+	return (FAILURE);
 }
 
-
-int	abort_with_error(t_token* tokens, char* message)
+int	abort_with_error(t_token *tokens, char *message)
 {
 	report_syntax_error(message);
 	remove_token_by_flags(&tokens, FLAG_ALL);

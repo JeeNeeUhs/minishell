@@ -6,15 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:03:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 09:06:17 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:23:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "token.h"
 #include "libft.h"
-#include <stdbool.h>
-#include "stddef.h"
 
 t_token	*make_command(t_token *token, t_command *command)
 {

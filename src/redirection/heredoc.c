@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:52:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:01:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:31:53 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	here_document_to_fd(t_redirect *redir)
 	int	document_len;
 	int	written;
 
-	if(pipe(here_pipe) == -1)
+	if (pipe(here_pipe) == -1)
 	{
 		perror("pipe");
 		return (-1);
@@ -48,10 +48,10 @@ int	here_document_to_fd(t_redirect *redir)
 
 void	make_here_document(t_redirect *redir)
 {
-	char*	prompt_string;
-	char*	temp;
-	char*	input;
-	char*	document;
+	char	*prompt_string;
+	char	*temp;
+	char	*input;
+	char	*document;
 
 	document = ft_strdup("");
 	prompt_string = expand_prompt_string(get_env_value("PS2"));
@@ -61,10 +61,10 @@ void	make_here_document(t_redirect *redir)
 		if (input == NULL || str_equal(input, redir->file_name))
 		{
 			free(input);
-			break;
+			break ;
 		}
 		temp = document;
-		document = str_arr_join((char*[]){document, input, "\n"}, 3);
+		document = str_arr_join((char *[]){document, input, "\n"}, 3);
 		safe_free_ptr(temp, TEMPORARY);
 		free(input);
 	}
@@ -74,9 +74,9 @@ void	make_here_document(t_redirect *redir)
 
 void	do_heredoc(t_command *command)
 {
-	size_t	redir_count;
-	size_t	index;
 	t_redirect	*redir;
+	size_t		redir_count;
+	size_t		index;
 
 	while (command != NULL)
 	{

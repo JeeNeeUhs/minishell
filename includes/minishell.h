@@ -6,16 +6,16 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 14:44:08 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:41:30 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#ifndef DEBUG
-# define DEBUG 0
-#endif
+# ifndef DEBUG
+#  define DEBUG 0
+# endif
 
 # define SUCCESS 1
 # define FAILURE 0
@@ -42,7 +42,7 @@ int		is_var_start(char *input);
 int		replace_with_expansion(char **input, int index, char *rep, int offset);
 
 int		safe_exit(int status, char *message);
-int		report_syntax_error(char* message);
+int		report_syntax_error(char *message);
 int		*exit_status(void);
 
 //Prompt

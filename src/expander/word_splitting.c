@@ -6,13 +6,12 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 14:59:33 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:20:35 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "minishell.h"
-#include "memory_allocator.h"
 #include "string_utils.h"
 #include "env.h"
 #include "libft.h"
@@ -27,37 +26,37 @@ char	*get_ifs(void)
 	return (ifs);
 }
 
-int create_delim_token(t_token **head_token, char *input, int index, char *delims)
+int	create_delim_token(t_token **head, char *input, int index, char *sep)
 {
 	t_token	token;
 	int		len;
 
 	len = 0;
-	while (input[index + len] && includes(delims, input[index + len]))
+	while (input[index + len] && includes(sep, input[index + len]))
 		len++;
 	token = (t_token){
 		.content = NULL,
 		.type = DELIM,
 		.next = NULL
 	};
-	prepend_token(head_token, create_token(token));
+	prepend_token(head, create_token(token));
 	return (len);
 }
 
-int	create_field_token(t_token **head_token, char *input, int index, char *delims)
+int	create_field_token(t_token **head, char *input, int index, char *sep)
 {
 	t_token	token;
 	int		len;
 
 	len = 0;
-	while (input[index + len] && !includes(delims, input[index + len]))
+	while (input[index + len] && !includes(sep, input[index + len]))
 		len++;
 	token = (t_token){
 		.content = ft_substr(input, index, len), // echotest,
 		.type = W_SINGLE_Q,
 		.next = NULL
 	};
-	prepend_token(head_token, create_token(token));
+	prepend_token(head, create_token(token));
 	return (len);
 }
 
@@ -68,7 +67,7 @@ t_token	*field_split(char *input, char *delims)
 
 	tokens = NULL;
 	index = 0;
-	while(input[index])
+	while (input[index])
 	{
 		if (includes(delims, input[index]))
 			index += create_delim_token(&tokens, input, index, delims);

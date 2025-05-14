@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:08:09 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/15 20:26:58 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:33:57 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_quote(char c)
 	return (c == '\'' || c == '\"');
 }
 
-int is_operator(char c)
+int	is_operator(char c)
 {
 	return (c == '|' || c == '<' || c == '>');
 }
@@ -43,7 +43,7 @@ int	is_word_char(char c)
 	return (c && !is_metacharacter(c) && !is_quote(c));
 }
 
-int is_var_char(char c)
+int	is_var_char(char c)
 {
 	return (ft_isalnum(c) || c == '_');
 }

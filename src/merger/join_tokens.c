@@ -6,14 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/09 18:52:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:20:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "libft.h"
 #include "memory_allocator.h"
-#include "minishell.h"
 #include <limits.h>
 
 int	sequential_tokens_len(t_token *token, int flags)

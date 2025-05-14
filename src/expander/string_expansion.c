@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:24:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 14:59:48 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:18:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "string_utils.h"
 #include "memory_allocator.h"
 #include "env.h"
-#include <stdlib.h>
 
 char	*extract_env_var(char *input, int index)
 {
@@ -39,9 +38,9 @@ int	replace_with_expansion(char **input, int index, char *rep, int offset)
 	prefix[index] = '\0';
 	suffix = prefix + index + offset; //echo "lazy_loading$test%lazy_loading%"
 	*input = str_arr_join((char *[]){
-		prefix,
-		rep,
-		suffix}, 3);
+			prefix,
+			rep,
+			suffix}, 3);
 	if (rep != NULL)
 		index += ft_strlen(rep);
 	str_arr_free((char *[]){prefix}, 1);
@@ -55,11 +54,10 @@ int	expand_variable(char **input, int index) //test$test
 
 	env_name = extract_env_var(*input, index);
 	result = replace_with_expansion(
-		input,
-		index,
-		get_env_value(env_name),
-		ft_strlen(env_name) + 1
-	);
+			input,
+			index,
+			get_env_value(env_name),
+			ft_strlen(env_name) + 1);
 	safe_free_ptr(env_name, TEMPORARY);
 	return (result);
 }
@@ -67,15 +65,14 @@ int	expand_variable(char **input, int index) //test$test
 int	expand_exit_status(char **input, int index) //test$?test
 {
 	int		result;
-	char*	exit;
+	char	*exit;
 
 	exit = ft_itoa(*exit_status());
 	result = replace_with_expansion(
-		input,
-		index,
-		exit,
-		2
-	);
+			input,
+			index,
+			exit,
+			2);
 	safe_free_ptr(exit_status, TEMPORARY);
 	return (result);
 }

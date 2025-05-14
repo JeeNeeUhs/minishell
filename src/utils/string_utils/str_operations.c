@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:28 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/20 21:00:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:34:26 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	skip_whitespace(char *str)
 	return (i);
 }
 
-int	includes(char* str, char c)
+int	includes(char *str, char c)
 {
 	int	i;
 
