@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 #include "../../includes/memory_allocator.h"
 
@@ -48,7 +47,7 @@ static char	**free_arr(char **arr, int i)
 {
 	while (i >= 0)
 	{
-		free(arr[i]);
+		safe_free_ptr(arr[i], TEMPORARY);
 		i--;
 	}
 	free(arr);

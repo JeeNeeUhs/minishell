@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 10:08:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/12 16:01:32 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define ESC_CHR "shawue"
 
 # include <stddef.h>
+# include <signal.h>
 
 int		is_quote(char c);
 int		is_operator(char c);
@@ -58,4 +59,8 @@ int		*exit_status(void);
 //Prompt
 char	*expand_prompt_string(char *input);
 
+
+
+//signal
+void				setup_signal(struct sigaction *sa);
 #endif

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 #include "../../includes/memory_allocator.h"
 
 char	*ft_strdup(const char *s)
