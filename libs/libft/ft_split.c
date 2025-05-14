@@ -50,7 +50,7 @@ static char	**free_arr(char **arr, int i)
 		safe_free_ptr(arr[i], TEMPORARY);
 		i--;
 	}
-	free(arr);
+	safe_free_ptr(arr, TEMPORARY);
 	return (0);
 }
 

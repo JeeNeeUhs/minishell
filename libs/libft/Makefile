@@ -54,7 +54,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 %.o : %.c
-	clang $(CFLAGS) -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
 
 bonus: $(NAME)
 
