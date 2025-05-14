@@ -6,12 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 15:07:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 14:59:20 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdbool.h>
+#include "string_utils.h"
 #include "minishell.h"
 #include "token.h"
 

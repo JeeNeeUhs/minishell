@@ -23,7 +23,6 @@ SRC		= src/token/token_list.c \
 		src/utils/string_utils/str_operations.c \
 		src/utils/string_utils/str_arr_operations.c \
 		src/utils/string_utils/persistent_str_operations.c \
-		src/utils/string_utils/str_token.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
@@ -31,10 +30,11 @@ SRC		= src/token/token_list.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
 		src/redirection/heredoc.c \
-		src/redirection/redir.c
+		src/redirection/redir.c \
+		libs/get_next_line/get_next_line.c \
 
 CC = clang
-CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address  -fno-omit-frame-pointer  #-Werror
+CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes #-fsanitize=address  -fno-omit-frame-pointer  #-Werror
 LIBFT = libs/libft/libft.a
 OBJ = $(SRC:.c=.o)
 

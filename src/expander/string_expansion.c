@@ -6,13 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:24:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:06:51 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 14:59:48 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "libft.h"
 #include "minishell.h"
+#include "string_utils.h"
 #include "memory_allocator.h"
 #include "env.h"
 #include <stdlib.h>

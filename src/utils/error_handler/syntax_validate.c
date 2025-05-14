@@ -6,12 +6,13 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:43:44 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/11 23:23:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:00:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "minishell.h"
+#include "string_utils.h"
 
 int	validate_pipes(t_token *token)
 {

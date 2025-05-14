@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   word_splitting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/03 13:15:31 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 14:59:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 #include "minishell.h"
 #include "memory_allocator.h"
+#include "string_utils.h"
 #include "env.h"
 #include "libft.h"
 

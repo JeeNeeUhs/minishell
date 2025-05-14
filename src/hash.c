@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 08:37:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:03:05 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "get_next_line.h"
+#include "string_utils.h"
 #include "token.h"
 #include <stdio.h>
 #include <signal.h>
@@ -126,13 +128,14 @@ int	main(int argc, char**argv, char *envp[]) // check
 	while (1)
 	{
 		prompt_string = expand_prompt_string(get_env_value("PS1"));
-		input = readline(prompt_string);
+		// input = readline(prompt_string);
+		input = get_next_line(STD_IN);
 		if (input == NULL)
 			break ;
 		if (input[0])
 			add_history(input);
 		handle_input(input);
-		free(input);
+		// free(input);
 		safe_free(TEMPORARY);
 	}
 }

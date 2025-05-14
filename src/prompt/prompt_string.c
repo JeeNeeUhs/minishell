@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 14:23:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:01:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "env.h"
 #include "memory_allocator.h"
+#include "string_utils.h"
 #include <unistd.h>
 #include "stdio.h"
 #include <stdlib.h>

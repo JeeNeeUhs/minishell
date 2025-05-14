@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:52:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/12 16:25:13 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:01:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "libft.h"
 #include <readline/readline.h>
 #include <memory_allocator.h>
+#include "string_utils.h"
 #include <string.h>
 #include <unistd.h>
 

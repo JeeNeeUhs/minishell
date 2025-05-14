@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:41:39 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/12 14:27:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:01:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/wait.h>
+#include "string_utils.h"
 
 /*
 notes

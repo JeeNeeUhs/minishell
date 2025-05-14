@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/10 17:42:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:00:42 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "libft.h"
 #include "minishell.h"
 #include "memory_allocator.h"
+#include "string_utils.h"
+
 
 t_env	*get_env(char *key)
 {
