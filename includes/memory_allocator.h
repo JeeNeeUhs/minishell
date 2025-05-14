@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:25:58 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 09:52:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 10:05:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ void						safe_free_ptr(void *ptr, t_mem_type mem_type);
 void						safe_abort(int exit_code);
 
 #endif
-

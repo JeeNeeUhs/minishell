@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:00:16 by hsamir            #+#    #+#             */
-/*   Updated: 2025/04/13 20:45:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/14 10:18:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,3 @@ t_token_type	get_word_type(char c)
 	else
 		return (W_UNQUOTED);
 }
-
-// int	is_word_token_type(t_token_type type)
-// {
-// 	return (type == UNQUOWORD || type == DOUBLE_QUOTED_WORD
-// 		|| type == SINGLE_QUOTED_WORD);
-// }
-
-// int	is_quoted_word_token_type(t_token_type type)
-// {
-// 	return (type == SINGLE_QUOTED_WORD || type == DOUBLE_QUOTED_WORD);
-// }
