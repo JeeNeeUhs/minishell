@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:41:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/15 18:21:54 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <stddef.h>
 # include <signal.h>
 
+//Patterns
 int		is_quote(char c);
 int		is_operator(char c);
 int		is_metacharacter(char c);

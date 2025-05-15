@@ -57,6 +57,7 @@ the pattern is a more complex structure that is matched by many strings.
 - A **lexeme** is a sequence of characters in the source program that matches
 the pattern for a token and is identified by the lexical analyzer as an
 instance of that token.
+
 ---
 
 ### Lexer Token Definitions
@@ -80,10 +81,11 @@ The following table summarizes the tokens produced by our shell lexer, with info
 > “In many cases, the lexical analyzer returns to the parser not only a token
 > name but also an attribute value that describes the lexeme represented by the
 > token; the token name influences parsing decisions, while the attribute value
-> influences the execution phase after parsing. (and before parsing for variables expanding in my case)”
+> influences the execution phase after parsing. (and before parsing for variables expanding  in my case)”
 ---
 
 ### Transition Diagram
 ![alt text](docs/images/dfa.png)
+> ⚠️ **Note:** This sketch is a rough draft and not a formal transition diagram.
 ---
 
