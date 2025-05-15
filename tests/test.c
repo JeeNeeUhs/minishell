@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 16:27:32 by hsamir            #+#    #+#             */
+/*   Updated: 2025/05/14 16:29:25 by hsamir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "inbuild.h"
 #include "minishell.h"
@@ -21,8 +33,6 @@ int main(int argc, char **argv, char **envp)
 	return (0);
 }
 
-#if	DEBUG
-
 __attribute__((constructor))
 void	run_tests()
 {
@@ -36,9 +46,6 @@ void	end_tests()
 {
 	safe_abort(STD_EXIT);
 }
-
-
-#pragma region  str_arr_join
 
 void	test_str_arr_join()
 {
@@ -90,60 +97,6 @@ void	test_str_arr_join()
 	}
 	printf("✅ All tests completed.\n\n");
 }
-#pragma endregion
 
-#include "string.h"
-void	test_str_sep()
-{
-	char	**test_cases[] = {
-		split_by_delims("hello world", "hello world"),
-		split_by_delims("hello world", " "),
-		split_by_delims("hello world", "hello"),
-		split_by_delims("hello world", "xyz"),
-		split_by_delims("hello world", "h"),
-		split_by_delims("hello world", "d"),
-		split_by_delims("hello world", "o"),
-		split_by_delims("hello world", ""),
-		split_by_delims("apple;orange,banana|grape", ",;|")
-	};
-
-	char	**expected_result[] = {
-		(char *[]) {NULL},
-		(char *[]) {"hello", "world", NULL},
-		(char *[]) {" w", "r", "d", NULL},
-		(char *[]) {"hello world", NULL},
-		(char *[]) {"ello world", NULL},
-		(char *[]) {"hello worl", NULL},
-		(char *[]) {"hell", " w", "rld", NULL},
-		(char *[]) {"hello world", NULL},
-		(char *[]) {"apple", "orange", "banana", "grape", NULL}
-	};
-
-	for (int i = 0; i < sizeof(test_cases) / sizeof(char **); i++)
-	{
-		char** result = test_cases[i];
-		char** expected = expected_result[i];
-		while (*result || *expected)
-		{
-			if ((*result != NULL) ^ (*expected != NULL) || ft_strncmp(*result, *expected, ft_strlen(*expected)) != 0)
-			{
-				printf("❌ Test %d failed!\n", i + 1);
-				printf("	Expected: \"%s\"\n", *expected);
-				printf("	Got     : \"%s\"\n", *result);
-				return ;
-			}
-
-			result++;
-			expected++;
-		}
-
-		printf("✅ Test %d passed\n", i + 1);
-	}
-	printf("✅ All tests completed.\n\n");
-}
-
-
-
-#endif
 
 

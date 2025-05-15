@@ -65,7 +65,7 @@ The following table summarizes the tokens produced by our shell lexer, with info
 |---------------|----------------------------------------------------------------------|-----------------------------------|
 | `W_UNQUOTED`  | Unquoted, non-whitespace word segments (stops at variable start, metachars)                               | `ls`, `echo`, , `$ENV` `file.txt`          |
 | `W_SINGLE_Q`  | String literal surrounded by `'`                                        | `'hello world'`, `'$HOME'`        |
-| `W_DOUBLE_Q`  | String literal surrounded by `"` | `"foo $BAR baz"`, `"$(date)"`     |
+| `W_DOUBLE_Q`  | String literal surrounded by `"` | `"foo $BAR baz"`, `"$date"`     |
 | `PIPE`        | Pipeline operator                                                    |                               |
 | `R_IN`        | Input redirection operator                                           | `<`                               |
 | `R_OUT`       | Output (overwrite) redirection operator                              | `>`                               |
