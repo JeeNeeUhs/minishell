@@ -73,8 +73,14 @@ The following table summarizes the tokens produced by our shell lexer, with info
 | `R_HERE`      | Here-document redirection operator                                   | `<<`                       |
 | `DELIM`       | Delimiter (whitespace)                                               | (space), `\t`, `\n`               |
 
+![alt text](docs/images/image.png)
 ---
 
 ### Attributes for Tokens
-“In many cases, the lexical analyzer returns to the parser not only a token name but also an attribute value that describes the lexeme represented by the token; the token name influences parsing decisions, while the attribute value influences the execution phase after parsing.”
-![alt text](/docs/images/debug-token.png)
+
+> “In many cases, the lexical analyzer returns to the parser not only a token
+> name but also an attribute value that describes the lexeme represented by the
+> token; the token name influences parsing decisions, while the attribute value
+> influences the execution phase after parsing.”
+
+
