@@ -5,3 +5,4 @@ libft.a
 minishell
 a.out
 hash.sh
+libs/get_next_line

@@ -77,4 +77,4 @@ The following table summarizes the tokens produced by our shell lexer, with info
 
 ### Attributes for Tokens
 “In many cases, the lexical analyzer returns to the parser not only a token name but also an attribute value that describes the lexeme represented by the token; the token name influences parsing decisions, while the attribute value influences the execution phase after parsing.”
-![alt text](image-1.png)
+![alt text](/docs/images/debug-token.png)
