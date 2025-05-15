@@ -23,6 +23,7 @@
 **Other:** `getenv`, `exit`, `execve`, `printf`
 
 ## The Role of the Lexical Analyzer
+
 As the first phase of a compiler, the main task of the lexical analyzer is to
 read the input characters of the source program, group them into lexemes, and
 produce as output a sequence of tokens for each lexeme in the source program.
@@ -56,6 +57,7 @@ the pattern is a more complex structure that is matched by many strings.
 - A **lexeme** is a sequence of characters in the source program that matches
 the pattern for a token and is identified by the lexical analyzer as an
 instance of that token.
+---
 
 ### Lexer Token Definitions
 
@@ -78,8 +80,10 @@ The following table summarizes the tokens produced by our shell lexer, with info
 > “In many cases, the lexical analyzer returns to the parser not only a token
 > name but also an attribute value that describes the lexeme represented by the
 > token; the token name influences parsing decisions, while the attribute value
-> influences the execution phase after parsing.”
+> influences the execution phase after parsing. (and before parsing for variables expanding in my case)”
 ---
-![alt text](docs/images/image.png)
+
+### Transition Diagram
+![alt text](docs/images/dfa.png)
 ---
 
