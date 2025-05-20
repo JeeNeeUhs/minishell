@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:12:55 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 14:05:56 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/20 14:23:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ void	print_export(int fd)
 		env = env->next;
 	}
 }
+
+/*$1 $2 We didn't implement positional parameters, but bash manual says "do not begin with a digit"*/
 int	is_valid_identifier(char* variable)
 {
 	int	index;
 
 	index = 0;
-	if (!ft_isalpha(variable[0]) && variable[0] != '_') //%_test -> $1 $2 We didn't implement positional parameters, but bash manual says "do not begin with a digit"
+	if (!ft_isalpha(variable[0]) && variable[0] != '_') //%_test ->
 		return (0);
 	while (is_var_char(variable[index])) //a%bcdef%=
 		index++;
