@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 12:30:31 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:48:45 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,33 @@ void	init_env(char *envp[])
 		index++;
 		safe_free_ptr(variable, TEMPORARY);
 	}
+}
+
+char	**get_env_to_array(void)
+{
+	t_env	*head_env;
+	t_env	*env;
+	char	**array;
+	int		index;
+	int		len;
+
+	head_env = *get_head_env();
+	env = head_env;
+	len = 0;
+	while (env != NULL)
+	{
+		len += (env->value != NULL)
+		env = env->next;
+	}
+	env = head_env;
+	array = safe_talloc(len + 1, sizeof(char *));
+	index = 0;
+	while (env != NULL)
+	{
+		if (env->value != NULL)
+			array[index++] = str_arr_join((char *[]){env->key, env->value}, '=');
+		env = env->next;
+	}
+	array[index] = NULL;
+	return (array);
 }
