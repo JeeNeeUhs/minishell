@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:20:20 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/19 22:53:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ t_token	*join_sequential_tokens(t_token *base_token, int flags)
 	int		merged_flag;
 	t_token	*token;
 
-	len = sequential_tokens_len(base_token, flags);
-	if (len == 0 || len == ft_strlen(base_token->content))
+	if (base_token->next == NULL || base_token->next->type & ~flags) //TEST ET
 		return (base_token->next);
 	offset = 0;
-	token = base_token;
 	merged_flag = 0;
+	len = sequential_tokens_len(base_token, flags);
 	new_str = (char *)safe_talloc(len + 1);
+	token = base_token;
 	while (token != NULL && token->type & flags)
 	{
 		offset += ft_strlcpy(new_str + offset, token->content, UINT_MAX);
