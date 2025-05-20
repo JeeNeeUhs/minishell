@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:39:04 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/19 15:08:59 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/19 23:12:58 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 # include "command.h"
 
-int		ft_echo(t_command *cmd);
-int		ft_cd(t_command *cmd);
-int		ft_pwd(t_command *cmd);
-int		ft_export(t_command *cmd);
-int		ft_unset(t_command *cmd);
-int		ft_env(t_command *cmd);
-int		ft_exit(t_command *cmd);
+void		echo_builtin(t_command *cmd);
+void		cd_builtin(t_command *cmd);
+void		pwd_builtin(t_command *cmd);
+void		export_builtin(t_command *cmd);
+void		unset_builtin(t_command *cmd);
+void		env_builtin(t_command *cmd);
+void		exit_builtin(t_command *cmd);
 
-
-typedef int	(*t_builtin)(t_command *cmd);
+typedef void	(*t_builtin)(t_command *cmd);
 
 int		is_builtin(char *cmd);
 int		is_simple_command(t_command *cmd);
 
+void	report_export_error(char *variable);
 #endif
 

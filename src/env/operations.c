@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:28:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/20 12:30:31 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,30 @@ void	set_env_value(char *key, char *value)
 	env = get_env(key);
 	if (env == NULL)
 		create_env(key, value);
-	else
+	else if (value != NULL)
 	{
 		safe_free_ptr(env->value, PERSISTENT);
-		env->value = value;
+		env->value = ft_pstrdup(value);
 	}
 }
 
 void	init_env(char *envp[])
 {
-	int		equal_index;
-	int		i;
+	char	*variable;
+	int		index;
+	int		offset;
 
-	i = 0;
-	while (envp[i])
+	index = 0;
+	while (envp[index])
 	{
-		equal_index = find_char_index(envp[i], 0, '=');
+		variable = ft_strdup(envp[index]);
+		offset = find_char_index(variable, 0, '=');
+		variable[offset] = '\0';
 		create_env(
-			ft_psubstr(envp[i], 0, equal_index),
-			ft_pstrdup(&envp[i][equal_index + 1])
-			);
-		i++;
+			variable,
+			variable + offset + 1
+		);
+		index++;
+		safe_free_ptr(variable, TEMPORARY);
 	}
 }

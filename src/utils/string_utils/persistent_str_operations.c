@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:33:30 by hsamir            #+#    #+#             */
-/*   Updated: 2025/03/05 19:18:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/20 09:18:08 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_pstrdup(const char *s)
 	char	*dup_str;
 	size_t	s_len;
 
+	if (s == NULL)
+		return (NULL);
 	s_len = ft_strlen(s);
 	dup_str = (char *)safe_palloc(s_len + 1);
 	if (!dup_str)

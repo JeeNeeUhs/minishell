@@ -26,12 +26,16 @@ SRC		= src/token/token_list.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
-		src/inbuilts/echo.c \
+		src/builtin/echo.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
 		src/redirection/heredoc.c \
 		src/redirection/redir.c \
 		libs/get_next_line/get_next_line.c \
+		src/utils/error_handler/builtin_validate.c \
+		src/builtin/export.c \
+		src/builtin/env.c
+
 
 CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes #-fsanitize=address  -fno-omit-frame-pointer  #-Werror
