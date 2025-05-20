@@ -26,15 +26,16 @@ SRC		= src/token/token_list.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
-		src/builtin/echo.c \
+		src/builtins/echo.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
 		src/redirection/heredoc.c \
 		src/redirection/redir.c \
 		libs/get_next_line/get_next_line.c \
 		src/utils/error_handler/builtin_validate.c \
-		src/builtin/export.c \
-		src/builtin/env.c
+		src/builtins/export.c \
+		src/builtins/env.c \
+		src/builtins/pwd.c \
 
 
 CC = clang

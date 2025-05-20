@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:12:55 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 13:34:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/20 14:05:56 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	export_builtin(t_command *command)
 	int		index;
 
 	if (command->args[1] == NULL)
-		print_export(cmd->fd_out);
+		print_export(command->fd_out);
 	index = 1;
 	while (command->args[index] != NULL)
 	{
@@ -77,4 +77,3 @@ void	export_builtin(t_command *command)
 		index++;
 	}
 }
-
