@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:12:55 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 14:23:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:28:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "stddef.h"
 #include "minishell.h"
 #include "env.h"
-#include "builtin.h"
+#include "builtins.h"
 #include "string_utils.h"
 #include "libft.h"
 
