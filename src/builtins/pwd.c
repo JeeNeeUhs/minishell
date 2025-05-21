@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:41:52 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 14:21:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:12:34 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 
 /* Print the name of the current working directory. */
-void	pwd_builtin(t_command *command)
+int	pwd_builtin(t_command *command)
 {
 	char	*cwd;
 
@@ -26,10 +26,10 @@ void	pwd_builtin(t_command *command)
 	if (cwd == NULL)
 	{
 		perror("pwd");
-		*exit_status() = 1;
-		return ;
+		return (EXECUTION_FAILURE);
 	}
 	ft_putstr_fd(cwd, command->fd_out);
 	ft_putchar_fd('\n', command->fd_out);
 	free(cwd);
+	return (EXECUTION_SUCCESS);
 }

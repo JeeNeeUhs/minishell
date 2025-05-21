@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 23:22:41 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 11:18:37 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:12:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* Unsetting a variable or function that was not previously set shall
      not be considered an error and does not cause the shell to abort.*/
-void	unset_builtin(t_command *command)
+int	unset_builtin(t_command *command)
 {
 	int	index;
 
@@ -25,4 +25,5 @@ void	unset_builtin(t_command *command)
 		remove_env(command->args[index]);
 		index++;
 	}
+	return (EXECUTION_SUCCESS);
 }

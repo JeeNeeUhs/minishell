@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/14 15:40:04 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:11:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 
 # include <token.h>
 # include <sys/types.h>
+
+#define EX_SHERRBASE	256	/* all special error values are > this. */
+#define EX_BADUSAGE	2		/* Usage messages by builtins result in a return status of 2. */
+#define EX_NOEXEC	126
+#define EX_NOTFOUND	127
+#define	EXECUTION_FAILURE 1
+#define	EXECUTION_SUCCESS 0
+
 
 typedef enum e_instruction
 {
@@ -59,15 +67,19 @@ t_command					*parse(t_token *token);
 void						prepend_command(t_command **head_command, t_command *new_command);
 void						join_word_parts(t_token **head_token);
 
-void						do_redirection_all(t_command *head_command);
-void						do_redirection(t_command *command);
+int							do_redirection(t_command *command);
 void						do_heredoc(t_command *command);
 
 int							here_document_to_fd(t_redirect *redir);
 
-void						do_redirections(t_command *commands);
+void						do_piping(t_command *command);
 
-void						executor(t_command *command);
+
+int							is_forked_process(t_command *command);
+int							make_pipe(t_command *command);
+pid_t						make_child();
+void						wait_children(pid_t last_pid);
+void						close_fds(t_command *command);
 
 #endif
 
