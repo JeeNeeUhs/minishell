@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 17:01:12 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 07:08:51 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	set_new_fd(t_command *command, t_instruction instruction, int fd)
 		command->fd_out = fd;
 }
 
-void	do_redirection(t_command *command)
+int	do_redirection(t_command *command)
 {
 	t_redirect	*redirect;
 	size_t		redir_count;
@@ -75,10 +75,11 @@ void	do_redirection(t_command *command)
 		if (fd == -1)
 		{
 			*exit_status() = 1;
-			break ;
+			return (FAILURE);
 		}
 		index += 1;
 	}
+	return (SUCCESS);
 }
 
 void	do_redirection_all(t_command *head_command)
