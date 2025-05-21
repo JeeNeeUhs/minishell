@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 23:23:23 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 13:42:24 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:09:07 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "env.h"
 #include "command.h"
 
-void	env_builtin(t_command *command)
+int	env_builtin(t_command *command)
 {
 	t_env	*env;
 
@@ -30,4 +30,5 @@ void	env_builtin(t_command *command)
 		}
 		env = env->next;
 	}
+	return (EXECUTION_SUCCESS);
 }
