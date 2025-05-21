@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:26:51 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/03/02 16:55:41 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:18:19 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+#include "command.h"
 
 int	echo(char flag, char **params)
 {
@@ -38,4 +39,9 @@ int	echo(char flag, char **params)
 		printf("\n");
 	}
 	return (0);
+}
+
+void	echo_builtin(t_command *command)
+{
+
 }

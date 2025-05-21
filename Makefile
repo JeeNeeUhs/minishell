@@ -36,6 +36,12 @@ SRC		= src/token/token_list.c \
 		src/builtins/export.c \
 		src/builtins/env.c \
 		src/builtins/pwd.c \
+		src/builtins/builtin_utils.c \
+		src/builtins/unset.c \
+		src/builtins/cd.c \
+		src/builtins/exit.c \
+		src/executor/execute_cmd.c
+
 
 
 CC = clang
