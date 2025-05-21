@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 11:14:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 16:41:13 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	**get_env_to_array(void)
 	while (env != NULL)
 	{
 		if (env->value != NULL)
-			array[index++] = str_arr_join((char *[]){env->key, env->value}, '=');
+			array[index++] = str_arr_join((char *[]){env->key, "=", env->value}, 3);
 		env = env->next;
 	}
 	array[index] = NULL;

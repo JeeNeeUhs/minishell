@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:53:38 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/06 20:00:47 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 17:41:37 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_command	*reverse_command_list(t_command *command)
 	{
 		next_command = command->next;
 		command->next = prev_command;
+		command->prev = next_command;
 		prev_command = command;
 		command = next_command;
 	}
