@@ -41,9 +41,8 @@ SRC		= src/token/token_list.c \
 		src/builtins/unset.c \
 		src/builtins/cd.c \
 		src/builtins/exit.c \
-		src/executor/execute_utils.c
-
-
+		src/executor/execute_utils.c \
+		src/executor/find_command.c \
 
 CC = clang
 CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes #-fsanitize=address  -fno-omit-frame-pointer  #-Werror

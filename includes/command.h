@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/22 08:06:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 11:48:43 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 #define EX_NOTFOUND	127
 #define	EXECUTION_FAILURE 1
 #define	EXECUTION_SUCCESS 0
-
 
 typedef enum e_instruction
 {
@@ -79,6 +78,8 @@ void						close_fds(t_command *command);
 int							should_fork(t_command *command);
 pid_t						make_child();
 void						wait_children(pid_t last_pid);
+
+char						*search_command_path(char *command);
 
 void						execute_pipeline(t_command *command);
 
