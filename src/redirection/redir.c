@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 05:53:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 07:29:40 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,30 @@ void	set_new_fd(t_command *command, t_instruction instruction, int fd)
 		command->fd_out = fd;
 }
 
-int	redirect_fds_to_std_io(t_command *command)
+int	set_std_fds(t_command *command)
 {
-	int err;
+	int	return_value;
 
-	err = 0;
+	return_value = SUCCESS;
+	if (should_fork(command))
+		return (return_value);
 	if (command->fd_in != STD_IN)
 	{
 		if (dup2(command->fd_in, STD_IN) < 0)
 		{
 			perror("dup2");
 			*exit_status() = 1;
-			err = 1;
+			return_value = FAILURE;
 		}
 		close(command->fd_in);
 	}
 	if (command->fd_out != STD_OUT)
 	{
-		if (!err && dup2(command->fd_out, STD_OUT) < 0)
+		if (return_value && dup2(command->fd_out, STD_OUT) < 0)
 			perror("dup2");
 		close(command->fd_out);
 	}
-	return (err);
+	return (return_value);
 }
 
 int	do_redirection(t_command *command)
@@ -103,5 +105,5 @@ int	do_redirection(t_command *command)
 		}
 		index += 1;
 	}
-	return (redirect_fds_to_std_io(command));
+	return (set_std_fds(command));
 }
