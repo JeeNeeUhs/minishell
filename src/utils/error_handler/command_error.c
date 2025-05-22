@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 19:07:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 19:18:26 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	command_not_found(char *command)
 
 void	abort_command(char *command, int status)
 {
+	ft_putstr_fd("hash: ", 2);
 	perror(command);
 	safe_abort(status);
 }

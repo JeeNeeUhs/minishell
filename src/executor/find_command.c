@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 19:09:59 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 19:17:06 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char*	search_absolute_command(char *command)
 	status = file_status(command);
 	 /* If the file doesn't exist, quit now. */
 	if (status != EXECUTION_SUCCESS)
-		abort_command(status);
+		abort_command(command, status);
 	return (command);
 }
 
@@ -73,8 +73,8 @@ char	*search_command_path(char *command)
 		status = file_status(full_path);
 		if (status == EXECUTION_SUCCESS)
 			return (full_path);
-		if (status = EX_NOEXEC)
-			abort_command(status);
+		if (status == EX_NOEXEC)
+			abort_command(full_path, status);
 		safe_free_ptr(full_path, TEMPORARY);
 		index++;
 	}
