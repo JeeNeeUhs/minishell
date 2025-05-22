@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/21 19:11:28 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 05:58:38 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,12 @@ void						do_heredoc(t_command *command);
 
 int							here_document_to_fd(t_redirect *redir);
 
-void						do_piping(t_command *command);
-
-
-int							is_forked_process(t_command *command);
 int							make_pipe(t_command *command);
+void						close_fds(t_command *command);
+
+int							should_fork(t_command *command);
 pid_t						make_child();
 void						wait_children(pid_t last_pid);
-void						close_fds(t_command *command);
 
 #endif
 

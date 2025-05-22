@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:45:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/21 16:47:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+
+#pragma region
 
 const char *token_type_str(t_token_type t)
 {
@@ -80,6 +82,8 @@ void	debug_commands(t_command *cmds)
 
 }
 
+#pragma endregion
+
 int	handle_input(char* input)
 {
 	t_token		*tokens;
@@ -91,6 +95,7 @@ int	handle_input(char* input)
 	if (tokens == NULL)
 		return (SUCCESS);
 	expander(&tokens);
+	debug_tokens(tokens);
 	join_word_tokens(&tokens);
 	if (!validate_tokens(tokens))
 		return (abort_with_error(tokens, SYNTAX_ERR));
@@ -98,11 +103,13 @@ int	handle_input(char* input)
 		return (abort_with_error(tokens, HERE_ERR));
 	debug_tokens(tokens);
 	commands = parse(tokens);
-	do_redirection_all(commands);
-	debug_commands(commands);
+	remove_token_by_flags(&tokens, FLAG_ALL);
+	do_heredoc(commands);
+		debug_commands(commands);
+	// do_redirection_all(commands);
 	// //	executer
-	// if (commands != NULL)
-	// 	executor(commands);
+	if (commands != NULL)
+		execute_command(commands);
 	return (SUCCESS);
 }
 

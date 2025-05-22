@@ -40,7 +40,8 @@ SRC		= src/token/token_list.c \
 		src/builtins/unset.c \
 		src/builtins/cd.c \
 		src/builtins/exit.c \
-		src/executor/execute_cmd.c
+		src/executor/execute_cmd.c \
+		src/executor/utils.c
 
 
 
