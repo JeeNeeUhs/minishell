@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 23:18:45 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 23:41:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	do_redirection(t_command *command)
 	fd = 0;
 	index = 0;
 	redir_count = command->redir_count;
-	fprintf(stderr,"%d\n", redir_count);
 	while (index < redir_count)
 	{
 		redirect = &command->redirecs[index];
