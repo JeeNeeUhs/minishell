@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 08:05:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:09:31 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "builtins.h"
 #include <sys/wait.h>
 #include <unistd.h>
-#include "stdio.h"
+#include "string_utils.h"
+#include <stdio.h>
 
 int	should_fork(t_command *command)
 {
@@ -64,13 +65,5 @@ void	wait_children(pid_t last_pid)
 	}
 	while (wait(NULL) > 0)
 		;
-}
-
-void	close_fds(t_command *command)
-{
-	if (command->fd_in != STD_IN)
-		close(command->fd_in);
-	if (command->fd_out != STD_OUT)
-		close(command->fd_out);
 }
 

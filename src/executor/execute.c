@@ -6,13 +6,14 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 08:23:14 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:14:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "builtins.h"
 #include "minishell.h"
+#include "memory_allocator.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -26,27 +27,39 @@ void	execute_builtin(t_command *command)
 	builtin = get_builtin(command->args[0]);
 	exit_value = builtin(command);
 	if (should_fork(command))
-		exit(exit_value);
+		safe_abort(exit_value);
 	*exit_status() = exit_value;
 }
 
 void	execute_disk_command(t_command *command)
 {
 	char	**envp;
+	char	*full_path;
 
+	full_path = search_command_path(command->args[0]);
+	if (full_path == NULL)
+		safe_abort(EX_NOTFOUND);
+	command->args[0] = full_path;
 	envp = get_env_to_array();
-	execve(command->args[0], command->args, envp);
+	execve(full_path, command->args, envp);
 }
 
 void	execute_command(t_command *command)
 {
 	*exit_status() = 0;
 	if (!do_redirection(command))
+	{
+		*exit_status() = 1;
 		return ;
-	if (is_builtin(command->args[0]))
-		execute_builtin(command);
+	}
 	else
-		execute_disk_command(command);
+	{
+		if (is_builtin(command->args[0]))
+			execute_builtin(command);
+		else
+			execute_disk_command(command);
+	}
+
 }
 
 /* Execute a simple command that is hopefully defined in a disk file
@@ -79,7 +92,10 @@ void	execute_pipeline(t_command *command)
 		if (should_fork(command))
 			last_pid = make_child();
 		if (last_pid < 0)
+		{
+			close_fds(command);
 			break ;
+		}
 		if (last_pid == 0)
 			execute_command(command);
 		close_fds(command);
