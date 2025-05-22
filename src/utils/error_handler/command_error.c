@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 17:37:34 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 19:07:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "command.h"
 #include "memory_allocator.h"
+#include <stdio.h>
 
 int	report_export_error(char* variable)
 {
@@ -31,4 +32,10 @@ void	command_not_found(char *command)
 	ft_putstr_fd(command, 2);
 	ft_putstr_fd(": command not found\n", 2);
 	safe_abort(EX_NOTFOUND);
+}
+
+void	abort_command(char *command, int status)
+{
+	perror(command);
+	safe_abort(status);
 }

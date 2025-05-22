@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 12:23:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 19:09:59 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ char*	search_absolute_command(char *command)
 	status = file_status(command);
 	 /* If the file doesn't exist, quit now. */
 	if (status != EXECUTION_SUCCESS)
-	{
-		perror(command);
-		safe_abort (status); /* XXX */
-	}
+		abort_command(status);
 	return (command);
 }
 
@@ -60,6 +57,7 @@ char	*search_command_path(char *command)
 	char	**paths;
 	char	*path_name;
 	char	*full_path;
+	int		status;
 	int		index;
 
 	if (is_absolute_command(command))
@@ -72,8 +70,11 @@ char	*search_command_path(char *command)
 	while (paths[index])
 	{
 		full_path = str_arr_join((char *[]) {paths[index], "/", command}, 3);
-		if (access(full_path, X_OK) == 0)
+		status = file_status(full_path);
+		if (status == EXECUTION_SUCCESS)
 			return (full_path);
+		if (status = EX_NOEXEC)
+			abort_command(status);
 		safe_free_ptr(full_path, TEMPORARY);
 		index++;
 	}
