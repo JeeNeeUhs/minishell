@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 13:05:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 13:15:15 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	execute_disk_command(t_command *command)
 	command->args[0] = full_path;
 	envp = get_env_to_array();
 	execve(full_path, command->args, envp);
-	safe_abort(EXECUTION_FAILURE);
+	safe_abort(EX_NOEXEC);
 }
 
 void	execute_command(t_command *command)
