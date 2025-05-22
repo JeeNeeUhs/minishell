@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 06:08:32 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 08:05:11 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "minishell.h"
+#include "builtins.h"
 #include <sys/wait.h>
 #include <unistd.h>
 #include "stdio.h"
@@ -53,8 +54,14 @@ pid_t	make_child()
 
 void	wait_children(pid_t last_pid)
 {
+	int	exit_code;
+
+	exit_code = 0;
 	if (last_pid > 0)
-		waitpid(last_pid, exit_status(), 0);
+	{
+		waitpid(last_pid, &exit_code, 0);
+		*exit_status() = WEXITSTATUS(exit_code); // [SIGNAL | FLAG] (EXIT_CODE & 255) >> 8;
+	}
 	while (wait(NULL) > 0)
 		;
 }

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 16:47:01 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 08:11:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	handle_input(char* input)
 	// do_redirection_all(commands);
 	// //	executer
 	if (commands != NULL)
-		execute_command(commands);
+		execute_pipeline(commands);
 	return (SUCCESS);
 }
 
@@ -128,7 +128,7 @@ int	main(int argc, char**argv, char *envp[]) // check
 		ft_putstr_fd("minishell: no arguments are allowed\n", 2);
 		return (1);
 	}
-	//setup_signal(&sa);
+	setup_signal(&sa);
 	init_env(envp);
 	create_env("PS1", ft_pstrdup(PPROMPT));
 	create_env("PS2", ft_pstrdup(SPROMPT));

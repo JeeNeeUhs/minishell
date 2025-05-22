@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:12:55 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 19:22:01 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 08:03:14 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	export_builtin(t_command *cmd)
 
 	if (cmd->args[1] == NULL)
 		print_export(cmd->fd_out);
-	args = cmd->args[0];
+	args = cmd->args;
 	exit_code = EXECUTION_SUCCESS;
 	while (*++args != NULL)
 	{

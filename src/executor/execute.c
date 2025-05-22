@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 05:58:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 08:23:14 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	execute_builtin(t_command *command)
 	int			exit_value;
 
 	builtin = get_builtin(command->args[0]);
-	exit_value = builtin(command) & 255;
+	exit_value = builtin(command);
 	if (should_fork(command))
 		exit(exit_value);
 	*exit_status() = exit_value;
@@ -41,7 +41,7 @@ void	execute_disk_command(t_command *command)
 void	execute_command(t_command *command)
 {
 	*exit_status() = 0;
-	if (!do_redirection(command)) //todo eğer redir error  varsa ne yapacagız ? pipe varsa exit pipe yoksa return ; atmak bile çözüm değil çünkü builtin değil ve tek komutsa yine exit değilse return atmalı
+	if (!do_redirection(command))
 		return ;
 	if (is_builtin(command->args[0]))
 		execute_builtin(command);

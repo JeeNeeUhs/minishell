@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 07:29:40 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 07:45:31 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,32 +52,6 @@ void	set_new_fd(t_command *command, t_instruction instruction, int fd)
 		close(command->fd_out);
 	if (instruction & FD_OUT)
 		command->fd_out = fd;
-}
-
-int	set_std_fds(t_command *command)
-{
-	int	return_value;
-
-	return_value = SUCCESS;
-	if (should_fork(command))
-		return (return_value);
-	if (command->fd_in != STD_IN)
-	{
-		if (dup2(command->fd_in, STD_IN) < 0)
-		{
-			perror("dup2");
-			*exit_status() = 1;
-			return_value = FAILURE;
-		}
-		close(command->fd_in);
-	}
-	if (command->fd_out != STD_OUT)
-	{
-		if (return_value && dup2(command->fd_out, STD_OUT) < 0)
-			perror("dup2");
-		close(command->fd_out);
-	}
-	return (return_value);
 }
 
 int	do_redirection(t_command *command)

@@ -31,6 +31,7 @@ SRC		= src/token/token_list.c \
 		src/executor/execute.c \
 		src/redirection/heredoc.c \
 		src/redirection/redir.c \
+		src/redirection/redir_utils.c \
 		libs/get_next_line/get_next_line.c \
 		src/utils/error_handler/builtin_validate.c \
 		src/builtins/export.c \
@@ -40,8 +41,7 @@ SRC		= src/token/token_list.c \
 		src/builtins/unset.c \
 		src/builtins/cd.c \
 		src/builtins/exit.c \
-		src/executor/execute_cmd.c \
-		src/executor/utils.c
+		src/executor/execute_utils.c
 
 
 

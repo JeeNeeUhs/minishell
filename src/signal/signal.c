@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:06:12 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/03/02 16:23:24 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/05/22 08:20:55 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	handle_signal(int sig, siginfo_t *info, void *context) // check
 {
 	if (sig == SIGINT)
-	{ // crtl + c 
+	{ // crtl + c
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
@@ -31,7 +31,7 @@ void	handle_signal(int sig, siginfo_t *info, void *context) // check
 	{ // crtl + slash
 		rl_on_new_line();
 		rl_redisplay();
-	}	
+	}
 
 }
 
@@ -40,6 +40,7 @@ void	setup_signal(struct sigaction *sa)
 	sa->sa_sigaction = handle_signal;
 	sa->sa_flags = SA_SIGINFO;
 	sigemptyset(&sa->sa_mask);
+
 	if (sigaction(SIGINT, sa, NULL) == -1)
 		return ;
 	if (sigaction(SIGQUIT, sa, NULL) == -1)
