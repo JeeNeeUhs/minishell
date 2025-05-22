@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 17:37:18 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 23:37:54 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	execute_disk_command(t_command *command)
 
 	if (!do_redirection(command))
 		safe_abort(EXECUTION_FAILURE);
+	if (command->args[0] == NULL)
+		safe_abort(EXECUTION_SUCCESS);
 	full_path = search_command_path(command->args[0]);
 	if (full_path == NULL)
 		command_not_found(command->args[0]);
@@ -55,6 +57,8 @@ void	execute_disk_command(t_command *command)
 
 void	execute_command(t_command *command)
 {
+	if (command->next != NULL) // fork açtıgında next'in fdsinde pipeın diğer ucunu tutuyoruz fakat kapamıyoruz bu yüzde read cagrısında refcount 0 olmadıgı için bloklanıyor.
+		close(command->next->fd_in);
 	if (is_builtin(command->args[0]))
 		execute_builtin(command);
 	else
@@ -85,7 +89,7 @@ void	execute_pipeline(t_command *command)
 
 	while (command != NULL)
 	{
-		last_pid = 0;
+		last_pid = 0; //cat | cat | ls
 		if (command->next != NULL && !make_pipe(command))
 				break ;
 		if (should_fork(command))

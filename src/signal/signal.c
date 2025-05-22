@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:06:12 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/22 08:20:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 19:43:35 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
+int	g_signal = 0;
 
 void	handle_signal(int sig, siginfo_t *info, void *context) // check
 {
@@ -32,7 +34,6 @@ void	handle_signal(int sig, siginfo_t *info, void *context) // check
 		rl_on_new_line();
 		rl_redisplay();
 	}
-
 }
 
 void	setup_signal(struct sigaction *sa)
