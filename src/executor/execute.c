@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 12:14:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 13:05:57 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	execute_builtin(t_command *command)
 	t_builtin	builtin;
 	int			exit_value;
 
+	if (!do_redirection(command))
+	{
+		if (should_fork(command))
+			safe_abort(EXECUTION_FAILURE);
+		return ;
+	}
 	builtin = get_builtin(command->args[0]);
 	exit_value = builtin(command);
 	if (should_fork(command))
@@ -36,30 +42,23 @@ void	execute_disk_command(t_command *command)
 	char	**envp;
 	char	*full_path;
 
+	if (!do_redirection(command))
+		safe_abort(EXECUTION_FAILURE);
 	full_path = search_command_path(command->args[0]);
 	if (full_path == NULL)
 		safe_abort(EX_NOTFOUND);
 	command->args[0] = full_path;
 	envp = get_env_to_array();
 	execve(full_path, command->args, envp);
+	safe_abort(EXECUTION_FAILURE);
 }
 
 void	execute_command(t_command *command)
 {
-	*exit_status() = 0;
-	if (!do_redirection(command))
-	{
-		*exit_status() = 1;
-		return ;
-	}
+	if (is_builtin(command->args[0]))
+		execute_builtin(command);
 	else
-	{
-		if (is_builtin(command->args[0]))
-			execute_builtin(command);
-		else
-			execute_disk_command(command);
-	}
-
+		execute_disk_command(command);
 }
 
 /* Execute a simple command that is hopefully defined in a disk file

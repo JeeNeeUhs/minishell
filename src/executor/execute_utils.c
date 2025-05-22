@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 12:09:31 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:19:19 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 int	should_fork(t_command *command)
 {
 	return (
-		!is_builtin(command->args[0]) &&
-		(command->prev != NULL || command->next != NULL));
+		!is_builtin(command->args[0]) ||
+		command->prev != NULL ||
+		command->next != NULL);
 }
 
 int	make_pipe(t_command *command)

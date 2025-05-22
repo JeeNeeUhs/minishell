@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 12:10:42 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:23:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char*	search_absolute_command(char *command)
 	if (status != EXECUTION_SUCCESS)
 	{
 		perror(command);
-		safe_abort (status); /* XXX */ //determine that how to set exit value ? if i want just exit here but i have to free all of memory
+		safe_abort (status); /* XXX */
 	}
 	return (command);
 }
@@ -77,5 +77,5 @@ char	*search_command_path(char *command)
 		safe_free_ptr(full_path, TEMPORARY);
 		index++;
 	}
-		return (NULL);
+	return (NULL);
 }

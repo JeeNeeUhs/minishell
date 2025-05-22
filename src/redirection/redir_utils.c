@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 08:56:14 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 12:53:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	set_std_fds(t_command *command)
 	int	return_value;
 
 	return_value = SUCCESS;
-	if (should_fork(command))
+	if (!should_fork(command))
 		return (SUCCESS);
 	if (command->fd_in != STD_IN)
 	{
