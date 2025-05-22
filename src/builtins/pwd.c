@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:41:52 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 19:12:34 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 21:32:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	pwd_builtin(t_command *command)
 	cwd = getcwd(NULL, 0);
 	if (cwd == NULL)
 	{
-		perror("pwd");
+		perror("pwd"); //todo
 		return (EXECUTION_FAILURE);
 	}
 	ft_putstr_fd(cwd, command->fd_out);
