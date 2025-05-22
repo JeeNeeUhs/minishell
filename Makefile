@@ -33,7 +33,7 @@ SRC		= src/token/token_list.c \
 		src/redirection/redir.c \
 		src/redirection/redir_utils.c \
 		libs/get_next_line/get_next_line.c \
-		src/utils/error_handler/builtin_validate.c \
+		src/utils/error_handler/command_error.c \
 		src/builtins/export.c \
 		src/builtins/env.c \
 		src/builtins/pwd.c \

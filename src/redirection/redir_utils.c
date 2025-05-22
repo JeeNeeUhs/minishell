@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 12:53:28 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 13:38:19 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	do_dup(int fd1, int fd2)
 	close(fd1);
 	return (SUCCESS);
 }
-
 
 int	set_std_fds(t_command *command)
 {

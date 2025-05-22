@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 08:11:21 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 14:12:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int	handle_input(char* input)
 	if (tokens == NULL)
 		return (SUCCESS);
 	expander(&tokens);
-	debug_tokens(tokens);
 	join_word_tokens(&tokens);
 	if (!validate_tokens(tokens))
 		return (abort_with_error(tokens, SYNTAX_ERR));
@@ -105,9 +104,7 @@ int	handle_input(char* input)
 	commands = parse(tokens);
 	remove_token_by_flags(&tokens, FLAG_ALL);
 	do_heredoc(commands);
-		debug_commands(commands);
-	// do_redirection_all(commands);
-	// //	executer
+	debug_commands(commands);
 	if (commands != NULL)
 		execute_pipeline(commands);
 	return (SUCCESS);
@@ -142,7 +139,7 @@ int	main(int argc, char**argv, char *envp[]) // check
 		if (input[0])
 			add_history(input);
 		handle_input(input);
-		// free(input);
+		//free(input);
 		safe_free(TEMPORARY);
 	}
 }

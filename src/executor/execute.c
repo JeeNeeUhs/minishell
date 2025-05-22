@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 13:15:15 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 17:37:18 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	execute_disk_command(t_command *command)
 		safe_abort(EXECUTION_FAILURE);
 	full_path = search_command_path(command->args[0]);
 	if (full_path == NULL)
-		safe_abort(EX_NOTFOUND);
+		command_not_found(command->args[0]);
 	command->args[0] = full_path;
 	envp = get_env_to_array();
 	execve(full_path, command->args, envp);

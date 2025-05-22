@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/22 11:48:43 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 17:32:23 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void						wait_children(pid_t last_pid);
 char						*search_command_path(char *command);
 
 void						execute_pipeline(t_command *command);
+
+void						command_not_found(char *command);
 
 #endif
 

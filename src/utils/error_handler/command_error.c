@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_validate.c                                 :+:      :+:    :+:   */
+/*   command_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 19:10:36 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 17:37:34 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell.h"
 #include "libft.h"
 #include "command.h"
+#include "memory_allocator.h"
 
 int	report_export_error(char* variable)
 {
@@ -22,4 +23,12 @@ int	report_export_error(char* variable)
 	ft_putstr_fd("`: not a valid identifier\n", 2);
 	*exit_status() = 1;
 	return (EXECUTION_FAILURE);
+}
+
+void	command_not_found(char *command)
+{
+	ft_putstr_fd("hash: ", 2);
+	ft_putstr_fd(command, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	safe_abort(EX_NOTFOUND);
 }
