@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/22 20:58:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/23 18:58:26 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ void						command_not_found(char *command);
 void						abort_command(char* command, int status);
 int							home_not_set();
 
+
+void						debug_tokens(t_token *tokens);
+void						debug_commands(t_command *cmds);
 #endif
 
 /*

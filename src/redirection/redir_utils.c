@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 23:20:53 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/23 19:03:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ int	set_std_fds(t_command *command)
 	{
 		if (!do_dup(command->fd_in, STD_IN))
 			return_value = FAILURE;
+		else
+			command->fd_in = STD_IN;
 	}
 	if (command->fd_out != STD_OUT)
 	{
 		if (return_value && !do_dup(command->fd_out, STD_OUT))
 			return_value = FAILURE;
+		else
+			command->fd_out = STD_OUT;
 	}
 	return (return_value);
 }

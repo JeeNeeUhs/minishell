@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 23:37:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/23 19:04:34 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	execute_pipeline(t_command *command)
 
 	while (command != NULL)
 	{
-		last_pid = 0; //cat | cat | ls
+		last_pid = 0;
 		if (command->next != NULL && !make_pipe(command))
 				break ;
 		if (should_fork(command))
