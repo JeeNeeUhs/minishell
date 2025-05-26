@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:26:51 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/22 19:59:08 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/26 20:13:41 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	handle_option(char **args, int *display_newline)
 		if (*temp++ != '-' || *temp != 'n')
 			break ;
 		while (*temp != '\0' && *temp == 'n')
-			*temp++;
+			temp++;
 		if (*temp != '\0')
 			break ;
 		*display_newline = 0;
