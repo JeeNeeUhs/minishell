@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:39:04 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/21 19:15:27 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/27 10:28:05 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_builtin		get_builtin(char *command);
 int				is_builtin(char *command);
 
 int				report_export_error(char *variable);
+int				builtin_error(char *message);
 #endif
 
