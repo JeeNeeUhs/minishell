@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:55:53 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 19:49:44 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 19:57:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	cd_builtin(t_command *command)
 	if (dir_name == NULL)
 		dir_name = get_env_value("HOME"); /* `cd' without arguments is equivalent to `cd $HOME' */
 	if (dir_name == NULL)
-		return (builtin_error("home is not set"));
+		return (builtin_error("hash cd: HOME is not set"));
 	if (chdir(dir_name) == -1)
 	{
 		ft_putstr_fd("hash cd ", 2);
