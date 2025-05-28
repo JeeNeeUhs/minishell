@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:55:53 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/27 13:48:32 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/27 14:41:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ int	cd_builtin(t_command *command)
 	update_pwd_env();
 	return (EXECUTION_SUCCESS);
 }
-

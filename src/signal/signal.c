@@ -6,44 +6,44 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:06:12 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/23 00:13:18 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/27 19:315 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <unistd.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "minishell.h"
+#include "command.h"
 
-int	g_signal = 0;
+int  g_signal = 0;
 
-void	handle_signal(int sig, siginfo_t *info, void *context) // check
+/*During an execve(2), the dispositions of handled signals are reset to the default; the dispositions of ignored signals are left unchanged
+	in PROMT_SIG :
+		-> SIGINT : Print new prompt, and ignore the current line
+		-> SIGQUIT : Igrore,
+	int EXEC_SIG :
+		-> SIGINT : just print new_line after newline main process will turn into main while loop
+		-> SIGQUIT : Print "Quit (core dumped)\n" and ignore the current line
+	in HERE_SIG :
+		-> SIGINT : cancel everything and turn into main while loop,
+		-> SIGQUIT : Ignore
+*/
+void	set_signal_handler(t_signal s_type)
 {
-	if (sig == SIGINT)
-	{ // crtl + c
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+	g_signal = 0;
+	if (s_type == HERE_SIG)
+	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint_here);
 	}
-	else if (sig == SIGQUIT)
-	{ // crtl + slash
-		rl_on_new_line();
-		rl_redisplay();
+	else if (s_type == EXEC_SIG)
+	{
+		signal(SIGQUIT, handle_sigquit);
+		signal(SIGINT, handle_sigint_exec);
 	}
-}
-
-void	setup_signal(struct sigaction *sa)
-{
-	sa->sa_sigaction = handle_signal;
-	sa->sa_flags = SA_SIGINFO;
-	sigemptyset(&sa->sa_mask);
-
-	if (sigaction(SIGINT, sa, NULL) == -1)
-		return ;
-	if (sigaction(SIGQUIT, sa, NULL) == -1)
-		return ;
+	else if (s_type == PROMT_SIG)
+	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_sigint_prompt);
+	}
 }

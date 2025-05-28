@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:52:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 23:31:37 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 16:27:10 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	make_here_document(t_redirect *redir)
 	while (1)
 	{
 		input = readline(prompt_string);
-		if (input == NULL || str_equal(input, redir->file_name))
+		if (!input || str_equal(input, redir->file_name) || g_signal)
 		{
 			free(input);
 			break ;
@@ -72,12 +72,13 @@ void	make_here_document(t_redirect *redir)
 	safe_free_ptr(prompt_string, TEMPORARY);
 }
 
-void	do_heredoc(t_command *command)
+int	do_heredoc(t_command *command)
 {
 	t_redirect	*redir;
 	size_t		redir_count;
 	size_t		index;
 
+	set_signal_handler(HERE_SIG);
 	while (command != NULL)
 	{
 		index = 0;
@@ -87,8 +88,12 @@ void	do_heredoc(t_command *command)
 			redir = &command->redirecs[index];
 			if (redir->instruction & I_HERE)
 				make_here_document(redir);
+			if (g_signal == SIGINT)
+				return (FAILURE);
 			index += 1;
 		}
 		command = command->next;
 	}
+	set_signal_handler(PROMT_SIG);
+	return (SUCCESS);
 }

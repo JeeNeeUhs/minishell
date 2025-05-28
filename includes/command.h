@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/23 18:58:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/27 21:02:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void						prepend_command(t_command **head_command, t_command *new_command);
 void						join_word_parts(t_token **head_token);
 
 int							do_redirection(t_command *command);
-void						do_heredoc(t_command *command);
+int							do_heredoc(t_command *command);
 int							set_std_fds(t_command *command);
 
 int							here_document_to_fd(t_redirect *redir);
@@ -90,6 +90,8 @@ int							home_not_set();
 
 void						debug_tokens(t_token *tokens);
 void						debug_commands(t_command *cmds);
+
+void						determinate_signal_handler(t_command *command);
 #endif
 
 /*

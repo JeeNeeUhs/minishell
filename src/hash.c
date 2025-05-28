@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 22:58:22 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 14:56:10 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	debug_commands(t_command *cmds)
 	printf("\x1b[34m└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\x1b[0m\n");
 
 }
-
 #pragma endregion
 
 int	handle_input(char* input)
@@ -104,43 +103,41 @@ int	handle_input(char* input)
 	debug_tokens(tokens);
 	commands = parse(tokens);
 	remove_token_by_flags(&tokens, FLAG_ALL);
-	do_heredoc(commands);
+	if (!do_heredoc(commands))
+		return (SUCCESS);
 	debug_commands(commands);
 	if (commands != NULL)
 		execute_pipeline(commands);
 	return (SUCCESS);
 }
-
 /*
 	READ - EVAL - PRINT - LOOP
 */
-int	main(int argc, char**argv, char *envp[]) // check
+int	main(int argc, char**argv, char *envp[])
 {
 	char	*input;
 	char	*prompt_string;
-	struct	sigaction sa;
 
-	//TODO: get env and store it in a static variable
-	if (argc != 1)
-	{
-		ft_putstr_fd("minishell: no arguments are allowed\n", 2);
-		return (1);
-	}
-	setup_signal(&sa);
+	(void)argc;
+	(void)argv;
+	rl_event_hook = do_noop;
+	rl_outstream = stderr;
+	// rl_signal_event_hook = handle_signal
 	init_env(envp);
 	create_env("PS1", ft_pstrdup(PPROMPT));
 	create_env("PS2", ft_pstrdup(SPROMPT));
 	while (1)
 	{
+		set_signal_handler(PROMT_SIG);
 		prompt_string = expand_prompt_string(get_env_value("PS1"));
 		input = readline(prompt_string);
-		// input = get_next_line(STD_IN);
 		if (input == NULL)
-			break ;
+			safe_abort(130);
 		if (input[0])
+		{
 			add_history(input);
-		handle_input(input);
+			handle_input(input);
+		}
 		safe_free(TEMPORARY);
 	}
-	safe_abort(EXIT_SUCCESS);
 }

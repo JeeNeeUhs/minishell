@@ -26,6 +26,7 @@ SRC		= src/token/token_list.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
+		src/signal/handler.c \
 		src/builtins/echo.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
@@ -44,7 +45,7 @@ SRC		= src/token/token_list.c \
 		src/executor/execute_utils.c \
 		src/executor/find_command.c \
 
-CC = clang
+CC = cc
 CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes #-fsanitize=address  -fno-omit-frame-pointer  #-Werror
 LIBFT = libs/libft/libft.a
 OBJ = $(SRC:.c=.o)

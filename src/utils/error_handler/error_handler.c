@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:47:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:36:11 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 14:00:51 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,16 @@ int	*exit_status(void)
 	return (&exit_status);
 }
 
+void	set_exit_status(int status)
+{
+	*exit_status() = status;
+}
+
 int	report_syntax_error(char *message)
 {
 	if (message != NULL)
 		ft_putstr_fd(message, 2);
 	*exit_status() = 2;
-	return (FAILURE);
-}
-
-int	safe_exit(int status, char *message)
-{
-	if (message != NULL)
-		ft_putstr_fd(message, 2);
-	exit(status);
 	return (FAILURE);
 }
 
