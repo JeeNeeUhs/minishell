@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 14:56:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 19:47:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ int	handle_input(char* input)
 	if (!validate_quote(input))
 		return (report_syntax_error(SYNTAX_ERR));
 	tokens = tokenizer(input);
-	free(input); /* XXX */
 	if (tokens == NULL)
 		return (SUCCESS);
 	expander(&tokens);
@@ -100,12 +99,12 @@ int	handle_input(char* input)
 		return (abort_with_error(tokens, SYNTAX_ERR));
 	if (is_max_heredoc_exceeded(tokens))
 		return (abort_with_error(tokens, HERE_ERR));
-	debug_tokens(tokens);
+	// debug_tokens(tokens);
 	commands = parse(tokens);
 	remove_token_by_flags(&tokens, FLAG_ALL);
 	if (!do_heredoc(commands))
 		return (SUCCESS);
-	debug_commands(commands);
+	// debug_commands(commands);
 	if (commands != NULL)
 		execute_pipeline(commands);
 	return (SUCCESS);
@@ -120,9 +119,6 @@ int	main(int argc, char**argv, char *envp[])
 
 	(void)argc;
 	(void)argv;
-	rl_event_hook = do_noop;
-	rl_outstream = stderr;
-	// rl_signal_event_hook = handle_signal
 	init_env(envp);
 	create_env("PS1", ft_pstrdup(PPROMPT));
 	create_env("PS2", ft_pstrdup(SPROMPT));
@@ -132,12 +128,13 @@ int	main(int argc, char**argv, char *envp[])
 		prompt_string = expand_prompt_string(get_env_value("PS1"));
 		input = readline(prompt_string);
 		if (input == NULL)
-			safe_abort(130);
+			break ;
 		if (input[0])
 		{
 			add_history(input);
 			handle_input(input);
 		}
+		free(input);
 		safe_free(TEMPORARY);
 	}
 }

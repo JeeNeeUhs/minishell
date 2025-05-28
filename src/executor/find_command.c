@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 20:02:04 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 19:48:56 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,16 @@
 #include "string_utils.h"
 #include "libft.h"
 #include "env.h"
+#include <sys/stat.h>
 
+int	is_directory(char *path)
+{
+	struct stat	path_stat;
+
+	if (stat(path, &path_stat) == -1)
+		return (0);
+	return (S_ISDIR(path_stat.st_mode));
+}
 /* Return some flags based on information about this file.
    Zero is returned if the file is executable. */
 int	file_status(char *file_name)
@@ -41,6 +50,13 @@ char*	search_absolute_command(char *command)
 {
 	int status;
 
+	if (is_directory(command))
+	{
+		ft_putstr_fd("hash: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": Is a directory\n", 2);
+		safe_abort(EX_NOEXEC);
+	}
 	status = file_status(command);
 	 /* If the file doesn't exist, quit now. */
 	if (status != EXECUTION_SUCCESS)

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 23:41:25 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 17:32:41 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	open_redir_file(t_redirect *redirecs)
 	int	fd;
 
 	flags = get_flags(redirecs->instruction);
-	fd = open(redirecs->file_name, flags, 0644);
+	fd = open(redirecs->file_name, flags, 0666);
 	if (fd == -1)
 		perror(redirecs->file_name);
 	return (fd);
