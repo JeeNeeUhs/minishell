@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 19:47:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 12:47:18 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	debug_commands(t_command *cmds)
 }
 #pragma endregion
 
-int	handle_input(char* input)
+int	handle_input(char *input)
 {
 	t_token		*tokens;
 	t_command	*commands;
@@ -109,6 +109,7 @@ int	handle_input(char* input)
 		execute_pipeline(commands);
 	return (SUCCESS);
 }
+
 /*
 	READ - EVAL - PRINT - LOOP
 */
@@ -120,8 +121,8 @@ int	main(int argc, char**argv, char *envp[])
 	(void)argc;
 	(void)argv;
 	init_env(envp);
-	create_env("PS1", ft_pstrdup(PPROMPT));
-	create_env("PS2", ft_pstrdup(SPROMPT));
+	if (isatty(STDIN_FILENO))
+		init_env((char *[]) {PPROMPT, SPROMPT, NULL});
 	while (1)
 	{
 		set_signal_handler(PROMT_SIG);

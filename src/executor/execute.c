@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 08:41:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 11:49:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	execute_disk_command(t_command *command)
 
 void	execute_command(t_command *command)
 {
-	if (command->next != NULL) // fork açtıgında next'in fdsinde pipeın diğer ucunu tutuyoruz fakat kapamıyoruz bu yüzde read cagrısında refcount 0 olmadıgı için bloklanıyor.
-		close(command->next->fd_in);
 	if (is_builtin(command->args[0]))
 		execute_builtin(command);
 	else
@@ -102,6 +100,8 @@ void	execute_pipeline(t_command *command)
 			close_fds(command);
 			break ;
 		}
+		if (last_pid == 0 && command->next != NULL) // fork açtıgında next'in fdsinde pipeın diğer ucunu tutuyoruz fakat kapamıyoruz bu yüzde read cagrısında refcount 0 olmadıgı için bloklanıyor.
+			close(command->next->fd_in);
 		if (last_pid == 0)
 			execute_command(command);
 		close_fds(command);

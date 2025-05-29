@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 17:01:37 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 12:46:42 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 
 # define DEFAULT_IFS " \t\n"
 
-# define PPROMPT "\e[31m\\u@\e[0m\e[34m~\\w:\\s\e[0m$ "
-# define SPROMPT "\033[31m>\033[0m "
+# define PPROMPT "PS1=\e[31m\\u@\e[0m\e[34m~\\w:\\s\e[0m$ "
+# define SPROMPT "PS2=\033[31m>\033[0m "
 # define ESC_CHR "shawue"
 
 # include <stddef.h>
 # include <signal.h>
 
-extern int g_signal;
+extern			int g_signal;
 
 typedef enum	e_signal{
 	HERE_SIG,
