@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:16:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 21:24:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 22:28:17 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ pid_t	make_subshell(t_command *command)
 
 void	execute_in_subshell(t_command *command)
 {
-	int exit_value;
+	int	exit_value;
 
 	if (!do_redirection(command) || !set_std_fds(command))
 		safe_abort(EXECUTION_FAILURE);

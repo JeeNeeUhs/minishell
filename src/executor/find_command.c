@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 20:10:21 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 22:24:56 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	is_absolute_command(char *command)
 	return (ft_strchr(command, '/') != NULL);
 }
 
-char*	search_absolute_command(char *command)
+char	*search_absolute_command(char *command)
 {
-	int status;
+	int	status;
 
 	if (is_directory(command))
 	{
@@ -59,8 +59,7 @@ char*	search_absolute_command(char *command)
 		safe_abort(EX_NOEXEC);
 	}
 	status = file_status(command);
-	 /* If the file doesn't exist, quit now. */
-	if (status != EXECUTION_SUCCESS)
+	if (status != EXECUTION_SUCCESS) /* If the file doesn't exist, quit now. */
 		abort_command(command, status);
 	return (command);
 }
@@ -86,7 +85,7 @@ char	*search_command_path(char *command)
 	index = 0;
 	while (paths[index])
 	{
-		full_path = str_arr_join((char *[]) {paths[index], "/", command}, 3);
+		full_path = str_arr_join((char *[]){paths[index], "/", command}, 3);
 		status = file_status(full_path);
 		if (status == EXECUTION_SUCCESS)
 			return (full_path);

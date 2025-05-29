@@ -6,12 +6,11 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:26:51 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/26 20:13:41 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 22:30:57 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 #include "command.h"
 
 int	handle_option(char **args, int *display_newline)

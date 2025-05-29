@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 21:28:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:58:22 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #include <signal.h>
 #include "env.h"
 #include <stdio.h>
-
 #include <unistd.h>
 #include <stdlib.h>
 

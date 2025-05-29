@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 19:07:43 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 22:38:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_env(char *envp[])
 		set_env_value(
 			variable,
 			variable + offset + 1
-		);
+			);
 		index++;
 		safe_free_ptr(variable, TEMPORARY);
 	}
@@ -77,27 +77,26 @@ void	init_env(char *envp[])
 
 char	**get_env_to_array(void)
 {
-	t_env	*head_env;
 	t_env	*env;
 	char	**array;
 	int		index;
 	int		len;
 
-	head_env = *get_head_env();
-	env = head_env;
+	env = *get_head_env();
 	len = 0;
 	while (env != NULL)
 	{
 		len += (env->value != NULL);
 		env = env->next;
 	}
-	env = head_env;
+	env = *get_head_env();
 	array = safe_talloc((len + 1) * sizeof(char *));
 	index = 0;
 	while (env != NULL)
 	{
 		if (env->value != NULL)
-			array[index++] = str_arr_join((char *[]){env->key, "=", env->value}, 3);
+			array[index++] = str_arr_join((char *[]){
+					env->key, "=", env->value}, 3);
 		env = env->next;
 	}
 	array[index] = NULL;

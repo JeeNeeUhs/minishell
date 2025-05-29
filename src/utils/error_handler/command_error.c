@@ -6,10 +6,9 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 08:21:36 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 22:39:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 #include "libft.h"

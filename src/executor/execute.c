@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 21:17:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 22:28:01 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	execute_disk_command(t_command *command)
 
 void	execute_simple_command(t_command *command)
 {
-	int exit_value;
+	int	exit_value;
 
 	if (!do_redirection(command))
 		exit_value = EXECUTION_FAILURE;
