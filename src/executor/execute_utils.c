@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 22:28:34 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 23:41:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	wait_children(pid_t last_pid)
 	if (last_pid > 0)
 	{
 		waitpid(last_pid, &exit_code, 0);
-		set_exit_status(WEXITSTATUS(exit_code));
+		if (WIFEXITED(exit_code))
+			set_exit_status(WEXITSTATUS(exit_code));
+		else
+			set_exit_status(128 + WTERMSIG(exit_code));
 	}
 	while (wait(NULL) > 0)
 		;
