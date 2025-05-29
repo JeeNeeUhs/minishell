@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:16:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 23:53:18 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 23:55:24 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	execute_in_subshell(t_command *command)
 {
 	int	exit_value;
 
-	set_signal_handler(EXEC_SIG);
 	if (!do_redirection(command) || !set_std_fds(command))
 		safe_abort(EXECUTION_FAILURE);
 	if (is_builtin(command->args[0]))
@@ -65,6 +64,7 @@ void	execute_pipeline(t_command *command)
 {
 	pid_t	last_pid;
 
+	set_signal_handler(EXEC_SIG);
 	while (command != NULL)
 	{
 		last_pid = make_subshell(command);
