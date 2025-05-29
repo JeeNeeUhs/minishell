@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:45:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 12:53:43 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+
+#pragma region
 
 const char *token_type_str(t_token_type t)
 {
@@ -79,8 +81,9 @@ void	debug_commands(t_command *cmds)
 	printf("\x1b[34m└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\x1b[0m\n");
 
 }
+#pragma endregion
 
-int	handle_input(char* input)
+int	handle_input(char *input)
 {
 	t_token		*tokens;
 	t_command	*commands;
@@ -96,46 +99,44 @@ int	handle_input(char* input)
 		return (abort_with_error(tokens, SYNTAX_ERR));
 	if (is_max_heredoc_exceeded(tokens))
 		return (abort_with_error(tokens, HERE_ERR));
-	debug_tokens(tokens);
+	// debug_tokens(tokens);
 	commands = parse(tokens);
-	do_redirection_all(commands);
-	debug_commands(commands);
-	// //	executer
-	// if (commands != NULL)
-	// 	executor(commands);
+	remove_token_by_flags(&tokens, FLAG_ALL);
+	if (!do_heredoc(commands))
+		return (SUCCESS);
+	// debug_commands(commands);
+	if (commands != NULL)
+		execute_pipeline(commands);
 	return (SUCCESS);
 }
 
 /*
 	READ - EVAL - PRINT - LOOP
 */
-int	main(int argc, char**argv, char *envp[]) // check
+int	main(int argc, char**argv, char *envp[])
 {
 	char	*input;
 	char	*prompt_string;
-	struct	sigaction sa;
 
-	//TODO: get env and store it in a static variable
-	if (argc != 1)
-	{
-		ft_putstr_fd("minishell: no arguments are allowed\n", 2);
-		return (1);
-	}
-	//setup_signal(&sa);
+	(void)argc;
+	(void)argv;
 	init_env(envp);
-	create_env("PS1", ft_pstrdup(PPROMPT));
-	create_env("PS2", ft_pstrdup(SPROMPT));
+	if (isatty(STDIN_FILENO))
+		init_env((char *[]) {PPROMPT, SPROMPT, NULL});
 	while (1)
 	{
+		set_signal_handler(PROMT_SIG);
 		prompt_string = expand_prompt_string(get_env_value("PS1"));
 		input = readline(prompt_string);
-		// input = get_next_line(STD_IN);
 		if (input == NULL)
 			break ;
 		if (input[0])
+		{
 			add_history(input);
-		handle_input(input);
-		// free(input);
+			handle_input(input);
+		}
+		free(input);
 		safe_free(TEMPORARY);
 	}
+	safe_abort(*exit_status());;
 }

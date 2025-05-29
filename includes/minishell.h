@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/15 18:21:54 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 12:46:42 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,20 @@
 
 # define DEFAULT_IFS " \t\n"
 
-# define PPROMPT "\e[31m\\u@\e[0m\e[34m~\\w:\\s\e[0m$ "
-# define SPROMPT "\033[31m>\033[0m "
+# define PPROMPT "PS1=\e[31m\\u@\e[0m\e[34m~\\w:\\s\e[0m$ "
+# define SPROMPT "PS2=\033[31m>\033[0m "
 # define ESC_CHR "shawue"
 
 # include <stddef.h>
 # include <signal.h>
+
+extern			int g_signal;
+
+typedef enum	e_signal{
+	HERE_SIG,
+	EXEC_SIG,
+	PROMT_SIG
+}				t_signal;
 
 //Patterns
 int		is_quote(char c);
@@ -44,11 +52,23 @@ int		replace_with_expansion(char **input, int index, char *rep, int offset);
 
 int		safe_exit(int status, char *message);
 int		report_syntax_error(char *message);
+
 int		*exit_status(void);
+void	set_exit_status(int status);
+
 
 //Prompt
 char	*expand_prompt_string(char *input);
 
 //signal
-void	setup_signal(struct sigaction *sa);
+int		do_noop(void);
+void	init_signal();
+void	set_signal_handler(t_signal signal);
+
+void	handle_sigint_here(int sig);
+void	handle_sigint_exec(int sig);
+void	handle_sigint_prompt(int sig);
+void	handle_sigquit(int sig);
+
 #endif
+

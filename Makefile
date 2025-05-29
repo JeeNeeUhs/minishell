@@ -26,13 +26,15 @@ SRC		= src/token/token_list.c \
 		src/env/env_list.c \
 		src/env/operations.c \
 		src/signal/signal.c \
+		src/signal/handler.c \
 		src/builtins/echo.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
 		src/redirection/heredoc.c \
 		src/redirection/redir.c \
+		src/redirection/redir_utils.c \
 		libs/get_next_line/get_next_line.c \
-		src/utils/error_handler/builtin_validate.c \
+		src/utils/error_handler/command_error.c \
 		src/builtins/export.c \
 		src/builtins/env.c \
 		src/builtins/pwd.c \
@@ -40,14 +42,15 @@ SRC		= src/token/token_list.c \
 		src/builtins/unset.c \
 		src/builtins/cd.c \
 		src/builtins/exit.c \
-		src/executor/execute_cmd.c
+		src/executor/execute_utils.c \
+		src/executor/find_command.c \
 
-
-
-CC = clang
-CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes #-fsanitize=address  -fno-omit-frame-pointer  #-Werror
+CC = cc
+CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address  -fno-omit-frame-pointer  #-Werror
 LIBFT = libs/libft/libft.a
-OBJ = $(SRC:.c=.o)
+OBJ_DIR=.objs
+
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 
@@ -61,8 +64,12 @@ test: fclean $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(TEST) $(OBJ) -o $(NAME) $(LIBFT) -lreadline -D DEBUG=1
 	make clean
 
+$(OBJ_DIR)/%.o : %.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 	make -C libs/libft clean
 
 fclean: clean

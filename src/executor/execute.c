@@ -5,114 +5,105 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 19:41:39 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/14 15:01:28 by hsamir           ###   ########.fr       */
+/*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
+/*   Updated: 2025/05/29 15:09:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
+#include "builtins.h"
 #include "minishell.h"
-#include "env.h"
+#include "memory_allocator.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <sys/wait.h>
-#include "string_utils.h"
+#include "env.h"
 
-/*
-notes
-if the t_command struct have a next pointer, it means i should create a pipe
-the t_command struct for now first arg is command path
-*/
-
-void set_export(char *new)
+void	execute_builtin(t_command *command)
 {
-	char	*key;
-	char	*value;
-	int		index;
+	t_builtin	builtin;
+	int			exit_value;
 
-	if (new == NULL)
-		return ;
-	index = find_char_index(new, 0, '=');
-	new[index] = '\0';
-	key = ft_pstrdup(new);
-	value = ft_pstrdup(&new[index + 1]);
-	set_env_value(key, value);
-}
-
-
-void	executor(t_command *command)
-{
-	int 	pid;
-	int		prev[2];
-	int		next[2];
-
-	prev[0] = -1;
-	prev[1] = -1;
-	next[0] = -1;
-	next[1] = -1;
-
-	if(command->args[0] != NULL && str_equal(command->args[0], "export"))
+	if (!do_redirection(command))
 	{
-		set_export(command->args[1]);
+		if (should_fork(command))
+			safe_abort(EXECUTION_FAILURE);
 		return ;
 	}
-	if (!command->next)
-	{
-		//run single command
-		pid = fork();
-		if (pid == 0)
-		{
-			if (command->fd_in != STD_IN)
-				dup2(command->fd_in, STD_IN);
-			if (command->fd_out != STD_OUT)
-				dup2(command->fd_out, STD_OUT);
-			execve(command->args[0], command->args, NULL);
-		}
-		else
-		{
-			waitpid(pid, NULL, 0);
-			return;
-		}
-		exit(pid);
-	}
-
-	// while (command)
-	// {
-	// 	if (prev[0] != -1)
-	// 	{
-	// 		close(prev[0]);
-	// 		close(prev[1]);
-	// 	}
-	// 	prev[0] = next[0];
-	// 	prev[1] = next[1];
-	// 	if (command->next)
-	// 	{
-	// 		if (pipe(next) == -1)
-	// 		{
-	// 			// handle error
-	// 			exit(EXIT_FAILURE);
-	// 		}
-
-	// 	}
-	// 	else
-	// 	{
-	// 		next[0] = -1;
-	// 		next[1] = -1;
-	// 	}
-	// 	pid = fork();
-	// 	if (pid == 0)
-	// 	{
-	// 		if (command->fd_in != STD_IN)
-	// 			dup2(command->fd_in, STD_IN);
-	// 		if (command->fd_out != STD_OUT)
-	// 			dup2(command->fd_out, STD_OUT);
-	// 		if (prev[0] != -1)
-	// 			dup2(prev[0], STD_IN);
-	// 		if (next[1] != -1)
-	// 			dup2(next[1], STD_OUT);
-	// 		execve(command->args[0], command->args, NULL);
-	// 	}
-	// }
+	builtin = get_builtin(command->args[0]);
+	exit_value = builtin(command);
+	if (should_fork(command))
+		safe_abort(exit_value);
+	set_exit_status(exit_value);
 }
 
+void	execute_disk_command(t_command *command)
+{
+	char	**envp;
+	char	*full_path;
+
+	if (!do_redirection(command) || !set_std_fds(command))
+		safe_abort(EXECUTION_FAILURE);
+	if (command->args[0] == NULL)
+		safe_abort(EXECUTION_SUCCESS);
+	full_path = search_command_path(command->args[0]);
+	if (full_path == NULL)
+		command_not_found(command->args[0]);
+	command->args[0] = full_path;
+	envp = get_env_to_array();
+	execve(full_path, command->args, envp);
+	safe_abort(EX_NOEXEC);
+}
+
+void	execute_command(t_command *command)
+{
+	if (is_builtin(command->args[0]))
+		execute_builtin(command);
+	else
+		execute_disk_command(command);
+}
+
+/* Execute a simple command that is hopefully defined in a disk file
+   somewhere.
+
+   1) fork ()
+   2) connect pipes
+   3) look up the command
+   4) do redirections
+   5) execve ()
+   6) If the execve failed, see if the file has executable mode set.
+   If so, and it isn't a directory, then execute its contents as
+   a shell script.
+
+   Note that the filename hashing stuff has to take place up here,
+   in the parent.  This is probably why the Bourne style shells
+   don't handle it, since that would require them to go through
+   this gnarly hair, for no good reason.
+
+   NOTE: callers expect this to fork or exit(). */
+void	execute_pipeline(t_command *command)
+{
+	pid_t		last_pid;
+
+	set_signal_handler(EXEC_SIG);
+	while (command != NULL)
+	{
+		last_pid = 0;
+		if (command->next != NULL && !make_pipe(command))
+				break ;
+		if (should_fork(command))
+			last_pid = make_child();
+		if (last_pid < 0)
+		{
+			close_fds(command);
+			break ;
+		}
+		if (last_pid == 0 && command->next != NULL) // fork açtıgında next'in fdsinde pipeın diğer ucunu tutuyoruz fakat kapamıyoruz bu yüzde read cagrısında refcount 0 olmadıgı için bloklanıyor.
+			close(command->next->fd_in);
+		if (last_pid == 0)
+			execute_command(command);
+		close_fds(command);
+		command = command->next;
+	}
+	wait_children(last_pid);
+}

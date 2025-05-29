@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:12:55 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 17:28:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/22 08:03:14 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,31 @@ int	is_valid_identifier(char* variable)
 	return (variable[index] == '\0' || variable[index] == '=');
 }
 
-void	export_builtin(t_command *command)
+int	export_builtin(t_command *cmd)
 {
-	char	*variable;
+	char	**args;
 	int		offset;
-	int		index;
+	int		exit_code;
 
-	if (command->args[1] == NULL)
-		print_export(command->fd_out);
-	index = 1;
-	while (command->args[index] != NULL)
+	if (cmd->args[1] == NULL)
+		print_export(cmd->fd_out);
+	args = cmd->args;
+	exit_code = EXECUTION_SUCCESS;
+	while (*++args != NULL)
 	{
-		variable = command->args[index];
-		if (!is_valid_identifier(variable))
-			report_export_error(variable);
+		if (!is_valid_identifier(*args))
+			exit_code = report_export_error(*args);
 		else
 		{
-			offset = find_char_index(variable, 0, '=');
-			if (variable[offset] == '\0')
-				set_env_value(variable, NULL);
+			offset = find_char_index(*args, 0, '=');
+			if ((*args)[offset] == '\0')
+				set_env_value(*args, NULL);
 			else
 			{
-				variable[offset] = '\0';
-				set_env_value(variable, variable + offset + 1);
+				(*args)[offset] = '\0';
+				set_env_value(*args, *args + offset + 1);
 			}
 		}
-		index++;
 	}
+	return (exit_code);
 }

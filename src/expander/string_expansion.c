@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:24:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:18:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 19:17:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	expand_exit_status(char **input, int index) //test$?test
 			index,
 			exit,
 			2);
-	safe_free_ptr(exit_status, TEMPORARY);
+	safe_free_ptr(exit, TEMPORARY);
 	return (result);
 }
 

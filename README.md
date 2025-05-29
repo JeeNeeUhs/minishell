@@ -89,3 +89,5 @@ The following table summarizes the tokens produced by our shell lexer, with info
 > ⚠️ **Note:** This sketch is a rough draft and not a formal transition diagram.
 ---
 
+### Useful Resources
+https://blogs.oracle.com/linux/post/pipe-and-splice
