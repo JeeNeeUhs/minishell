@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 15:09:49 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:17:52 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,91 +19,47 @@
 #include <stdio.h>
 #include "env.h"
 
-void	execute_builtin(t_command *command)
+int	execute_builtin(t_command *command)
 {
 	t_builtin	builtin;
 	int			exit_value;
 
-	if (!do_redirection(command))
-	{
-		if (should_fork(command))
-			safe_abort(EXECUTION_FAILURE);
-		return ;
-	}
 	builtin = get_builtin(command->args[0]);
 	exit_value = builtin(command);
-	if (should_fork(command))
-		safe_abort(exit_value);
-	set_exit_status(exit_value);
+	return (exit_value);
 }
 
-void	execute_disk_command(t_command *command)
+int	execute_disk_command(t_command *command)
 {
 	char	**envp;
 	char	*full_path;
 
-	if (!do_redirection(command) || !set_std_fds(command))
-		safe_abort(EXECUTION_FAILURE);
 	if (command->args[0] == NULL)
-		safe_abort(EXECUTION_SUCCESS);
+		return (EXECUTION_SUCCESS);
 	full_path = search_command_path(command->args[0]);
 	if (full_path == NULL)
 		command_not_found(command->args[0]);
 	command->args[0] = full_path;
 	envp = get_env_to_array();
 	execve(full_path, command->args, envp);
-	safe_abort(EX_NOEXEC);
+	return (EX_NOEXEC);
+}
+
+void	execute_simple_command(t_command *command)
+{
+	int exit_value;
+
+	if (!do_redirection(command))
+		exit_value = EXECUTION_FAILURE;
+	else
+		exit_value = execute_builtin(command);
+	set_exit_status(exit_value);
 }
 
 void	execute_command(t_command *command)
 {
-	if (is_builtin(command->args[0]))
-		execute_builtin(command);
+	if (need_subshell(command))
+		execute_pipeline(command);
 	else
-		execute_disk_command(command);
-}
-
-/* Execute a simple command that is hopefully defined in a disk file
-   somewhere.
-
-   1) fork ()
-   2) connect pipes
-   3) look up the command
-   4) do redirections
-   5) execve ()
-   6) If the execve failed, see if the file has executable mode set.
-   If so, and it isn't a directory, then execute its contents as
-   a shell script.
-
-   Note that the filename hashing stuff has to take place up here,
-   in the parent.  This is probably why the Bourne style shells
-   don't handle it, since that would require them to go through
-   this gnarly hair, for no good reason.
-
-   NOTE: callers expect this to fork or exit(). */
-void	execute_pipeline(t_command *command)
-{
-	pid_t		last_pid;
-
-	set_signal_handler(EXEC_SIG);
-	while (command != NULL)
-	{
-		last_pid = 0;
-		if (command->next != NULL && !make_pipe(command))
-				break ;
-		if (should_fork(command))
-			last_pid = make_child();
-		if (last_pid < 0)
-		{
-			close_fds(command);
-			break ;
-		}
-		if (last_pid == 0 && command->next != NULL) // fork açtıgında next'in fdsinde pipeın diğer ucunu tutuyoruz fakat kapamıyoruz bu yüzde read cagrısında refcount 0 olmadıgı için bloklanıyor.
-			close(command->next->fd_in);
-		if (last_pid == 0)
-			execute_command(command);
-		close_fds(command);
-		command = command->next;
-	}
-	wait_children(last_pid);
+		execute_simple_command(command);
 }

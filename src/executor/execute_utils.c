@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 08:20:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:16:23 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "string_utils.h"
 #include <stdio.h>
 
-int	should_fork(t_command *command)
+int	need_subshell(t_command *command)
 {
 	return (
 		!is_builtin(command->args[0]) ||

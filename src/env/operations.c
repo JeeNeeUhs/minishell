@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 09:39:20 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 16:41:13 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 19:07:43 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	init_env(char *envp[])
 		variable = ft_strdup(envp[index]);
 		offset = find_char_index(variable, 0, '=');
 		variable[offset] = '\0';
-		create_env(
+		set_env_value(
 			variable,
 			variable + offset + 1
 		);
