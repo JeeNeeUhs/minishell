@@ -1,2 +1,0 @@
-Implement pipes (| character). The output of each command in the pipeline is
-connected to the input of the next command via a pipe
