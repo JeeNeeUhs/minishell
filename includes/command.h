@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/27 21:02:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:23:48 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_redirect
 
 typedef struct s_command
 {
-	pid_t 					pid;
 	char					**args;			/* The program name, the arguments, 'variable assignments'etc. */
 	t_redirect				*redirecs;		/* Redirections to perform. */
 	size_t					redir_count;
@@ -73,15 +72,19 @@ int							set_std_fds(t_command *command);
 int							here_document_to_fd(t_redirect *redir);
 
 int							make_pipe(t_command *command);
-void						close_fds(t_command *command);
+void						close_pipe(t_command *command);
 
-int							should_fork(t_command *command);
+int							need_subshell(t_command *command);
+pid_t						make_subshell(t_command *command);
 pid_t						make_child();
 void						wait_children(pid_t last_pid);
 
 char						*search_command_path(char *command);
 
+void						execute_command(t_command *command);
 void						execute_pipeline(t_command *command);
+int							execute_builtin(t_command *command);
+int							execute_disk_command(t_command *command);
 
 void						command_not_found(char *command);
 void						abort_command(char* command, int status);

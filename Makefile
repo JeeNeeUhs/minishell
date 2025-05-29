@@ -30,6 +30,9 @@ SRC		= src/token/token_list.c \
 		src/builtins/echo.c \
 		src/prompt/prompt_string.c \
 		src/executor/execute.c \
+		src/executor/execute_utils.c \
+		src/executor/find_command.c \
+		src/executor/subshell.c \
 		src/redirection/heredoc.c \
 		src/redirection/redir.c \
 		src/redirection/redir_utils.c \
@@ -42,8 +45,7 @@ SRC		= src/token/token_list.c \
 		src/builtins/unset.c \
 		src/builtins/cd.c \
 		src/builtins/exit.c \
-		src/executor/execute_utils.c \
-		src/executor/find_command.c \
+
 
 CC = cc
 CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address  -fno-omit-frame-pointer  #-Werror

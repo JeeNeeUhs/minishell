@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 08:35:14 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 20:21:23 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	set_std_fds(t_command *command)
 	return (SUCCESS);
 }
 
-void	close_fds(t_command *command)
+void	close_pipe(t_command *command)
 {
 	if (command->fd_in != STD_IN)
 		close(command->fd_in);

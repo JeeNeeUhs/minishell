@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 12:53:43 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:28:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	handle_input(char *input)
 		return (SUCCESS);
 	// debug_commands(commands);
 	if (commands != NULL)
-		execute_pipeline(commands);
+		execute_command(commands);
 	return (SUCCESS);
 }
 
