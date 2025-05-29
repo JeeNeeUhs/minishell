@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 08:21:13 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 08:35:14 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,26 @@ int	do_dup(int fd1, int fd2)
 	close(fd1);
 	return (SUCCESS);
 }
-
+/* https://www.gnu.org/software/libc/manual/html_node/Termination-Internals.html
+	When a process terminates for any reason—either because the program terminates, or as a result of a signal—the following things happen:
+	- All open file descriptors in the process are closed
+	- A process exit status is saved to be reported back to the parent process via wait or waitpid
+*/
 int	set_std_fds(t_command *command)
 {
-	int	return_value;
-
-	return_value = SUCCESS;
-	if (!should_fork(command))
-		return (SUCCESS);
 	if (command->fd_in != STD_IN)
 	{
 		if (!do_dup(command->fd_in, STD_IN))
-			return_value = FAILURE;
-		else
-			command->fd_in = STD_IN;
+			return (FAILURE);
+		command->fd_in = STD_IN;
 	}
 	if (command->fd_out != STD_OUT)
 	{
-		if (return_value && !do_dup(command->fd_out, STD_OUT))
-			return_value = FAILURE;
-		else
-			command->fd_out = STD_OUT;
+		if (!do_dup(command->fd_out, STD_OUT))
+			return (FAILURE);
+		command->fd_out = STD_OUT;
 	}
-	return (return_value);
+	return (SUCCESS);
 }
 
 void	close_fds(t_command *command)
