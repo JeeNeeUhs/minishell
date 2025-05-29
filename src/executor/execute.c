@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 11:49:09 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 12:52:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ void	execute_pipeline(t_command *command)
 {
 	pid_t		last_pid;
 
+	set_signal_handler(EXEC_SIG);
 	while (command != NULL)
 	{
 		last_pid = 0;
-		set_signal_handler(EXEC_SIG);
 		if (command->next != NULL && !make_pipe(command))
 				break ;
 		if (should_fork(command))
