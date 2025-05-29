@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 12:52:21 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 15:09:49 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	execute_builtin(t_command *command)
 			safe_abort(EXECUTION_FAILURE);
 		return ;
 	}
-	if (should_fork(command) && !set_std_fds(command))
-		safe_abort(EXECUTION_FAILURE);
 	builtin = get_builtin(command->args[0]);
 	exit_value = builtin(command);
 	if (should_fork(command))
