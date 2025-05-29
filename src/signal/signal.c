@@ -16,7 +16,7 @@
 #include "command.h"
 #include <readline/readline.h>
 
-int  g_signal = 0;
+int	g_signal = 0;
 
 /*During an execve(2), the dispositions of handled signals are reset to the default; the dispositions of ignored signals are left unchanged
 	in PROMT_SIG :

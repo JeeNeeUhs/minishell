@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:10:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 18:48:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 10:27:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	handle_sigint_prompt(int sig)
 	set_exit_status(128 + sig);
 }
 
-int		do_noop(void)
+int	do_noop(void)
 {
 	return (0);
 }
