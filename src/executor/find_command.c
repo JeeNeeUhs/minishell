@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 19:48:56 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/28 20:10:21 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	is_directory(char *path)
 		return (0);
 	return (S_ISDIR(path_stat.st_mode));
 }
+
 /* Return some flags based on information about this file.
    Zero is returned if the file is executable. */
 int	file_status(char *file_name)

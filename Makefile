@@ -46,9 +46,11 @@ SRC		= src/token/token_list.c \
 		src/executor/find_command.c \
 
 CC = cc
-CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes #-fsanitize=address  -fno-omit-frame-pointer  #-Werror
+CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address  -fno-omit-frame-pointer  #-Werror
 LIBFT = libs/libft/libft.a
-OBJ = $(SRC:.c=.o)
+OBJ_DIR=.objs
+
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 
@@ -62,8 +64,12 @@ test: fclean $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(TEST) $(OBJ) -o $(NAME) $(LIBFT) -lreadline -D DEBUG=1
 	make clean
 
+$(OBJ_DIR)/%.o : %.c
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 	make -C libs/libft clean
 
 fclean: clean

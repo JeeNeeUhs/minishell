@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/23 19:03:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 08:21:13 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	do_dup(int fd1, int fd2)
 	if (dup2(fd1, fd2) < 0)
 	{
 		perror("dup2");
-		*exit_status() = 1;
+		set_exit_status(1);
 		close(fd1);
 		return (FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 08:59:01 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 17:32:41 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 08:19:10 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	do_redirection(t_command *command)
 		set_new_fd(command, redirect->instruction, fd);
 		if (fd == -1)
 		{
-			*exit_status() = 1;
+			set_exit_status(1);
 			return (FAILURE);
 		}
 		index += 1;

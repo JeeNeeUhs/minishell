@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 12:19:19 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 08:20:03 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	make_pipe(t_command *command)
 	if (pipe(fd) < 0)
 	{
 		perror("pipe error");
-		*exit_status() = EXECUTION_FAILURE;
+		set_exit_status(EXECUTION_FAILURE);
 		return (FAILURE);
 	}
 	command->fd_out = fd[1];
@@ -49,7 +49,7 @@ pid_t	make_child()
 	if (pid < 0)
 	{
 		perror("fork");
-		*exit_status() = EX_NOEXEC;
+		set_exit_status(EX_NOEXEC);
 	}
 	return (pid);
 }
@@ -62,7 +62,7 @@ void	wait_children(pid_t last_pid)
 	if (last_pid > 0)
 	{
 		waitpid(last_pid, &exit_code, 0);
-		*exit_status() = WEXITSTATUS(exit_code); // [SIGNAL | FLAG] (EXIT_CODE & 255) >> 8;
+		set_exit_status(WEXITSTATUS(exit_code)); // [SIGNAL | FLAG] (EXIT_CODE & 255) >> 8;
 	}
 	while (wait(NULL) > 0)
 		;

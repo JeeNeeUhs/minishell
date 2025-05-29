@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 09:45:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 08:21:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	execute_builtin(t_command *command)
 	exit_value = builtin(command);
 	if (should_fork(command))
 		safe_abort(exit_value);
-	*exit_status() = exit_value;
+	set_exit_status(exit_value);
 }
 
 void	execute_disk_command(t_command *command)
