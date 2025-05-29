@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 12:47:18 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/29 12:53:43 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,5 @@ int	main(int argc, char**argv, char *envp[])
 		free(input);
 		safe_free(TEMPORARY);
 	}
+	safe_abort(*exit_status());;
 }
