@@ -45,6 +45,7 @@ SRC		= src/token/token_list.c \
 		src/builtins/unset.c \
 		src/builtins/cd.c \
 		src/builtins/exit.c \
+		src/utils/string_utils/str_patterns.c \
 
 
 CC = cc
