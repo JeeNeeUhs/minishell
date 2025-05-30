@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 23:41:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:16:35 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ pid_t	make_child(void)
 	return (pid);
 }
 
- // [SIGNAL | FLAG] (EXIT_CODE & 255) >> 8;
 void	wait_children(pid_t last_pid)
 {
 	int	exit_code;
@@ -71,4 +70,3 @@ void	wait_children(pid_t last_pid)
 	while (wait(NULL) > 0)
 		;
 }
-

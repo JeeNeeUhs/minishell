@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:26:51 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/29 22:30:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:09:34 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ int	handle_option(char **args, int *display_newline)
 	return (index);
 }
 
-/* source code: https://pastes.dev/pmygsihqWS
-Options:
-  -n	do not append a newline */
 int	echo_builtin(t_command *command)
 {
 	char	**args;
@@ -45,15 +42,15 @@ int	echo_builtin(t_command *command)
 	int		display_newline;
 
 	args = command->args;
-	index = handle_option(args , &display_newline);
+	index = handle_option(args, &display_newline);
 	while (args[index])
 	{
-		ft_putstr_fd(args[index] , command->fd_out);
+		ft_putstr_fd(args[index], command->fd_out);
 		if (args[index + 1] != NULL)
-			ft_putchar_fd(' ' , command->fd_out);
+			ft_putchar_fd(' ', command->fd_out);
 		index++;
 	}
 	if (display_newline)
-			ft_putchar_fd('\n' , command->fd_out);
+		ft_putchar_fd('\n', command->fd_out);
 	return (EXECUTION_SUCCESS);
 }
