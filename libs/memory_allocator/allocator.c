@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:09 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 09:34:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 00:16:11 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*safe_malloc(size_t size, t_mem_type mem_type)
 		.next = *head
 	};
 	*head = mem_block;
-	return (mem_block + 1);
+	return (mem_block->data);
 }
 
 void	*safe_talloc(size_t size)
