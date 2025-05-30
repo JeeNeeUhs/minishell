@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aborter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:24:14 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 22:44:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 15:38:02 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	safe_free(t_mem_type mem_type)
 	while (mem_block)
 	{
 		next_mem_block = mem_block->next;
+		free(mem_block->data);
 		free(mem_block);
 		mem_block = next_mem_block;
 	}
@@ -50,6 +51,7 @@ void	safe_free_ptr(void *ptr, t_mem_type mem_type)
 				*head = mem_block->next;
 			else
 				prev_mem_block->next = mem_block->next;
+			free(mem_block->data);
 			free(mem_block);
 			break ;
 		}
