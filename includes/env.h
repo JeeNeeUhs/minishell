@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:30 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 17:48:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 20:48:22 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef ENV_H
+# define ENV_H
 
 typedef struct s_env
 {
@@ -29,3 +32,5 @@ void				remove_all_env(void);
 void				remove_env(char *key);
 
 char				**get_env_to_array(void);
+
+#endif

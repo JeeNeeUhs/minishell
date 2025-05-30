@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 15:19:31 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 20:58:30 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-/*
-https://pastes.dev/YBKlv9bQzq 
-*/
 int	handle_input(char *input)
 {
 	t_token		*tokens;

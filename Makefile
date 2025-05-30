@@ -36,7 +36,6 @@ SRC		= src/token/token_list.c \
 		src/redirection/heredoc.c \
 		src/redirection/redir.c \
 		src/redirection/redir_utils.c \
-		libs/get_next_line/get_next_line.c \
 		src/utils/error_handler/command_error.c \
 		src/builtins/export.c \
 		src/builtins/env.c \
@@ -47,11 +46,10 @@ SRC		= src/token/token_list.c \
 		src/builtins/exit.c \
 		src/utils/string_utils/str_patterns.c \
 
-
 CC = cc
-CFLAGS = -g -Wall -Wextra -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address  -fno-omit-frame-pointer  #-Werror
+CFLAGS = -g -Wall -Wextra  -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address   #-Werror
 LIBFT = libs/libft/libft.a
-OBJ_DIR=.objs
+OBJ_DIR= .objs
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

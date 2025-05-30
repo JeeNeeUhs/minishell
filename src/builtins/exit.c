@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:56:48 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 13:08:12 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/05/30 22:45:12 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "memory_allocator.h"
 #include "minishell.h"
 #include <limits.h>
-
-#include <stdio.h>
 
 static int	skip_whitespace(const char *c)
 {
@@ -113,4 +111,5 @@ int	exit_builtin(t_command *command)
 		ft_putstr_fd("exit\n", 2);
 		safe_abort(exit_code % 256);
 	}
+	return (EXECUTION_SUCCESS);
 }
