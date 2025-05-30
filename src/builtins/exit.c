@@ -19,23 +19,6 @@
 
 #include <stdio.h>
 
-int	is_numeric(const char *s)
-{
-	if (!s || !*s)
-		return (0);
-	if (*s == '+' || *s == '-')
-		s++;
-	if (!*s) // Sadece + veya - işareti varsa reddet
-		return (0);
-	while (*s)
-	{
-		if (!ft_isdigit((unsigned char)*s))
-			return (0);
-		s++;
-	}
-	return (1);
-}
-
 static int	skip_whitespace(const char *c)
 {
 	int	i = 0;
@@ -78,6 +61,9 @@ long	ft_atol(const char *str, int *err)
 		total = total * 10 + digit;
 		i++;
 	}
+	i += skip_whitespace(str + i);
+	if (str[i] && str[i] != '\0')
+		*err = -1; 
 	return (sign * total);
 }
 
@@ -98,23 +84,24 @@ void	exit_builtin_error_handler(char *arg)
 
 int	exit_builtin(t_command *command)
 {
-	int	i;
+	int		err;
+	long	exit_code;
 
-	i = 0;
-	if (is_numeric(command->args[1]) && command->args[2])
+	err = 0;
+	exit_code = ft_atol(command->args[1], &err);
+	if (err != -1 && command->args[2])
 	{
 		exit_builtin_error_handler(NULL); // too many arguments
 		return (1);
 	}
-	if (command->args[1] && !is_numeric(command->args[1]))
+	if (command->args[1] && err == -1)
 		exit_builtin_error_handler(command->args[1]); // numeric argument required
 	if (command->args[1])
 	{
-		ft_atol(command->args[1], &i);
-		if (i == -1) // overflow or underflow
+		if (err == -1) // overflow or underflow
 			exit_builtin_error_handler(command->args[1]); // numeric argument required
 		ft_putstr_fd("exit\n", 2);
-		safe_abort(ft_atol(command->args[1], &i) % 256);
+		safe_abort(exit_code % 256);
 	}
 	ft_putstr_fd("exit\n", 2);
 	safe_abort(*exit_status());
