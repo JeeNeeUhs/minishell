@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:47:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 08:21:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 15:18:29 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "token.h"
-#include <stdlib.h>
 #include "minishell.h"
 
 int	*exit_status(void)

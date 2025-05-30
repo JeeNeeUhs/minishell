@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "env.h"
-#include "minishell.h"
 #include "memory_allocator.h"
 #include "string_utils.h"
 
