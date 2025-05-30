@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:00 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/19 20:41:42 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 15:20:06 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
-#include "minishell.h"
 #include "memory_allocator.h"
 #include "string_utils.h"
 
