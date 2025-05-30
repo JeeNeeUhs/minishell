@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 12:16:35 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/05/30 22:53:10 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

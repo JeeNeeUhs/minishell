@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 23:22:41 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/21 19:12:03 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 22:47:58 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "env.h"
 
-/* Unsetting a variable or function that was not previously set shall
-     not be considered an error and does not cause the shell to abort.*/
 int	unset_builtin(t_command *command)
 {
 	int	index;
