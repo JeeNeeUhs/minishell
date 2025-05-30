@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/05/29 21:23:48 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:40:36 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,42 @@
 
 # define STD_IN 0
 # define STD_OUT 1
-# define FD_IN  (I_IN | I_HERE)
-# define FD_OUT (I_APPEND | I_OUT)
+# define FD_IN  144
+# define FD_OUT 96
 
 # include <token.h>
 # include <sys/types.h>
 
-#define EX_SHERRBASE	256	/* all special error values are > this. */
-#define EX_BADUSAGE	2		/* Usage messages by builtins result in a return status of 2. */
-#define EX_NOEXEC	126
-#define EX_NOTFOUND	127
-#define	EXECUTION_FAILURE 1
-#define	EXECUTION_SUCCESS 0
+#define EX_SHERRBASE		256
+#define EX_BADUSAGE			2
+#define EX_NOEXEC			126
+#define EX_NOTFOUND			127
+#define	EXECUTION_FAILURE	1
+#define	EXECUTION_SUCCESS	0
 
 typedef enum e_instruction
 {
-	I_IN = 1 << 4,			//	<
-	I_OUT = 1 << 5,			//	>
-	I_APPEND = 1 << 6,		//	>>
-	I_HERE = 1 << 7,		//	<<
+	I_IN = 1 << 4,
+	I_OUT = 1 << 5,
+	I_APPEND = 1 << 6,
+	I_HERE = 1 << 7,
 }					t_instruction;
 
-/* Instructions describing what kind of thing to do for a redirection. */
 typedef struct s_redirect
 {
-	char					*file_name;		/* EOF or varname to be redirected. */
-	int						flags;			/* Flag value for `open'. */
-	char					*document;		/* Save heredoc lines*/
+	char					*file_name;
+	int						flags;
+	char					*document;
 	t_instruction			instruction;
 }							t_redirect;
 
 typedef struct s_command
 {
-	char					**args;			/* The program name, the arguments, 'variable assignments'etc. */
-	t_redirect				*redirecs;		/* Redirections to perform. */
+	char					**args;
+	t_redirect				*redirecs;
 	size_t					redir_count;
-	int						fd_in;			/* File descriptor for input. */
-	int						fd_out;			/* File descriptor for output. */
+	int						fd_in;
+	int						fd_out;
 	struct s_command		*prev;
 	struct s_command		*next;
 }							t_command;
@@ -96,76 +95,3 @@ void						debug_commands(t_command *cmds);
 
 void						determinate_signal_handler(t_command *command);
 #endif
-
-/*
-** cmd: command name
-** args: arguments of the command
-** fd_in: file descriptor for input
-** fd_out: file descriptor for output
-** next: pointer to the next command
-*/
-
-/*
-** example command: ls -l
-
-** cmd = "ls"
-** args = ["ls", "-l"]
-** fd_in = 0
-** fd_out = 1
-** next = NULL
-*/
-
-/*
-** example command: ls -l | grep "foo"
-
-** cmd = "ls"
-** args = ["ls", "-l"]
-** fd_in = 0
-** fd_out = 1
-** next = pointer to the next command
-
-** cmd = "grep"
-** args = ["grep", "foo"]
-** fd_in = 1
-** fd_out = 1
-** next = NULL
-
-*/
-
-
-/*
-** example command: ls -l | grep "foo"
-
-** cmd = "ls"
-** args = ["ls", "-l"]
-** fd_in = 0
-** fd_out = 1
-** next = pointer to the next command
-
-** cmd = "grep"
-** args = ["grep", "foo"]
-** fd_in = 1
-** fd_out = 1
-** next = NULL
-*/
-
-
-/*
-** example command: cat <<EOF | cat <<EOF"
-
-** args = ["cat"]
-** fd_in = 5
-** fd_out = 1
-** next = pointer to the next command
-
-** args = ["cat"]
-** fd_in = 7
-** fd_out = 1
-** next = pointer to the next command
-*/
-
-
-/*
-** if fd_in is equal to 0 it means that the command is reading from the standard input
-** if fd_out is equal to 1 it means that the command is writing to the standard output
-*/
