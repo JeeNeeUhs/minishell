@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:28:00 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 15:20:06 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:15:24 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,3 @@ void	remove_all_env(void)
 	safe_free(PERSISTENT);
 	*get_head_env() = NULL;
 }
-
-/*
-	https://www.gnu.org/software/autoconf/manual/autoconf-2.61/html_node/Special-Shell-Variables.html
-*/

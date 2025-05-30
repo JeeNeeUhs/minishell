@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:55:53 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 15:21:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:13:33 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void	update_pwd_env()
+void	update_pwd_env(void)
 {
 	char	*pwd_val;
 	char	*cwd;
@@ -29,13 +29,12 @@ void	update_pwd_env()
 	set_env_value("OLDPWD", pwd_val);
 	cwd = getcwd(NULL, 0);
 	if (cwd == NULL)
-		perror("getcwd: cannot access parent directories"); /* XXX -> THATS ABSOLUTELY TRUE*/
+		perror("getcwd: cannot access parent directories");
 	else
 		set_env_value("PWD", cwd);
 	free(cwd);
 }
 
-/* source code: https://pastes.dev/mWxHaBhbR1 */
 int	cd_builtin(t_command *command)
 {
 	char	*dir_name;
@@ -44,7 +43,7 @@ int	cd_builtin(t_command *command)
 		return (builtin_error(" too many arguments"));
 	dir_name = command->args[1];
 	if (dir_name == NULL)
-		dir_name = get_env_value("HOME"); /* `cd' without arguments is equivalent to `cd $HOME' */
+		dir_name = get_env_value("HOME");
 	if (dir_name == NULL)
 		return (builtin_error("hash cd: HOME is not set"));
 	if (chdir(dir_name) == -1)
