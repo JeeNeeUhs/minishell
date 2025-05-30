@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 20:21:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:32:34 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ int	do_dup(int fd1, int fd2)
 	close(fd1);
 	return (SUCCESS);
 }
-/* https://www.gnu.org/software/libc/manual/html_node/Termination-Internals.html
-	When a process terminates for any reason—either because the program terminates, or as a result of a signal—the following things happen:
-	- All open file descriptors in the process are closed
-	- A process exit status is saved to be reported back to the parent process via wait or waitpid
-*/
+
 int	set_std_fds(t_command *command)
 {
 	if (command->fd_in != STD_IN)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:47:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 15:18:29 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:36:42 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,3 @@ int	abort_with_error(t_token *tokens, char *message)
 	remove_token_by_flags(&tokens, FLAG_ALL);
 	return (FAILURE);
 }
-/*
-	cat > $files -> bash: $files: ambiguous redirect
-	not_exist_command -> not_exist_command: command not found
-	cat <file.txt -> bash: file.txt: Permission denied
-	 echo <<1 <<2 <<3 <<4 <<5 <<6 <<7 <<8 <<9 <<10 || <<11 <<12 <<13 <<14 <<15 <<16 <<17 -> bash: maximum here-document count exceeded
-	 cat > syntax error near unexpected token 'newline'
-
-*/

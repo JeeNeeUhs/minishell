@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_operations.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:28 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/20 13:31:53 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:35:47 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	str_equal(char *s1, char *s2)
 	return (ft_strncmp(s1, s2, s1_len) == 0);
 }
 
-/*search 'c' in string and return index of char, if it doesn't include the 'c' then return index of null char*/
 int	find_char_index(char *str, int i, char c)
 {
 	while (str[i] && str[i] != c)

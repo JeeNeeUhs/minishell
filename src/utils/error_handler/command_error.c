@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 22:39:39 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:36:30 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "memory_allocator.h"
 #include <stdio.h>
 
-int	report_export_error(char* variable)
+int	report_export_error(char *variable)
 {
 	ft_putstr_fd("hash: export: `", 2);
 	ft_putstr_fd(variable, 2);
@@ -47,4 +47,3 @@ void	abort_command(char *command, int status)
 	perror(command);
 	safe_abort(status);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 11:26:12 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/19 22:53:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:32:13 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_token	*join_sequential_tokens(t_token *base_token, int flags)
 	int		merged_flag;
 	t_token	*token;
 
-	if (base_token->next == NULL || base_token->next->type & ~flags) //TEST ET
+	if (base_token->next == NULL || base_token->next->type & ~flags)
 		return (base_token->next);
 	offset = 0;
 	merged_flag = 0;

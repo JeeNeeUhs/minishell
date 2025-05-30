@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   word_splitting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:02:43 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:20:35 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:20:44 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	create_field_token(t_token **head, char *input, int index, char *sep)
 	while (input[index + len] && !includes(sep, input[index + len]))
 		len++;
 	token = (t_token){
-		.content = ft_substr(input, index, len), // echotest,
+		.content = ft_substr(input, index, len),
 		.type = W_SINGLE_Q,
 		.next = NULL
 	};
@@ -90,14 +90,3 @@ void	word_split(t_token *token)
 	token->type |= W_INVALID;
 	str_arr_free((char *[]){ifs}, 1);
 }
-
-/*
-2.6.5 Field Splitting {
-	=> https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/utilities/V3_chap02.html#tag_18_06_05
-	=> default IFS value: {
-		<space>,
-		<tab>,
-		<newline>
-	}
-}
-*/
