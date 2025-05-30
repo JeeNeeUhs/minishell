@@ -6,7 +6,7 @@
 /*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:56:48 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 12:46:29 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:08:12 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,12 @@ int	exit_builtin(t_command *command)
 	long	exit_code;
 
 	err = 0;
-	if (command->args[1])
-		exit_code = ft_atol(command->args[1], &err);
+	if (!command->args[1])
+	{
+		ft_putstr_fd("exit\n", 2);
+		safe_abort(*exit_status());
+	}
+	exit_code = ft_atol(command->args[1], &err);
 	if (err != -1 && command->args[2])
 	{
 		exit_builtin_error_handler(NULL);
@@ -109,6 +113,4 @@ int	exit_builtin(t_command *command)
 		ft_putstr_fd("exit\n", 2);
 		safe_abort(exit_code % 256);
 	}
-	ft_putstr_fd("exit\n", 2);
-	safe_abort(*exit_status());
 }
