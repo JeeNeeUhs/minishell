@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:56:48 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 22:45:12 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/31 09:05:24 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ long	ft_atol(const char *str, int *err)
 	{
 		digit = str[i] - '0';
 		if ((sign == 1 && total > (LONG_MAX - digit) / 10)
-			|| (sign == -1 && total > ((unsigned long)LONG_MAX + 1UL - digit)
-				/ 10))
+			|| (sign == -1 && (unsigned long)total
+				> ((unsigned long)LONG_MAX + 1UL - digit) / 10))
 		{
 			*err = -1;
 			return (0);
