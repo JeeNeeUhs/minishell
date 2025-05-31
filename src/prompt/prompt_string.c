@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:15:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 15:28:01 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 22:56:36 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 #include "stdio.h"
 #include <stdlib.h>
 
-/* As an extension to the POSIX.1-2001 standard, glibc's getcwd()
-	allocates the buffer dynamically using malloc(3) if buf is NULL.
-*/
 char	*get_current_directory(void)
 {
 	char	*current_dir;

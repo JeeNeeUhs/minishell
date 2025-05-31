@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:52:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 16:27:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/31 08:46:25 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <readline/readline.h>
 #include <memory_allocator.h>
 #include "string_utils.h"
-#include <string.h>
 #include <unistd.h>
 
 int	here_document_to_fd(t_redirect *redir)

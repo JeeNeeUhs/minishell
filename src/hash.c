@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 20:58:30 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/31 09:16:07 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	handle_input(char *input)
 int	main(int argc, char**argv, char *envp[])
 {
 	char	*input;
-	char	*prompt_string;
 
 	(void)argc;
 	(void)argv;
@@ -59,8 +58,8 @@ int	main(int argc, char**argv, char *envp[])
 	while (1)
 	{
 		set_signal_handler(PROMT_SIG);
-		prompt_string = expand_prompt_string(get_env_value("PS1"));
-		input = readline(prompt_string);
+		input = readline(expand_prompt_string(get_env_value("PS1")));
+		safe_register_malloc(input, TEMPORARY);
 		if (input == NULL)
 			break ;
 		if (input[0])
@@ -68,7 +67,6 @@ int	main(int argc, char**argv, char *envp[])
 			add_history(input);
 			handle_input(input);
 		}
-		free(input);
 		safe_free(TEMPORARY);
 	}
 	safe_abort(*exit_status());
