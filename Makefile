@@ -47,7 +47,7 @@ SRC		= src/token/token_list.c \
 		src/utils/string_utils/str_patterns.c \
 
 CC = cc
-CFLAGS = -g -Wall -Wextra  -I./includes -I./libs/libft  -I./libs -I./includes -fsanitize=address   #-Werror
+CFLAGS = -g -Wall -Wextra  -I./includes -I./libs/libft  -I./libs -I./includes #-fsanitize=address   #-Werror
 LIBFT = libs/libft/libft.a
 OBJ_DIR= .objs
 
