@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:25:58 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/31 09:15:15 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/31 12:09:42 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ t_memory_block				**get_memory_head(t_mem_type mem_type);
 void						*safe_talloc(size_t size);
 void						*safe_palloc(size_t size);
 
-void						safe_register_malloc(void *alloc_mem, t_mem_type mem_type);
+void						safe_register_malloc(void *alloc_mem,
+								t_mem_type mem_type);
 
 void						safe_free(t_mem_type mem_type);
 void						safe_free_ptr(void *ptr, t_mem_type mem_type);
