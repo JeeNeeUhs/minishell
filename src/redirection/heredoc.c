@@ -62,10 +62,10 @@ void	make_here_document(t_redirect *redir)
 			free(input);
 			break ;
 		}
+		safe_register_malloc(input, TEMPORARY);
 		temp = document;
 		document = str_arr_join((char *[]){document, input, "\n"}, 3);
-		safe_free_ptr(temp, TEMPORARY);
-		free(input);
+		str_arr_free((char *[]){temp, input}, 2);
 	}
 	redir->document = document;
 	safe_free_ptr(prompt_string, TEMPORARY);
