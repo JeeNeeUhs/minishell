@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 07:40:47 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 12:32:34 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/06/14 07:24:46 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	set_std_fds(t_command *command)
 	return (SUCCESS);
 }
 
-void	close_pipe(t_command *command)
+void	close_fds(t_command *command)
 {
 	if (command->fd_in != STD_IN)
 		close(command->fd_in);

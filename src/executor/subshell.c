@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subshell.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:16:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 12:17:50 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/06/14 07:24:59 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	execute_pipeline(t_command *command)
 		last_pid = make_subshell(command);
 		if (last_pid == 0)
 			execute_in_subshell(command);
-		close_pipe(command);
+		close_fds(command);
 		if (last_pid < 0)
 			break ;
 		command = command->next;
