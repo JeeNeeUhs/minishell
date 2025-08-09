@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:16:03 by hsamir            #+#    #+#             */
-/*   Updated: 2025/08/09 15:45:38 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/08/09 16:36:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	execute_in_subshell(t_command *command)
 {
 	int	exit_value;
 
+	register_finalizer_funct(fini_func, command);
 	if (!do_redirection(command) || !set_std_fds(command))
 		safe_abort(EXECUTION_FAILURE);
-	register_finalizer_funct(fini_func, command);
 	if (is_builtin(command->args[0]))
 		exit_value = execute_builtin(command);
 	else
