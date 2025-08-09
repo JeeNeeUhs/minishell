@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 20:10:21 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:18:16 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	is_directory(char *path)
 	return (S_ISDIR(path_stat.st_mode));
 }
 
-/* Return some flags based on information about this file.
-   Zero is returned if the file is executable. */
 int	file_status(char *file_name)
 {
 	if (access(file_name, F_OK) != 0)
@@ -39,17 +37,14 @@ int	file_status(char *file_name)
 	return (EXECUTION_SUCCESS);
 }
 
-/* Return 1 if STRING is an absolute program name; it is absolute if it
-   contains any slashes.  This is used to decide whether or not to look
-   up through $PATH. */
 int	is_absolute_command(char *command)
 {
 	return (ft_strchr(command, '/') != NULL);
 }
 
-char*	search_absolute_command(char *command)
+char	*search_absolute_command(char *command)
 {
-	int status;
+	int	status;
 
 	if (is_directory(command))
 	{
@@ -59,16 +54,11 @@ char*	search_absolute_command(char *command)
 		safe_abort(EX_NOEXEC);
 	}
 	status = file_status(command);
-	 /* If the file doesn't exist, quit now. */
 	if (status != EXECUTION_SUCCESS)
 		abort_command(command, status);
 	return (command);
 }
 
-/* - COMMENT FROM KERNEL - https://github.com/torvalds/linux/blob/master/fs/namei.c
-	* "." and ".." are special - ".." especially so because it has
-	* to be able to know about the current root directory and
-	* parent relationships. */
 char	*search_command_path(char *command)
 {
 	char	**paths;
@@ -86,7 +76,7 @@ char	*search_command_path(char *command)
 	index = 0;
 	while (paths[index])
 	{
-		full_path = str_arr_join((char *[]) {paths[index], "/", command}, 3);
+		full_path = str_arr_join((char *[]){paths[index], "/", command}, 3);
 		status = file_status(full_path);
 		if (status == EXECUTION_SUCCESS)
 			return (full_path);

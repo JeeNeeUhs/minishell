@@ -18,17 +18,6 @@
 
 int	g_signal = 0;
 
-/*During an execve(2), the dispositions of handled signals are reset to the default; the dispositions of ignored signals are left unchanged
-	in PROMT_SIG :
-		-> SIGINT : Print new prompt, and ignore the current line
-		-> SIGQUIT : Igrore,
-	int EXEC_SIG :
-		-> SIGINT : just print new_line after newline main process will turn into main while loop
-		-> SIGQUIT : Print "Quit (core dumped)\n" and ignore the current line
-	in HERE_SIG :
-		-> SIGINT : cancel everything and turn into main while loop,
-		-> SIGQUIT : Ignore
-*/
 void	set_signal_handler(t_signal s_type)
 {
 	g_signal = 0;

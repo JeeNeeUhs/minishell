@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:32:31 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/14 22:16:26 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 20:36:14 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,15 @@ t_state	get_tokenizer_state(char c)
 t_token	*tokenizer(char *input)
 {
 	t_token	*tokens;
+	t_state	tokenizer_state;
 	int		i;
 
 	tokens = NULL;
 	i = skip_whitespace(input);
 	while (input[i])
-		get_tokenizer_state(input[i])(input, &i, &tokens);
+	{
+		tokenizer_state = get_tokenizer_state(input[i]);
+		tokenizer_state(input, &i, &tokens);
+	}
 	return (reverse_token_list(tokens));
 }

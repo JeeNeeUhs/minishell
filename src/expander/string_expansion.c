@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_expansion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:24:35 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/28 19:17:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 12:21:00 by ahekinci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	replace_with_expansion(char **input, int index, char *rep, int offset)
 
 	prefix = *input;
 	prefix[index] = '\0';
-	suffix = prefix + index + offset; //echo "lazy_loading$test%lazy_loading%"
+	suffix = prefix + index + offset;
 	*input = str_arr_join((char *[]){
 			prefix,
 			rep,
@@ -47,7 +47,7 @@ int	replace_with_expansion(char **input, int index, char *rep, int offset)
 	return (index);
 }
 
-int	expand_variable(char **input, int index) //test$test
+int	expand_variable(char **input, int index)
 {
 	char	*env_name;
 	int		result;
@@ -62,7 +62,7 @@ int	expand_variable(char **input, int index) //test$test
 	return (result);
 }
 
-int	expand_exit_status(char **input, int index) //test$?test
+int	expand_exit_status(char **input, int index)
 {
 	int		result;
 	char	*exit;

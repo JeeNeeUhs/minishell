@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 21:17:52 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/06/14 07:24:56 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	execute_disk_command(t_command *command)
 	full_path = search_command_path(command->args[0]);
 	if (full_path == NULL)
 		command_not_found(command->args[0]);
-	command->args[0] = full_path;
 	envp = get_env_to_array();
 	execve(full_path, command->args, envp);
 	return (EX_NOEXEC);
@@ -47,12 +46,13 @@ int	execute_disk_command(t_command *command)
 
 void	execute_simple_command(t_command *command)
 {
-	int exit_value;
+	int	exit_value;
 
 	if (!do_redirection(command))
 		exit_value = EXECUTION_FAILURE;
 	else
 		exit_value = execute_builtin(command);
+	close_fds(command);
 	set_exit_status(exit_value);
 }
 

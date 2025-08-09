@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 16:12:55 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/22 08:03:14 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/05/30 22:50:08 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ void	print_export(int fd)
 	}
 }
 
-/*$1 $2 We didn't implement positional parameters, but bash manual says "do not begin with a digit"*/
-int	is_valid_identifier(char* variable)
+int	is_valid_identifier(char *variable)
 {
 	int	index;
 
 	index = 0;
-	if (!ft_isalpha(variable[0]) && variable[0] != '_') //%_test ->
+	if (!ft_isalpha(variable[0]) && variable[0] != '_')
 		return (0);
-	while (is_var_char(variable[index])) //a%bcdef%=
+	while (is_var_char(variable[index]))
 		index++;
 	return (variable[index] == '\0' || variable[index] == '=');
 }

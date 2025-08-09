@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 21:16:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/08/09 15:45:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 int	need_subshell(t_command *command)
 {
 	return (
-		!is_builtin(command->args[0]) ||
-		command->prev != NULL ||
-		command->next != NULL);
+		!is_builtin(command->args[0])
+		|| command->prev != NULL
+		|| command->next != NULL);
 }
 
 int	make_pipe(t_command *command)
@@ -41,7 +41,7 @@ int	make_pipe(t_command *command)
 	return (SUCCESS);
 }
 
-pid_t	make_child()
+pid_t	make_child(void)
 {
 	pid_t	pid;
 
@@ -62,9 +62,16 @@ void	wait_children(pid_t last_pid)
 	if (last_pid > 0)
 	{
 		waitpid(last_pid, &exit_code, 0);
-		set_exit_status(WEXITSTATUS(exit_code)); // [SIGNAL | FLAG] (EXIT_CODE & 255) >> 8;
+		if (WIFEXITED(exit_code))
+			set_exit_status(WEXITSTATUS(exit_code));
+		else
+			set_exit_status(128 + WTERMSIG(exit_code));
 	}
 	while (wait(NULL) > 0)
 		;
 }
 
+void	fini_func(void *params)
+{
+	close_fds(params);
+}
