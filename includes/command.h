@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/06/14 07:25:16 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/08/09 15:45:17 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int						here_document_to_fd(t_redirect *redir);
 
 int						make_pipe(t_command *command);
 void					close_fds(t_command *command);
+void					fini_func(void *params);
 
 int						need_subshell(t_command *command);
 pid_t					make_subshell(t_command *command);

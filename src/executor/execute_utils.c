@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 22:53:10 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/08/09 15:45:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,9 @@ void	wait_children(pid_t last_pid)
 	}
 	while (wait(NULL) > 0)
 		;
+}
+
+void	fini_func(void *params)
+{
+	close_fds(params);
 }
