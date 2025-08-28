@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 11:08:21 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 12:18:16 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/08/28 23:56:39 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,15 @@ char	*search_command_path(char *command)
 	index = 0;
 	while (paths[index])
 	{
-		full_path = str_arr_join((char *[]){paths[index], "/", command}, 3);
+		full_path = str_arr_join((char *[]){paths[index++], "/", command}, 3);
+		if (is_directory(full_path))
+			continue;
 		status = file_status(full_path);
 		if (status == EXECUTION_SUCCESS)
 			return (full_path);
 		if (status == EX_NOEXEC)
 			abort_command(full_path, status);
 		safe_free_ptr(full_path, TEMPORARY);
-		index++;
 	}
 	return (NULL);
 }
