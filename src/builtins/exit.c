@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:56:48 by hsamir            #+#    #+#             */
-/*   Updated: 2025/08/29 17:33:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/08/29 19:10:28 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ long	ft_atol(const char *str, int *err)
 	return (sign * total);
 }
 
-int	exit_builtin_error_handler(t_command *command, char *arg)
+int	exit_builtin_error_handler(char *arg, int subshell)
 {
 	if (arg == NULL)
 	{
 		ft_putstr_fd("hash: exit: too many arguments\n", 2);
 		return (1);
 	}
-	if (command->next == NULL && command->prev == NULL)
+	if (!subshell)
 		ft_putstr_fd("exit\n", 2);
 	ft_putstr_fd("hash: exit: ", 2);
 	ft_putstr_fd(arg, 2);
@@ -88,21 +88,23 @@ int	exit_builtin_error_handler(t_command *command, char *arg)
 int	exit_builtin(t_command *command)
 {
 	int		err;
+	int		subshell;
 	long	exit_code;
 
+	subshell = (command->next || command->prev);
 	if (command->args[1] == NULL)
 	{
-		if (command->next == NULL && command->prev == NULL)
+		if (!subshell)
 			ft_putstr_fd("exit\n", 2);
 		safe_abort(*exit_status());
 	}
 	err = 0;
 	exit_code = ft_atol(command->args[1], &err);
 	if (err == -1)
-		safe_abort(exit_builtin_error_handler(command, command->args[1]));
+		safe_abort(exit_builtin_error_handler(command->args[1], subshell));
 	if (command->args[2] != NULL)
-		return (exit_builtin_error_handler(command, NULL));
-	if (command->next == NULL && command->prev == NULL)
+		return (exit_builtin_error_handler(NULL, subshell));
+	if (!subshell)
 		ft_putstr_fd("exit\n", 2);
 	safe_abort(exit_code % 256);
 	return (EXECUTION_SUCCESS);
