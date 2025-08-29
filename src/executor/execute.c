@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 07:04:29 by hsamir            #+#    #+#             */
-/*   Updated: 2025/06/14 07:24:56 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/08/29 09:10:33 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	execute_disk_command(t_command *command)
 	if (full_path == NULL)
 		command_not_found(command->args[0]);
 	envp = get_env_to_array();
-	execve(full_path, command->args, envp);
+	execve(full_path, command->args, envp); /*XXX Bash Execve: https://pastes.dev/LRe40QPu6D*/
 	return (EX_NOEXEC);
 }
 
