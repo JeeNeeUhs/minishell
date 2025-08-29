@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 16:56:48 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/31 09:05:24 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/08/29 17:33:55 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,24 @@ long	ft_atol(const char *str, int *err)
 		i++;
 	}
 	i += skip_whitespace(str + i);
-	if (str[i] && str[i] != '\0')
+	if (str[i] != '\0' || i == 0)
 		*err = -1;
 	return (sign * total);
 }
 
-void	exit_builtin_error_handler(char *arg)
+int	exit_builtin_error_handler(t_command *command, char *arg)
 {
-	if (arg)
+	if (arg == NULL)
 	{
-		ft_putstr_fd("exit\n", 2);
-		ft_putstr_fd("hash: exit: ", 2);
-		ft_putstr_fd(arg, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd("numeric argument required\n", 2);
-		safe_abort(2);
-	}
-	if (!arg)
 		ft_putstr_fd("hash: exit: too many arguments\n", 2);
+		return (1);
+	}
+	if (command->next == NULL && command->prev == NULL)
+		ft_putstr_fd("exit\n", 2);
+	ft_putstr_fd("hash: exit: ", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd(": numeric argument required\n", 2);;
+	return (2);
 }
 
 int	exit_builtin(t_command *command)
@@ -90,26 +90,20 @@ int	exit_builtin(t_command *command)
 	int		err;
 	long	exit_code;
 
-	err = 0;
-	if (!command->args[1])
+	if (command->args[1] == NULL)
 	{
-		ft_putstr_fd("exit\n", 2);
+		if (command->next == NULL && command->prev == NULL)
+			ft_putstr_fd("exit\n", 2);
 		safe_abort(*exit_status());
 	}
+	err = 0;
 	exit_code = ft_atol(command->args[1], &err);
-	if (err != -1 && command->args[2])
-	{
-		exit_builtin_error_handler(NULL);
-		return (1);
-	}
-	if (command->args[1] && err == -1)
-		exit_builtin_error_handler(command->args[1]);
-	if (command->args[1])
-	{
-		if (err == -1)
-			exit_builtin_error_handler(command->args[1]);
+	if (err == -1)
+		safe_abort(exit_builtin_error_handler(command, command->args[1]));
+	if (command->args[2] != NULL)
+		return (exit_builtin_error_handler(command, NULL));
+	if (command->next == NULL && command->prev == NULL)
 		ft_putstr_fd("exit\n", 2);
-		safe_abort(exit_code % 256);
-	}
+	safe_abort(exit_code % 256);
 	return (EXECUTION_SUCCESS);
 }
