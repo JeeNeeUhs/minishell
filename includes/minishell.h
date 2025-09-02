@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:13:25 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 20:40:40 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 13:38:16 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void		handle_sigint_here(int sig);
 void		handle_sigint_exec(int sig);
 void		handle_sigint_prompt(int sig);
 void		handle_sigquit(int sig);
+void		handle_sigpipe(int sig);
 
 #endif

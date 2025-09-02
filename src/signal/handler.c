@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsamir <hsamir@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:10:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/29 23:30:55 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 13:37:57 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "minishell.h"
+#include "memory_allocator.h"
 
 void	handle_sigquit(int sig)
 {
@@ -20,6 +21,11 @@ void	handle_sigquit(int sig)
 	printf("Quit (core dumped)\n");
 	rl_replace_line("", 0);
 	set_exit_status(128 + sig);
+}
+
+void	handle_sigpipe(int sig) /*XXX if we don't use execve in subshell and encountered SIGPIPE */
+{
+	safe_abort(128 + sig); 
 }
 
 void	handle_sigint_here(int sig)

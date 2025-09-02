@@ -21,6 +21,7 @@ int	g_signal = 0;
 void	set_signal_handler(t_signal s_type)
 {
 	g_signal = 0;
+	signal(SIGPIPE, handle_sigpipe); /*XXX ensure that it's clean way to clean still reacheable*/
 	if (s_type == HERE_SIG)
 	{
 		rl_event_hook = do_noop;
