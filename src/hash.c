@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:32:27 by hsamir            #+#    #+#             */
-/*   Updated: 2025/08/09 15:39:42 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 18:06:46 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	main(int argc, char**argv, char *envp[])
 	(void)argc;
 	(void)argv;
 	init_env(envp);
+	remove_env("PS1");
+	remove_env("PS2");
 	if (isatty(STDIN_FILENO))
 		init_env((char *[]){PPROMPT, SPROMPT, NULL});
 	while (1)
