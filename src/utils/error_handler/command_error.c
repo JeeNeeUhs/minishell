@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahekinci <ahekinci@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/05/30 12:36:30 by ahekinci         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:29:27 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "command.h"
 #include "memory_allocator.h"
 #include <stdio.h>
+#include <sys/wait.h>
 
 int	report_export_error(char *variable)
 {
@@ -46,4 +47,12 @@ void	abort_command(char *command, int status)
 	ft_putstr_fd("hash: ", 2);
 	perror(command);
 	safe_abort(status);
+}
+
+void	print_pipeline(int exit_code)
+{
+	if (WCOREDUMP (exit_code))
+  		ft_putstr_fd("Quit (core dumped)\n", 2);
+	if (exit_code == SIGINT)
+  		ft_putstr_fd("\n", 2);
 }

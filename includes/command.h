@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:42:14 by ahekinci          #+#    #+#             */
-/*   Updated: 2025/08/09 15:45:17 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 16:27:11 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int						execute_disk_command(t_command *command);
 
 void					command_not_found(char *command);
 void					abort_command(char *command, int status);
+void					print_pipeline(int exit_code);
 
 void					determinate_signal_handler(t_command *command);
 #endif

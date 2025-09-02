@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:10:33 by hsamir            #+#    #+#             */
-/*   Updated: 2025/09/02 13:37:57 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 15:41:00 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	handle_sigquit(int sig)
 {
 	g_signal = sig;
-	printf("Quit (core dumped)\n");
+	// printf("Quit (core dumped)\n");
 	rl_replace_line("", 0);
 	set_exit_status(128 + sig);
 }
@@ -39,7 +39,7 @@ void	handle_sigint_here(int sig)
 void	handle_sigint_exec(int sig)
 {
 	g_signal = sig;
-	printf("\n");
+	// printf("\n");
 }
 
 void	handle_sigint_prompt(int sig)

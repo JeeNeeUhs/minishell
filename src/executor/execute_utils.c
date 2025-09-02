@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/08/09 15:45:00 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 16:28:23 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include "string_utils.h"
 #include <stdio.h>
+#include "libft.h"
 
 int	need_subshell(t_command *command)
 {
@@ -54,7 +55,7 @@ pid_t	make_child(void)
 	return (pid);
 }
 
-void	wait_children(pid_t last_pid)
+void	wait_children(pid_t last_pid) /*XXX https://pastes.dev/zOoKvNOIP2 */
 {
 	int	exit_code;
 
@@ -66,6 +67,8 @@ void	wait_children(pid_t last_pid)
 			set_exit_status(WEXITSTATUS(exit_code));
 		else
 			set_exit_status(128 + WTERMSIG(exit_code));
+		if (WIFSTOPPED(exit_code) == 0)
+			print_pipeline(exit_code);
 	}
 	while (wait(NULL) > 0)
 		;
