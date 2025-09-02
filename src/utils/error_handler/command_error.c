@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/09/02 17:48:50 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:59:53 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,17 @@ void	print_pipeline(int exit_code)
 	if (!WIFSIGNALED(exit_code))
 		return ;
 	if (signal_num == SIGQUIT)
-			ft_putstr_fd("Quit", 2);
+		ft_putstr_fd("Quit", 2);
 	if (signal_num == SIGSEGV)
-			ft_putstr_fd("Segmentation fault", 2);
+		ft_putstr_fd("Segmentation fault", 2);
+	if (signal_num == SIGABRT)
+		ft_putstr_fd("Aborted", 2);
+	if (signal_num == SIGFPE)
+		ft_putstr_fd("Floating point exception", 2);
+	if (signal_num == SIGBUS)
+		ft_putstr_fd("Bus error", 2);
+	if (signal_num == SIGTRAP)
+		ft_putstr_fd("Trace/breakpoint trap", 2);
 	if (WCOREDUMP(exit_code))
 		ft_putstr_fd(" (core dumped)\n", 2);
 	if (signal_num == SIGINT)
