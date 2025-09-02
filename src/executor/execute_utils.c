@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:49:19 by hsamir            #+#    #+#             */
-/*   Updated: 2025/09/02 16:28:23 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:09:09 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ void	wait_children(pid_t last_pid) /*XXX https://pastes.dev/zOoKvNOIP2 */
 			set_exit_status(WEXITSTATUS(exit_code));
 		else
 			set_exit_status(128 + WTERMSIG(exit_code));
-		if (WIFSTOPPED(exit_code) == 0)
-			print_pipeline(exit_code);
+		print_pipeline(exit_code);
 	}
 	while (wait(NULL) > 0)
 		;

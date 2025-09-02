@@ -6,7 +6,7 @@
 /*   By: hsamir <hsamir@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 22:18:32 by hsamir            #+#    #+#             */
-/*   Updated: 2025/09/02 16:40:02 by hsamir           ###   ########.fr       */
+/*   Updated: 2025/09/02 17:48:50 by hsamir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,17 @@ void	abort_command(char *command, int status)
 
 void	print_pipeline(int exit_code)
 {
-	if (WTERMSIG(exit_code) == SIGQUIT)
+	int	signal_num;
+	
+	signal_num = WTERMSIG(exit_code);
+	if (!WIFSIGNALED(exit_code))
+		return ;
+	if (signal_num == SIGQUIT)
 			ft_putstr_fd("Quit", 2);
-	if (WTERMSIG(exit_code) == SIGSEGV)
+	if (signal_num == SIGSEGV)
 			ft_putstr_fd("Segmentation fault", 2);
 	if (WCOREDUMP(exit_code))
 		ft_putstr_fd(" (core dumped)\n", 2);
-	if (exit_code == SIGINT)
+	if (signal_num == SIGINT)
   		ft_putstr_fd("\n", 2);
 }
