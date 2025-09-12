@@ -40,7 +40,7 @@ int	cd_builtin(t_command *command)
 	char	*dir_name;
 
 	if (command->args[1] && command->args[2])
-		return (builtin_error(" too many arguments"));
+		return (builtin_error("hash cd: too many arguments"));
 	dir_name = command->args[1];
 	if (dir_name == NULL)
 		dir_name = get_env_value("HOME");
